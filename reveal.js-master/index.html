@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Python intro course</h1>
+					<p>by <a href="https://diogoaos.com">Diogo Silva</a></p>
+					<small><a href="mailto:diogoaos@aln.iseg.ulisboa.pt">diogoaos@aln.iseg.ulisboa.pt</a></small>
+				</section>
+				<section data-background-color="white">
+					<p>Outline of the course</p>
+					<img data-src="img/short_course.png">
+				</section>
+				<section>
+					<p>What is programming?</p>
+				</section>
+				<section>
+					<section>
+						<h2>Setting up the environment</h2>
+						<p>Let's install the tools for programming in Python.</p>
+						<p>Jupyter Notebooks are very popular. We'll install that and a simple code editor with the Anaconda.</p>
+						<small>
+							<p>Easy to follow along videos for installing Anaconda in <a href="https://youtu.be/C1RLRGNjeoE">Windows</a> and <a href="https://youtu.be/0Hhqf8L-b_0?t=210">Mac</a>.</p>
+						</small>
+					</section>
+					
+					<section>
+						<b>Anaconda</b> is a popular <b>open-source</b> Python distribution that makes it easy to install Python and many data science libraries.
+						<p>
+							This following link will take you to the <a href="https://www.anaconda.com/products/distribution#Downloads">Anaconda download page</a>. Download Anaconda for your operating system.
+						</p>
+					</section>
+					<section>
+						<img data-src="img/anaconda_download_page.png">
+					</section>
+				</section>
+				<section>
+					Another option is to use a managed Jupyter Notebook provider like <a href="https://colab.research.google.com/">Google Colab</a>.
+					<p>Google Colab is a free Jupyter Notebook provider that will allow you to run code on Google's servers, using only CPUs. Execution with GPUs is paid.</p>
+				</section>
+				<section>
+					From now on, it's assumed you have a functional Python environment.
+					Go on and open a Jupyter Notebook for following along.
+				</section>
+				<section>
+					<section>
+						<h1>Variables</h1>
+					</section>
+					<section>
+						A <b style="color:darkgoldenrod;">variable</b> is a placeholder for some value.
+						Think of it like a box where you can put anything you want and retrieve it later.
+					</section>
+					<section>
+						Let's create some variables.
+						<pre><code data-noescape data-trim data-line-numbers="1-3">
+							a = 3.14
+							b = 2
+							name = "Isaac Asimov"
+							c = a
+							a = 42
+							print("Hello world!")
+							print(a)
+							print(name)
+							print(a, b, c)
+						</code></pre>
+						a, b and name are all variables.
+					</section>
+					<section>
+						<pre><code data-noescape data-trim data-line-numbers="1-3">
+							a = 3.14
+							b = 2
+							name = "Isaac Asimov"
+							c = a
+							a = 42
+							print("Hello world!")
+							print(a)
+							print(name)
+							print(a, b, c)
+						</code></pre>
+						The = operator assigns a value (any value) to the variable.
+					</section>
+					<section>
+						<pre><code data-noescape data-trim data-line-numbers="4">
+							a = 3.14
+							b = 2
+							name = "Isaac Asimov"
+							c = a
+							a = 42
+							print("Hello world!")
+							print(a)
+							print(name)
+							print(a, b, c)
+						</code></pre>
+						We can also assign the value of a variable to another variable.
+						c now has the value of a, which is 3.14
+					</section>
+					<section>
+						<pre><code data-noescape data-trim data-line-numbers="5">
+							a = 3.14
+							b = 2
+							name = "Isaac Asimov"
+							c = a
+							a = 42
+							print("Hello world!")
+							print(a)
+							print(name)
+							print(a, b, c)
+						</code></pre>
+						And we can overwrite the value of a particular value.
+						The value of a is not 42 instead of 3.14.
+						But c is still 3.14!
+					</section>
+					<section>
+						<pre><code data-noescape data-trim data-line-numbers="4">
+							a = 3.14
+							b = 2
+							name = "Isaac Asimov"
+							c = a
+							a = 42
+							print("Hello world!")
+							print(a)
+							print(name)
+							print(a, b, c)
+						</code></pre>
+
+						We can retrieve the value of a variable, simply by typing it's name.
+
+					</section>
+					<section>
+						<pre><code data-noescape data-trim data-line-numbers="6,7,8">
+							a = 3.14
+							b = 2
+							name = "Isaac Asimov"
+							c = a
+							a = 42
+							print("Hello world!")
+							print(a)
+							print(name)
+							print(a, b, c)
+						</code></pre>
+
+
+						<p>We already did that when we gave c the value of a.</p>
+						<p>The print function will come in handy to check the values of variables.
+							This function simply prints to the terminal/screen the value that is given to it.</p>
+					</section>
+					<section>
+						<pre><code data-noescape data-trim data-line-numbers="9">
+							a = 3.14
+							b = 2
+							name = "Isaac Asimov"
+							c = a
+							a = 42
+							print("Hello world!")
+							print(a)
+							print(name)
+							print(a, b, c)
+						</code></pre>
+						We can also print several values at once, if we separate them with commas.
+					</section>
+					
+				</section>
+
+				<section>
+					<section>
+						<h1>Input/Ouput</h1>
+						<h2>interating with the outside</h2>
+						<ul>
+							<li>Terminal</li>
+							<li>Files (later)</li>
+							<li>Networking (not covered)</li>
+							<li>GUIs (not covered)</li>
+							<li>Pipes (not covered)</li>
+						  </ul>
+					</section>
+					<section>
+						<h2>Interacting through the terminal</h2>
+						<ul>
+							<li>print - send values to user - already covered in the variables section</li>
+							<li>input - reveice values from user</li>
+						</ul>
+					</section>
+					<section>
+						<pre><code data-noescape data-trim data-line-numbers="1-2">
+							print("type your first and last name")
+							name = input()
+							name2 = input("type your first and last name again")
+						</code></pre>
+						After executing the input function, the terminal will wait for user input.
+						The user can write whatever she wishes, ending with an enter.
+
+					</section>
+					<section>
+						<pre><code data-noescape data-trim data-line-numbers="3">
+							print("type your first and last name")
+							name = input()
+							name2 = input("type your first and last name again")
+						</code></pre>
+
+						The input function can receive an <b>optional</b> string that is printed to the terminal before receiving input from the user.
+					</section>
+				</section>
+				<section>
+					<h1>Types</h1>
+
+				</section>
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
