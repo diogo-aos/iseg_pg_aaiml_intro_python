@@ -228,28 +228,273 @@ name2 = input("type your first and last name again")
 						<pre class="python"><code data-noescape data-trim data-line-numbers="1,2">
 a = 3.14
 b = 2
+print(type(a))  # float 
+print(type(b))  # int
 name = "Isaac Asimov"
-print(type(a))  # 
-print(type(b))  #
-print(type(name))
+print(type(name))  # str
+decision = True
+print(type(decision))  # bool
 						</code></pre>
 						<p>Both a and b are numeric tyes, but they're not the same.</p>
-						<p>a is a real number and b is a natural number.</p>
-						<p>In Python we call them a float (as in floating point number) and an integer, respectively. </p>
+                        
 					</section>
 					<section>
-						<pre class="python"><code data-noescape data-trim data-line-numbers="1,2">
+						<pre class="python"><code data-noescape data-trim data-line-numbers="3,4">
 a = 3.14
 b = 2
+print(type(a))  # float 
+print(type(b))  # int
 name = "Isaac Asimov"
-print(type(a))  # 
-print(type(b))  #
-print(type(name))
+print(type(name))  # str
+decision = True
+print(type(decision))  # bool
 						</code></pre>
+                        <p>type will tell us the type of any value we give it.</p>
+						<p>a is a float (as in floating point number), Python's representation for a real number.</p>
+                        <p>b is an int (as in integer), Python're representation for a natural number.</p>
 					</section>
-
+                    <section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="5,6">
+a = 3.14
+b = 2
+print(type(a))  # float 
+print(type(b))  # int
+name = "Isaac Asimov"
+print(type(name))  # str
+decision = True
+print(type(decision))  # bool
+						</code></pre>
+                        <p>str (short for string) is another basic type.</p>
+						<p>It's used to encode text.</p>
+					</section>
+                    <section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="7,8">
+a = 3.14
+b = 2
+print(type(a))  # float 
+print(type(b))  # int
+name = "Isaac Asimov"
+print(type(name))  # str
+decision = True
+print(type(decision))  # bool
+						</code></pre>
+                        <p>bool (short for boolean) encodes a True or False value.</p>
+						<p>Many operations, like comparisons between 2 values, will return a True of False value.</p>
+					</section>
 					
 				</section>
+                <section>
+                    <section>
+                        <h2>Numeric types TODO</h2>
+                        <h3>int</h3>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Numeric types TODO</h2>
+                        <h3>float</h3>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>string TODO</h2>
+                    </section>
+                    
+                </section>
+                <section data-background-image="img/fork_in_the_road.jpg"
+                data-background-opacity=0.2>
+                    <section >
+                        <h2>Making decisions</h2>
+                        <h3>conditionals</h3>
+                        <p>A program has very limited functionality if it's not able to make decisions.</p>
+                    </section>
+                    <section>
+                        Conditionals enable us to execute a portion of code based on some decision.
+                        <pre class="python"><code data-noescape data-trim data-line-numbers="">
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+else:
+    action = "stop"
+						</code></pre>
+                        What is happening here?
+                    </section>
+                    <section>
+                        <pre class="python"><code data-noescape data-trim data-line-numbers="3">
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+else:
+    action = "stop"
+						</code></pre>
+                        <p>In Python, we state conditionals with the if statement.</p>
+                        <p>We're checking if the value of the traffic_light variable is "green".</p>
+                        <p>If it is, the comparison operator (==) will return True, otherwise False.</p>
+                    </section>
+                    <section>
+                        <pre class="python"><code data-noescape data-trim data-line-numbers="3,4">
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+else:
+    action = "stop"
+						</code></pre>
+                        <p>When the condition after if is True, the program will execute the code that is indented forward.</p>
+                        <p>Here, that code is in line 4.</p>
+                    </section>
+                    <section>
+                        <pre class="python"><code data-noescape data-trim data-line-numbers="5,6">
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+else:
+    action = "stop"
+						</code></pre>
+                        <p>The else statement allows us to define code to be executed when the condition fails.</p>
+                        <p>Here, that code is in line 6.</p>
+                    </section>
+                    <section>
+                        <pre class="python"><code data-noescape data-trim data-line-numbers="5,7">
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+elif traffic_light == "yellow":
+    action = "deaccelerate"
+elif traffic_light == "red":
+    action = "stop"
+else:
+    # unknown color
+    action = "proceed_carefully"
+
+						</code></pre>
+                        <p>We can also chain several conditions with elif.</p>
+                        <p>elif works like else, but it allows us to define more conditions.</p>
+                    </section>
+                    <section>
+                        <pre class="python"><code data-noescape data-trim data-line-numbers="5,7">
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+elif traffic_light == "yellow":
+    action = "deaccelerate"
+elif traffic_light == "red":
+    action = "stop"
+else:
+    # unknown color
+    action = "proceed_carefully"
+
+						</code></pre>
+                        <p>When chaining conditions in this way, a given condition is only processed if all the previous conditions fail.</p>
+                    </section>
+                    <section>
+                        <pre class="python"><code data-noescape data-trim data-line-numbers="3,5,6">
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+elif traffic_light == "yellow":
+    action = "deaccelerate"
+elif traffic_light == "red":
+    action = "stop"
+else:
+    # unknown color
+    action = "proceed_carefully"
+
+						</code></pre>
+                        <p>The condition on line 5 will only be processed if the condition on line 3 fails.</p>
+                    </section>
+                    <section>
+                        <pre class="python"><code data-noescape data-trim data-line-numbers="3,5,7,8">
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+elif traffic_light == "yellow":
+    action = "deaccelerate"
+elif traffic_light == "red":
+    action = "stop"
+else:
+    # unknown color
+    action = "proceed_carefully"
+
+						</code></pre>
+                        <p>The condition on line 7 will only be processed if the conditions on lines 3 and 5 fail.</p>
+                    </section>
+                    <section>
+                        <pre class="python"><code data-noescape data-trim data-line-numbers="3,5,7,9-11">
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+elif traffic_light == "yellow":
+    action = "deaccelerate"
+elif traffic_light == "red":
+    action = "stop"
+else:
+    # unknown color
+    action = "proceed_carefully"
+
+						</code></pre>
+                        <p>The final else statement will only be processed if the conditions on lines 3,5 and 7 fail.</p>
+                    </section>
+                    <section>
+                        <pre class="python"><code data-noescape data-trim data-line-numbers="10">
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+elif traffic_light == "yellow":
+    action = "deaccelerate"
+elif traffic_light == "red":
+    action = "stop"
+else:
+    # unknown color
+    action = "proceed_carefully"
+
+						</code></pre>
+                        <p>By the way, # is the start of a comment in Python.</p>
+                        <p>Comments are not code, they're just extra information the programmer adds to the program so it's easier to understand the code.</p>
+                        <p>Comments are never executed, even if they contain valid code.</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Boolean logic TODO</h2>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Basic Data structures TODO</h2>
+                        <h3>Lists, Tuples and Dicts</h3>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Functions TODO</h2>
+                    </section>
+                </section>
+
+
+                <section>
+                    <section>
+                        <h2>External code TODO</h2>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Classes TODO</h2>
+                    </section>
+                </section>
 
 			</div>
 		</div>
