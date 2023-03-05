@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Introduction to Python</title>
+
+		<link rel="stylesheet" href="../revealjs/dist/reset.css">
+		<link rel="stylesheet" href="../revealjs/dist/reveal.css">
+		<link rel="stylesheet" href="../revealjs/dist/theme/moon.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown="markdown/0_home.md"
+				data-separator="^\r?\n---\r?\n$"
+				data-separator-vertical="^\r?\n--\r?\n$"
+				id="home"
+				></section>
+				<section data-markdown="markdown/1_aula1.md"
+				data-separator="^\r?\n---\r?\n$"
+				data-separator-vertical="^\r?\n--\r?\n$"
+				id="home"
+				></section>
+
+				<section data-background-color="white">
+					<h2>Outline of the course</h2>
+					<img data-src="img/short_course.png">
+				</section>
+				<section>
+					<h2>What is programming?</h2>
+				</section>
+				<section>
+					<section>
+						<h2>Development environment</h2>
+						<h3>Anaconda</h3>
+						<p>Let's install the tools for programming in Python.</p>
+						<p>Jupyter Notebooks are very popular. We'll install that and a simple code editor with the Anaconda.</p>
+						<small>
+							<p>Easy to follow along videos for installing Anaconda in <a href="https://youtu.be/C1RLRGNjeoE">Windows</a> and <a href="https://youtu.be/0Hhqf8L-b_0?t=210">Mac</a>.</p>
+						</small>
+					</section>
+					<section>
+						<b>Anaconda</b> is a popular <b>open-source</b> Python distribution that makes it easy to install Python and many data science libraries.
+						<p>
+							This following link will take you to the <a href="https://www.anaconda.com/products/distribution#Downloads">Anaconda download page</a>. Download Anaconda for your operating system.
+						</p>
+					</section>
+					<section>
+						<img data-src="img/anaconda_download_page.png">
+					</section>
+				</section>
+				<section>
+					<h2>Development environment</h2>
+					<h3>Google Colab</h3>
+					Another option is to use a managed Jupyter Notebook provider like <a href="https://colab.research.google.com/">Google Colab</a>.
+					<p>Google Colab is a free Jupyter Notebook provider that will allow you to run code on Google's servers, using only CPUs. Execution with GPUs is paid.</p>
+				</section>
+				<section>
+					From now on, it's assumed you have a functional Python environment.
+					Go on and open a Jupyter Notebook for following along.
+				</section>
+				<section>
+					<section>
+						<p>When in doubt, <span style="color:royalblue;">experiment</span>.</p>
+						<p class="fragment">The computer won't break.</p>
+						<p class="fragment">The computer won't be offended.</p>
+					</section>
+					<section>
+						<p>Python has a <span>help</span> function.</p>
+						<p>Type <code style="color:mediumseagreen">help(anything)</code> and you can read documentation on it.</p>
+					</section>
+					<section>
+						<p>The internet is your friend.</p>
+						<p>Search for errors and desired functionality.</p>
+						<p class="fragment">Reading other people's code is a great way to learn.</p>
+						<p class="fragment">Stack Overflow is a solid resource.</p>
+					</section>
+				
+				</section>
+				<section>
+					<section>
+						<h2>Variables</h2>
+					</section>
+					<section>
+						A <b style="color:darkgoldenrod;">variable</b> is a placeholder for some value.
+						Think of it like a box where you can put anything you want and retrieve it later.
+					</section>
+					<section>
+						Let's create some variables.
+						<pre class="python"><code data-noescape data-trim data-line-numbers="1-3">
+							{{code:code/variables.py}}
+						</code></pre>
+						a, b and name are all variables.
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="1-3">
+							{{code:code/variables.py}}
+						</code></pre>
+						The = operator assigns a value (any value) to the variable.
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="4">
+							{{code:code/variables.py}}
+						</code></pre>
+						We can also assign the value of a variable to another variable.
+						c now has the value of a, which is 3.14
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="5">
+							{{code:code/variables.py}}
+						</code></pre>
+						And we can overwrite the value of a particular value.
+						The value of a is not 42 instead of 3.14.
+						But c is still 3.14!
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="4">
+							{{code:code/variables.py}}
+						</code></pre>
+						We can retrieve the value of a variable, simply by typing it's name.
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="6,7,8">
+							{{code:code/variables.py}}
+						</code></pre>
+						<p>We already did that when we gave c the value of a.</p>
+						<p>The print function will come in handy to check the values of variables.
+							This function simply prints to the terminal/screen the value that is given to it.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="9">
+							{{code:code/variables.py}}
+						</code></pre>
+						We can also print several values at once, if we separate them with commas.
+					</section>
+					
+				</section>
+				
+				<section>
+					<section>
+						<h2>Input/Ouput</h2>
+						<h3>interating with the outside</h3>
+						<ul>
+							<li>Terminal</li>
+							<li>Files (later)</li>
+							<li>Networking (not covered)</li>
+							<li>GUIs (not covered)</li>
+							<li>Pipes (not covered)</li>
+							</ul>
+					</section>
+					<section>
+						<h3>Interacting through the terminal</h3>
+						<ul>
+							<li>print - send values to user - already covered in the variables section</li>
+							<li>input - reveice values from user</li>
+						</ul>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="1,2">
+							{{code:code/io_terminal.py}}
+						</code></pre>
+						After executing the input function, the terminal will wait for user input.
+						The user can write whatever she wishes, ending with an enter.
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="3">
+							{{code:code/io_terminal.py}}
+						</code></pre>
+						The input function can receive an <b>optional</b> string that is printed to the terminal before receiving input from the user.
+					</section>
+				</section>
+				<section>
+					<section>
+						<h1>Types</h1>
+						We've already seen some values of different kinds.
+						Do you remember which?					
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="1,2">
+							{{code:code/types.py}}
+						</code></pre>
+						<p>Both a and b are numeric tyes, but they're not the same.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="3,4">
+							{{code:code/types.py}}
+						</code></pre>
+						<p>type will tell us the type of any value we give it.</p>
+						<p>a is a float (as in floating point number), Python's representation for a real number.</p>
+						<p>b is an int (as in integer), Python're representation for a natural number.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="5,6">
+							{{code:code/types.py}}
+						</code></pre>
+						<p>str (short for string) is another basic type.</p>
+						<p>It's used to encode text.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="7,8">
+							{{code:code/types.py}}
+						</code></pre>
+						<p>bool (short for boolean) encodes a True or False value.</p>
+						<p>Many operations, like comparisons between 2 values, will return a True of False value.</p>
+					</section>
+					
+				</section>
+				<section>
+					<section>
+						<h2>Numeric types </h2> <!-- TODO -->
+						<h3>int, float</h3>
+						<p>Operations: + - * / // % **</p>
+						<p>Conversion</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>string</h2> <!-- TODO -->
+						<p>String methods</p>
+						<p>Formated strings</p>
+						<p>Conversion</p>
+					</section>
+					
+				</section>
+				<section data-background-image="img/fork_in_the_road.jpg"
+				data-background-opacity=0.2>
+					<section >
+						<h2>Making decisions</h2>
+						<h3>conditionals</h3>
+						<p>A program has very limited functionality if it's not able to make decisions.</p>
+					</section>
+					<section>
+						Conditionals enable us to execute a portion of code based on some decision.
+						<pre class="python"><code data-noescape data-trim data-line-numbers="">
+							{{code:code/conditionals1.py}}
+						</code></pre>
+						What is happening here?
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="3">
+							{{code:code/conditionals1.py}}
+						</code></pre>
+						<p>In Python, we state conditionals with the if statement.</p>
+						<p>We're checking if the value of the traffic_light variable is "green".</p>
+						<p>If it is, the comparison operator (==) will return True, otherwise False.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="3,4">
+							{{code:code/conditionals1.py}}
+						</code></pre>
+						<p>When the condition after if is True, the program will execute the code that is indented forward.</p>
+						<p>Here, that code is in line 4.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="5,6">
+							{{code:code/conditionals1.py}}
+						</code></pre>
+						<p>The else statement allows us to define code to be executed when the condition fails.</p>
+						<p>Here, that code is in line 6.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="5,7">
+							{{code:code/conditionals2.py}}
+						</code></pre>
+						<p>We can also chain several conditions with elif.</p>
+						<p>elif works like else, but it allows us to define more conditions.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="5,7">
+							{{code:code/conditionals2.py}}
+						</code></pre>
+						<p>When chaining conditions in this way, a given condition is only processed if all the previous conditions fail.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="3,5,6">
+							{{code:code/conditionals2.py}}
+						</code></pre>
+						<p>The condition on line 5 will only be processed if the condition on line 3 fails.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="3,5,7,8">
+							{{code:code/conditionals2.py}}
+						</code></pre>
+						<p>The condition on line 7 will only be processed if the conditions on lines 3 and 5 fail.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="3,5,7,9-11">
+							{{code:code/conditionals2.py}}
+						</code></pre>
+						<p>The final else statement will only be processed if the conditions on lines 3,5 and 7 fail.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="10">
+							{{code:code/conditionals2.py}}
+						</code></pre>
+						<p># is the start of a comment in Python.</p>
+					</section>
+					<section>
+						<h3>Comments</h3>
+						<p>Comments are not code, they're just extra information the programmer adds to the program so it's easier to understand the code.</p>
+						<p>Comments are never executed, even if they contain valid code.</p>
+					</section>
+				</section>
+				
+				<section>
+					<section>
+						<h2>Boolean logic </h2> <!-- TODO -->
+						<p>Combine conditions</p>
+						<p>and, or, not</p>
+						<p>&	|    ~</p>
+					</section>
+				</section>
+				
+				<section data-markdown="markdown/2_aula1_recap.md"
+				data-separator="^\r?\n---\r?\n$"
+				data-separator-vertical="^\r?\n--\r?\n$"
+				></section>
+
+				<section data-markdown="markdown/3_aula2.md"
+				data-separator="^\r?\n---\r?\n$"
+				data-separator-vertical="^\r?\n--\r?\n$"
+				></section>
+
+				<section data-markdown="markdown/4_aula2_recap.md"
+				data-separator="^\r?\n---\r?\n$"
+				data-separator-vertical="^\r?\n--\r?\n$"
+				></section>
+
+				<section data-markdown="markdown/4
+				5_lesson3.md"
+				data-separator="^\r?\n---\r?\n$"
+				data-separator-vertical="^\r?\n--\r?\n$"
+				></section>
+				
+				
+			</div>
+		</div>
+
+		<script src="../revealjs/dist/reveal.js"></script>
+		<script src="../revealjs/plugin/notes/notes.js"></script>
+		<script src="../revealjs/plugin/markdown/markdown.js"></script>
+		<script src="../revealjs/plugin/highlight/highlight.js"></script>
+		<!-- <script src="plugin/sampler.js"></script> -->
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes],
+
+			// 	dependencies: [
+			// 		{src: 'plugin/sampler.js'}
+			// 	]
+			});
+		</script>
+	</body>
+</html>

@@ -6,22 +6,27 @@
 
 		<title>Introduction to Python</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="../revealjs/dist/reset.css">
+		<link rel="stylesheet" href="../revealjs/dist/reveal.css">
+		<link rel="stylesheet" href="../revealjs/dist/theme/moon.css">
 
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+		<link rel="stylesheet" href="../revealjs/plugin/highlight/monokai.css">
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>
-					<img data-src="img/iseg_logo.png" width=400>
-					<h2>Introduction to Python</h2>
-					<p>by <a href="https://diogoaos.com">Diogo Silva</a></p>
-					<small><a href="mailto:diogoaos@aln.iseg.ulisboa.pt">diogoaos@aln.iseg.ulisboa.pt</a></small>
-				</section>
+				<section data-markdown="markdown/0_home.md"
+				data-separator="^\r?\n---\r?\n$"
+				data-separator-vertical="^\r?\n--\r?\n$"
+				id="home"
+				></section>
+				<section data-markdown="markdown/1_aula1.md"
+				data-separator="^\r?\n---\r?\n$"
+				data-separator-vertical="^\r?\n--\r?\n$"
+				id="home"
+				></section>
+
 				<section data-background-color="white">
 					<h2>Outline of the course</h2>
 					<img data-src="img/short_course.png">
@@ -39,7 +44,6 @@
 							<p>Easy to follow along videos for installing Anaconda in <a href="https://youtu.be/C1RLRGNjeoE">Windows</a> and <a href="https://youtu.be/0Hhqf8L-b_0?t=210">Mac</a>.</p>
 						</small>
 					</section>
-					
 					<section>
 						<b>Anaconda</b> is a popular <b>open-source</b> Python distribution that makes it easy to install Python and many data science libraries.
 						<p>
@@ -75,8 +79,8 @@
 						<p>Search for errors and desired functionality.</p>
 						<p class="fragment">Reading other people's code is a great way to learn.</p>
 						<p class="fragment">Stack Overflow is a solid resource.</p>
-					</section>o
-
+					</section>
+				
 				</section>
 				<section>
 					<section>
@@ -158,9 +162,7 @@ print(a)
 print(name)
 print(a, b, c)
 						</code></pre>
-
 						We can retrieve the value of a variable, simply by typing it's name.
-
 					</section>
 					<section>
 						<pre class="python"><code data-noescape data-trim data-line-numbers="6,7,8">
@@ -174,8 +176,6 @@ print(a)
 print(name)
 print(a, b, c)
 						</code></pre>
-
-
 						<p>We already did that when we gave c the value of a.</p>
 						<p>The print function will come in handy to check the values of variables.
 							This function simply prints to the terminal/screen the value that is given to it.</p>
@@ -196,7 +196,7 @@ print(a, b, c)
 					</section>
 					
 				</section>
-
+				
 				<section>
 					<section>
 						<h2>Input/Ouput</h2>
@@ -207,7 +207,7 @@ print(a, b, c)
 							<li>Networking (not covered)</li>
 							<li>GUIs (not covered)</li>
 							<li>Pipes (not covered)</li>
-						  </ul>
+							</ul>
 					</section>
 					<section>
 						<h3>Interacting through the terminal</h3>
@@ -217,23 +217,20 @@ print(a, b, c)
 						</ul>
 					</section>
 					<section>
-                        <pre class="python"><code data-noescape data-trim data-line-numbers="1,2">
-print("type your first and last name")
-name = input()
-name2 = input("type your first and last name again")
-                        </code></pre>
-						
-						After executing the input function, the terminal will wait for user input.
-						The user can write whatever she wishes, ending with an enter.
-
-					</section>
-					<section>
-                        <pre class="python"><code data-noescape data-trim data-line-numbers="3">
+						<pre class="python"><code data-noescape data-trim data-line-numbers="1,2">
 print("type your first and last name")
 name = input()
 name2 = input("type your first and last name again")
 						</code></pre>
-
+						After executing the input function, the terminal will wait for user input.
+						The user can write whatever she wishes, ending with an enter.
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="3">
+print("type your first and last name")
+name = input()
+name2 = input("type your first and last name again")
+						</code></pre>
 						The input function can receive an <b>optional</b> string that is printed to the terminal before receiving input from the user.
 					</section>
 				</section>
@@ -255,7 +252,6 @@ decision = True
 print(type(decision))  # bool
 						</code></pre>
 						<p>Both a and b are numeric tyes, but they're not the same.</p>
-                        
 					</section>
 					<section>
 						<pre class="python"><code data-noescape data-trim data-line-numbers="3,4">
@@ -268,11 +264,11 @@ print(type(name))  # str
 decision = True
 print(type(decision))  # bool
 						</code></pre>
-                        <p>type will tell us the type of any value we give it.</p>
+						<p>type will tell us the type of any value we give it.</p>
 						<p>a is a float (as in floating point number), Python's representation for a real number.</p>
-                        <p>b is an int (as in integer), Python're representation for a natural number.</p>
+						<p>b is an int (as in integer), Python're representation for a natural number.</p>
 					</section>
-                    <section>
+					<section>
 						<pre class="python"><code data-noescape data-trim data-line-numbers="5,6">
 a = 3.14
 b = 2
@@ -283,10 +279,10 @@ print(type(name))  # str
 decision = True
 print(type(decision))  # bool
 						</code></pre>
-                        <p>str (short for string) is another basic type.</p>
+						<p>str (short for string) is another basic type.</p>
 						<p>It's used to encode text.</p>
 					</section>
-                    <section>
+					<section>
 						<pre class="python"><code data-noescape data-trim data-line-numbers="7,8">
 a = 3.14
 b = 2
@@ -297,38 +293,38 @@ print(type(name))  # str
 decision = True
 print(type(decision))  # bool
 						</code></pre>
-                        <p>bool (short for boolean) encodes a True or False value.</p>
+						<p>bool (short for boolean) encodes a True or False value.</p>
 						<p>Many operations, like comparisons between 2 values, will return a True of False value.</p>
 					</section>
 					
 				</section>
-                <section>
-                    <section>
-                        <h2>Numeric types </h2> <!-- TODO -->
-                        <h3>int, float</h3>
+				<section>
+					<section>
+						<h2>Numeric types </h2> <!-- TODO -->
+						<h3>int, float</h3>
 						<p>Operations: + - * / // % **</p>
 						<p>Conversion</p>
-                    </section>
-                </section>
-                <section>
-                    <section>
-                        <h2>string</h2> <!-- TODO -->
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>string</h2> <!-- TODO -->
 						<p>String methods</p>
 						<p>Formated strings</p>
 						<p>Conversion</p>
-                    </section>
-                    
-                </section>
-                <section data-background-image="img/fork_in_the_road.jpg"
-                data-background-opacity=0.2>
-                    <section >
-                        <h2>Making decisions</h2>
-                        <h3>conditionals</h3>
-                        <p>A program has very limited functionality if it's not able to make decisions.</p>
-                    </section>
-                    <section>
-                        Conditionals enable us to execute a portion of code based on some decision.
-                        <pre class="python"><code data-noescape data-trim data-line-numbers="">
+					</section>
+					
+				</section>
+				<section data-background-image="img/fork_in_the_road.jpg"
+				data-background-opacity=0.2>
+					<section >
+						<h2>Making decisions</h2>
+						<h3>conditionals</h3>
+						<p>A program has very limited functionality if it's not able to make decisions.</p>
+					</section>
+					<section>
+						Conditionals enable us to execute a portion of code based on some decision.
+						<pre class="python"><code data-noescape data-trim data-line-numbers="">
 traffic_light = "green"
 action = None
 if traffic_light == "green":
@@ -336,10 +332,10 @@ if traffic_light == "green":
 else:
     action = "stop"
 						</code></pre>
-                        What is happening here?
-                    </section>
-                    <section>
-                        <pre class="python"><code data-noescape data-trim data-line-numbers="3">
+						What is happening here?
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="3">
 traffic_light = "green"
 action = None
 if traffic_light == "green":
@@ -347,12 +343,12 @@ if traffic_light == "green":
 else:
     action = "stop"
 						</code></pre>
-                        <p>In Python, we state conditionals with the if statement.</p>
-                        <p>We're checking if the value of the traffic_light variable is "green".</p>
-                        <p>If it is, the comparison operator (==) will return True, otherwise False.</p>
-                    </section>
-                    <section>
-                        <pre class="python"><code data-noescape data-trim data-line-numbers="3,4">
+						<p>In Python, we state conditionals with the if statement.</p>
+						<p>We're checking if the value of the traffic_light variable is "green".</p>
+						<p>If it is, the comparison operator (==) will return True, otherwise False.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="3,4">
 traffic_light = "green"
 action = None
 if traffic_light == "green":
@@ -360,11 +356,11 @@ if traffic_light == "green":
 else:
     action = "stop"
 						</code></pre>
-                        <p>When the condition after if is True, the program will execute the code that is indented forward.</p>
-                        <p>Here, that code is in line 4.</p>
-                    </section>
-                    <section>
-                        <pre class="python"><code data-noescape data-trim data-line-numbers="5,6">
+						<p>When the condition after if is True, the program will execute the code that is indented forward.</p>
+						<p>Here, that code is in line 4.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="5,6">
 traffic_light = "green"
 action = None
 if traffic_light == "green":
@@ -372,29 +368,11 @@ if traffic_light == "green":
 else:
     action = "stop"
 						</code></pre>
-                        <p>The else statement allows us to define code to be executed when the condition fails.</p>
-                        <p>Here, that code is in line 6.</p>
-                    </section>
-                    <section>
-                        <pre class="python"><code data-noescape data-trim data-line-numbers="5,7">
-traffic_light = "green"
-action = None
-if traffic_light == "green":
-    action = "accelerate"
-elif traffic_light == "yellow":
-    action = "deaccelerate"
-elif traffic_light == "red":
-    action = "stop"
-else:
-    # unknown color
-    action = "proceed_carefully"
-
-						</code></pre>
-                        <p>We can also chain several conditions with elif.</p>
-                        <p>elif works like else, but it allows us to define more conditions.</p>
-                    </section>
-                    <section>
-                        <pre class="python"><code data-noescape data-trim data-line-numbers="5,7">
+						<p>The else statement allows us to define code to be executed when the condition fails.</p>
+						<p>Here, that code is in line 6.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="5,7">
 traffic_light = "green"
 action = None
 if traffic_light == "green":
@@ -408,10 +386,11 @@ else:
     action = "proceed_carefully"
 
 						</code></pre>
-                        <p>When chaining conditions in this way, a given condition is only processed if all the previous conditions fail.</p>
-                    </section>
-                    <section>
-                        <pre class="python"><code data-noescape data-trim data-line-numbers="3,5,6">
+						<p>We can also chain several conditions with elif.</p>
+						<p>elif works like else, but it allows us to define more conditions.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="5,7">
 traffic_light = "green"
 action = None
 if traffic_light == "green":
@@ -425,10 +404,10 @@ else:
     action = "proceed_carefully"
 
 						</code></pre>
-                        <p>The condition on line 5 will only be processed if the condition on line 3 fails.</p>
-                    </section>
-                    <section>
-                        <pre class="python"><code data-noescape data-trim data-line-numbers="3,5,7,8">
+						<p>When chaining conditions in this way, a given condition is only processed if all the previous conditions fail.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="3,5,6">
 traffic_light = "green"
 action = None
 if traffic_light == "green":
@@ -442,10 +421,10 @@ else:
     action = "proceed_carefully"
 
 						</code></pre>
-                        <p>The condition on line 7 will only be processed if the conditions on lines 3 and 5 fail.</p>
-                    </section>
-                    <section>
-                        <pre class="python"><code data-noescape data-trim data-line-numbers="3,5,7,9-11">
+						<p>The condition on line 5 will only be processed if the condition on line 3 fails.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="3,5,7,8">
 traffic_light = "green"
 action = None
 if traffic_light == "green":
@@ -459,11 +438,10 @@ else:
     action = "proceed_carefully"
 
 						</code></pre>
-                        <p>The final else statement will only be processed if the conditions on lines 3,5 and 7 fail.</p>
-                    </section>
-
-                    <section>
-                        <pre class="python"><code data-noescape data-trim data-line-numbers="10">
+						<p>The condition on line 7 will only be processed if the conditions on lines 3 and 5 fail.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="3,5,7,9-11">
 traffic_light = "green"
 action = None
 if traffic_light == "green":
@@ -477,100 +455,70 @@ else:
     action = "proceed_carefully"
 
 						</code></pre>
-                        <p># is the start of a comment in Python.</p>
-                        
-                    </section>
+						<p>The final else statement will only be processed if the conditions on lines 3,5 and 7 fail.</p>
+					</section>
+					<section>
+						<pre class="python"><code data-noescape data-trim data-line-numbers="10">
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+elif traffic_light == "yellow":
+    action = "deaccelerate"
+elif traffic_light == "red":
+    action = "stop"
+else:
+    # unknown color
+    action = "proceed_carefully"
 
+						</code></pre>
+						<p># is the start of a comment in Python.</p>
+					</section>
 					<section>
 						<h3>Comments</h3>
 						<p>Comments are not code, they're just extra information the programmer adds to the program so it's easier to understand the code.</p>
-                        <p>Comments are never executed, even if they contain valid code.</p>
-                    </section>
-                </section>
-
-                <section>
-                    <section>
-                        <h2>Boolean logic </h2> <!-- TODO -->
+						<p>Comments are never executed, even if they contain valid code.</p>
+					</section>
+				</section>
+				
+				<section>
+					<section>
+						<h2>Boolean logic </h2> <!-- TODO -->
 						<p>Combine conditions</p>
 						<p>and, or, not</p>
 						<p>&	|    ~</p>
-                    </section>
-                </section>
+					</section>
+				</section>
+				
+				<section data-markdown="markdown/2_aula1_recap.md"
+				data-separator="^\r?\n---\r?\n$"
+				data-separator-vertical="^\r?\n--\r?\n$"
+				></section>
 
-                <section>
-                    <section>
-                        <h2>Basic Data structures </h2> <!-- TODO -->
-                        <h3>Lists, Tuples and Dicts</h3>
-                    </section>
-					<section>
-                        <h2>Lists</h2> <!-- TODO -->
-						<p>Creating, adding, removing</p>
-						<p>Indexing</p>
-						<p>Slicing</p>
-                    </section>
-					<section>
-                        <h2>tuples</h2> <!-- TODO -->
-						<p>tuple vs list</p>
-						<p>Indexing</p>
-						<p>Slicing</p>
-                    </section>
-					<section>
-                        <h2>dict</h2> <!-- TODO -->
-						<p>It's a hash table</p>
-						<p>Creating, adding, removing</p>
-						<p>Slicing</p>
-                    </section>
-                </section>
+				<section data-markdown="markdown/3_aula2.md"
+				data-separator="^\r?\n---\r?\n$"
+				data-separator-vertical="^\r?\n--\r?\n$"
+				></section>
 
-				<section>
-                    <section>
-                        <h2>Loops</h2> <!-- TODO -->
-						<p>while</p>
-						<p>for</p>
-						<p>range</p>
-						<p>enumerate</p>
-                    </section>
-					<section>
-                        <p>list comprehension</p> <!-- TODO -->
-						<p>dict comprehension</p> <!-- TODO -->
-                    </section>
-                </section>
+				<section data-markdown="markdown/4_aula2_recap.md"
+				data-separator="^\r?\n---\r?\n$"
+				data-separator-vertical="^\r?\n--\r?\n$"
+				></section>
 
-                <section data-visibility="hidden">
-                    <section>
-                        <h2>Functions </h2> <!-- TODO -->
-                    </section>
-                </section>
-
-                <section data-visibility="hidden">
-                    <section>
-                        <h2>External code </h2> <!-- TODO -->
-                    </section>
-                </section>
-
-                <section data-visibility="hidden">
-                    <section>
-                        <h2>Classes </h2> <!-- TODO -->
-                    </section>
-                </section>
-
-				<section data-visibility="hidden">
-                    <section>
-                        <h2>Files </h2> <!-- TODO -->
-						<p>open, write, read, close</p>
-						<p>context manager</p>
-						<p>pathlib is a swiss army knife for files</p>
-						
-                    </section>
-                </section>
-
+				<section data-markdown="markdown/4
+				5_lesson3.md"
+				data-separator="^\r?\n---\r?\n$"
+				data-separator-vertical="^\r?\n--\r?\n$"
+				></section>
+				
+				
 			</div>
 		</div>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
+		<script src="../revealjs/dist/reveal.js"></script>
+		<script src="../revealjs/plugin/notes/notes.js"></script>
+		<script src="../revealjs/plugin/markdown/markdown.js"></script>
+		<script src="../revealjs/plugin/highlight/highlight.js"></script>
 		<!-- <script src="plugin/sampler.js"></script> -->
 		<script>
 			// More info about initialization & config:
