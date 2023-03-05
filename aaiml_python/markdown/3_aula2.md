@@ -521,11 +521,158 @@ l2 = [f"Author {n} died at age {a}." for n,a in zip(names, ages)]
 
 ---
 
+## Exercise
+### Redo the loan exercise
+
+Redo the loan execise, but simulate the amount owed each month until the loan is totally repayed.
+
+---
+
 ## Basic data structures
 ### dict
 
-- It's a hash table
-- You supply a key and get a value
-- creating, adding, removing
-- iterating
-- ist comprehensions
+- A dictionary (``dict``) is like a key/value database.
+- We can store any value we want and connect it to a key, which we will use to retrieve it.
+
+--
+
+#### creating a dict
+
+```python
+authors = {}  # empty dict
+authors = dict() # empty dict
+authors = {"Saramago": 87}
+country_codes = {351: "Portugal"}
+```
+
+The types of both keys and values can be anything.
+
+--
+
+We can initialize a dict with many values.
+
+```python
+authors = {
+    "Saramago": 87,
+    "Pessoa": 47,
+    "Camões": 56
+    }
+```
+
+--
+
+We can initialize a dict from a list of 2 element tuples.
+
+```python
+authors_lst = [("Saramago", 87), ("Pessoa", 47), ("Camões", 56)]
+authors = dict(authors_lst)
+```
+
+--
+
+Actually, we can initialize it from an iterable, so we could have done something like this.
+
+```python
+names = ["Saramago", "Pessoa", "Camões"]
+ages = [87, 47, 56]
+authors = dict(zip(names, ages))
+```
+
+--
+
+We can have nested dicts too.
+
+```python
+authors = {}  # empty dict
+authors = {
+    "Saramago": {"died_at": 87, "first_name": "José"},
+    "Pessoa": {"died_at": 47, "first_name": "Fernando"},
+    "Camões": {"died_at": 56, "first_name": "Luís"},
+    }
+```
+
+--
+
+#### getting a value
+
+```python
+authors["Saramago"]  # -> 87
+authors.get("Saramago")  # -> 87
+
+authors["Asimov"]  # KeyError: 'Asimov'
+authors.get("Asimov")  # -> None
+authors.get("Asimov", default=-1) # -> -1
+```
+
+--
+
+#### inserting a value
+
+```python
+authors["Vieira"] = 89
+authors["Queirós"] = 54
+```
+
+--
+
+#### removing a value
+
+
+```python
+authors.pop("Vieira") # removes key "Vieira" and returns its value
+                      # -> 89
+authors.pop("Asimov") # tries to remove key "Asimov" and
+                      # returns None if it does not exist
+authors.pop("Asimov", default=-1) # tries to remove key "Asimov" and
+                                  # returns -1 if it does not exist
+del authors["Saramago"] # just deletes key "Saramago"
+del authors["Asimov"] # KeyError: 'Asimov'
+```
+
+--
+
+#### useful methods
+
+```python
+list(authors) # returns list of keys
+list(authors.keys()) # same thing
+list(authors.values()) # list of dict's values
+list(authors.items()) # list of (key, value) tuples
+```
+
+--
+
+#### dicts and loops
+
+Print the age at which each author died:
+
+```python
+for k in authors:
+    print(f"{k} died at age {authors[k]}")
+```
+
+```python
+for k,v in authors.items():
+    print(f"{k} died at age {v}")
+```
+<!-- .element: class="fragment" -->
+
+
+---
+
+## Comprehensions
+### dict
+
+Create a dictionary with the authors that have the letter 'e' on their name.
+
+```python
+authors_e = {name: age \
+                for name, age in zip(names, ages) \
+                if "e" in name}
+# \ allows breaking a long instruction into several lines
+```
+<!-- .element: class="fragment" -->
+
+
+
+
