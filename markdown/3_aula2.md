@@ -583,7 +583,6 @@ authors = dict(zip(names, ages))
 We can have nested dicts too.
 
 ```python
-authors = {}  # empty dict
 authors = {
     "Saramago": {"died_at": 87, "first_name": "José"},
     "Pessoa": {"died_at": 47, "first_name": "Fernando"},
@@ -657,6 +656,13 @@ for k,v in authors.items():
 ```
 <!-- .element: class="fragment" -->
 
+```python
+for i, (k,v) in enumerate(authors.items()):
+    print(f"author #{i}: {k} died at age {v}")
+```
+<!-- .element: class="fragment" -->
+
+#### 
 
 ---
 
