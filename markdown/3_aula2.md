@@ -289,7 +289,7 @@ They execute a set of instructions while a given condition is true:
 
 ```python
 is_coffee_ready = False
-while coffee_state != True:
+while is_coffee_ready != True:
     print("continue groggy")
     is_coffee_ready = check_coffee_status()
 ```
