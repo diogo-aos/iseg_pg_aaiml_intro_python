@@ -315,10 +315,13 @@ Are you really going to use this?
 
 Often people don't directly use Python's default map, but map is often implemented in other data structures, such as...
 
+<!-- .element: class="fragment" data-fragment-index="2"-->
 
 ```python
 df = pandas.read_excel("prices.xlsx")
 ```
+
+<!-- .element: class="fragment" data-fragment-index="2"-->
 
 ```text
 In [45]: df.head()
@@ -331,7 +334,7 @@ Out[45]:
 4   31.21       fruit
 ```
 
-<!-- .element: class="fragment" data-fragment-index="2"-->
+<!-- .element: class="fragment" data-fragment-index="3"-->
 
 
 ```text
@@ -339,7 +342,7 @@ In [46]: df.shape
 Out[46]: (50, 2)
 ```
 
-<!-- .element: class="fragment" data-fragment-index="2"-->
+<!-- .element: class="fragment" data-fragment-index="3"-->
 
 
 --
@@ -464,3 +467,22 @@ Out[64]:
 This column is the **mask** that will select the rows of the original dataframe where the comparisson is True.
 
 <!-- .element: class="fragment" data-fragment-index="2"-->
+
+
+---
+
+## External code
+### Python modules
+
+In Python, we can create our own modules to store code and import that code to other programs.
+
+Why do this? Reusability and modularity.
+<!-- .element: class="fragment" data-fragment-index="2"-    ->
+
+Let's create our own Python module.
+<!-- .element: class="fragment" data-fragment-index="3"-->
+
+You can download the notebook [here](code/lesson3/modules.ipynb)
+<!-- .element: class="fragment" data-fragment-index="3"-->
+
+---

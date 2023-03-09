@@ -7,23 +7,6 @@
 
 ---
 
-
-## Functions
-- variable scope
-- lambda
-- first class functions
-
----
-
-## map, filter
-
----
-
-## External code
-### make your own modules
-
----
-
 ## Classes
 
 ---
