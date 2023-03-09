@@ -486,3 +486,309 @@ You can download the notebook [here](code/lesson3/modules.ipynb)
 <!-- .element: class="fragment" data-fragment-index="3"-->
 
 ---
+
+## Files
+### text
+
+- open, read, write, close
+- modes r, w, a
+- context manager
+- pathlib, swiss army knife for files
+
+--
+
+### open
+
+```python
+f = open("test_file.txt")  # open a file
+```
+
+This gives an error, because this file does not exist.
+
+```text
+In [66]: f = open("test_file.txt")  # open a file
+---------------------------------------------------------------------------
+FileNotFoundError                         Traceback (most recent call last)
+<ipython-input-66-a7d550966829> in <module>
+----> 1 f = open("test_file.txt")  # open a file
+
+FileNotFoundError: [Errno 2] No such file or directory: 'test_file.txt'
+```
+
+--
+
+There are 3 ways of opening a file:
+- "r" for reading only, the file must exist exist
+- "a" for writing, creates the file if it doesn't exist or overwrites, starts writing at the end
+- "w" for writing, creates the file if it doesn't exist or overwrites, starts writing at the end
+
+If a mode is not speficied when opening a file, the default is "r". That is why we got an error.
+
+<!-- .element: class="fragment" data-fragment-index="1"-->
+
+--
+
+Let's create our file first.
+
+```python
+f = open("test_file.txt", "w")  # open a file in write mode
+f.write("line 1\n") # \n write a newline sequence to the file
+f.write("line 2\n")
+f.close()  # we must close the file for the changes to take effect
+```
+
+--
+
+Let's create our file first.
+
+```python
+f = open("test_file.txt", "r")  # open a file in write mode
+data = f.read()
+print(data)
+f.close()
+```
+
+```text
+line 1
+line 2
+
+```
+
+--
+
+We can add a "+" modifier to any mode, and it allows the modes to both read and write.
+
+"r+" still doesn't create a file if it doesn't exist though.
+
+--
+
+It's easier to forget closing files, specially when there are many operations between opening and closing.
+
+The recommended way of opening and closing files is to use a context manager.
+
+<!-- .element: class="fragment" data-fragment-index="1"-->
+
+```python
+with open("test_file.txt", "r") as f:
+    data = f.read()
+print(data)
+```
+<!-- .element: class="fragment" data-fragment-index="1"-->
+
+When we use with, the file is automatically closed when the block of instructions inside with is finished.
+
+<!-- .element: class="fragment" data-fragment-index="2"-->
+
+---
+
+## Files
+### binary
+
+Binary files store data in a format that is not human readably.
+
+They're very useful to store numeric data because we can fit more numbers within the same memory.
+
+<!-- .element: class="fragment" data-fragment-index="1"-->
+
+--
+
+To use files in binary mode, we simply add a "b" to the modes we've already seen so far.
+
+```python
+with open("test.pkl", "rb") as f:
+    # do something...
+```
+
+--
+
+They will be particularly useful to store trained data science models to be used in a future date or by other people.
+
+In Python, we can store almost any object in a binary format with the ``pickle`` module.
+
+<!-- .element: class="fragment" data-fragment-index="1"-->
+
+--
+
+
+```python
+test_dict = {x: y for x,y in zip(range(0,5), range(100,5))}
+```
+
+```python
+{0: 100,
+ 1: 101,
+ 2: 102,
+ 3: 103,
+ 4: 104}
+```
+
+--
+
+#### store an object with pickle
+
+```python
+import pickle
+with open("test.pkl", "wb") as f:
+    pickle.dump(test_dict, f)
+```
+
+#### load an object from a pickle file
+
+<!-- .element: class="fragment" data-fragment-index="1"-->
+
+```python
+with open("test.pkl", "rb") as f:
+    loaded_dict = pickle.load(f)
+print(loaded_dict)
+```
+
+<!-- .element: class="fragment" data-fragment-index="1"-->
+
+```python
+{0: 100,
+ 1: 101,
+ 2: 102,
+ 3: 103,
+ 4: 104}
+```
+
+<!-- .element: class="fragment" data-fragment-index="1"-->
+
+--
+
+---
+
+## files
+### pathlib
+
+I recommend the use of the `pathlib` library anytime you need to deal with files.
+
+
+--
+
+### pathlib
+
+It makes working with files much easier, since there are things that change when our code executes in Windows, MacOS, Linux, etc.
+<!-- .element: class="fragment" data-fragment-index="1"-->
+
+
+By using ``pathlib``, many of these changes are abstracted away.
+
+<!-- .element: class="fragment" data-fragment-index="2"-->
+
+We also have many utilities that make life easier.
+<!-- .element: class="fragment" data-fragment-index="3"-->
+
+
+--
+
+#### create a Path
+
+`Path` is the main object to use, and it provides the method that make life easier.
+
+```python
+from pathlib import Path
+test_path = Path("test_file.txt")
+test_path.exists() # returns True if the file exists
+```
+
+--
+
+#### open, write, read
+
+```python
+test_path = Path("test_file.txt")
+with test_path.open("a") as f:
+    f.write("line 3\n")
+
+with test_path.open("a") as f:
+    data = f.readlines()
+print(data)
+```
+
+```text
+['line 1\n', 'line 2\n', 'line 3\n']
+```
+
+.readlines() is a new method, that reads the whole file and splits the content by lines in a list.
+
+<!-- .element: class="fragment" data-fragment-index="1"-->
+
+--
+
+```python
+print(test_path.read_text())
+
+# we can't pass a mode to .write_text
+test_path.write_text("overwrites everything")
+
+print(test_path.read_text())
+```
+
+```text
+line 1
+line 2
+line 3
+```
+
+```text
+overwrites everything
+```
+
+--
+
+They also work with paths that are directories and it becomes easier to list all files inside.
+
+```python
+p=Path("code")
+p.is_dir()
+```
+
+```python
+True
+```
+
+--
+
+List all files and folders inside `code/`
+
+```python
+list(p.iterdir())
+```
+
+```python
+[WindowsPath('code/.ipynb_checkpoints'),
+ WindowsPath('code/conditionals1.py'),
+ WindowsPath('code/conditionals2.py'),
+ WindowsPath('code/io_terminal.py'),
+ WindowsPath('code/lesson3'),
+ WindowsPath('code/types.py'),
+ WindowsPath('code/variables.py')]
+```
+
+--
+
+List all ``.py`` files inside  `code/`
+
+
+```python
+list(p.glob("*.py"))
+```
+
+```python
+[WindowsPath('code/conditionals1.py'),
+ WindowsPath('code/conditionals2.py'),
+ WindowsPath('code/io_terminal.py'),
+ WindowsPath('code/types.py'),
+ WindowsPath('code/variables.py')]
+```
+
+
+--
+
+`Path` objects have many more useful methods, but we won't explore them in this course:
+- creating and deleting files/folders
+- retrieving parent folders
+- retrieving absolute and relative paths
+- ...
+

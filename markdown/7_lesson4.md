@@ -11,19 +11,9 @@
 
 ---
 
-## Files
-
-- open, read, write, close
-- modes r,w,a
-- context manager
-- pathlib is a swiss army knife for files
-
----
-
 ## catching errors
 
 Exceptions, try 
-
 
 ---
 
