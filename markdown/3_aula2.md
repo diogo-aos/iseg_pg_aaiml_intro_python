@@ -1,6 +1,14 @@
-<!-- .slide: id="lesson2" data-background="white"-->
+<!-- .slide: id="lesson2" data-background="wheat"-->
 
 ## Lesson 2
+
+- list, tuple
+- slicing, unpacking
+- loops: while, for
+- range, enumerate, zip
+- list comprehensions
+- dict
+- dict comprehensions
 
 ---
 
