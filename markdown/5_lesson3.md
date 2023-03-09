@@ -486,7 +486,7 @@ Why do this? Reusability and modularity.
 Let's create our own Python module.
 <!-- .element: class="fragment" data-fragment-index="3"-->
 
-You can download the notebook [here](code/lesson3/modules.ipynb)
+You can download the notebook [here](code/lesson3/modules.ipynb) and read it directly in [Github](https://github.com/diogo-aos/iseg_pg_aaiml_intro_python/blob/main/code/lesson3/modules.ipynb).
 <!-- .element: class="fragment" data-fragment-index="3"-->
 
 ---
