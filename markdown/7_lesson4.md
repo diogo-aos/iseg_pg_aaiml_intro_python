@@ -128,10 +128,130 @@ except NotImplementedError:
 
 --
 
+#### Object oriented programming (OOP)
+
+- Python allow programming in the Object Oriented paradigm.
+- This means we can define classes of objects that share attributes and behaviour
+- Behaviour is implemented through methods (functions associated with a class)
 
 
----
+```python
+class Vehicle:
+    def __init__(self, color):
+        self.color = color
+        self.acc = 0
 
+    def accelerate(self):
+        self.acc += 2
+
+    def deaccelerate(self):
+        self.acc -= 2
+```
+
+--
+
+#### instatiating classes
+
+- To use a class, we call it like we call functions.
+
+```python
+v = Vehicle("red")
+print(v.color)
+v.accelerate()
+print(v.acc) # -> 2
+v.deaccelerate()
+print(type(v))
+```
+
+
+```text
+red
+2
+<class '__main__.Vehicle'>
+```
+
+- When we create an object, we call it instantiation.
+- Classes by themselves don't do anything, but their instantiated objects do.
+
+--
+
+#### classes from other packages
+
+- Remember the Pandas DataFrame?
+
+```python
+df = pandas.read_excel("prices.xlsx")
+type(df)
+```
+
+```text
+pandas.core.frame.DataFrame
+```
+
+- When we call .read_excel, the Pandas library reads the contents of the Excel file into a DataFrame object.
+
+--
+
+- When we call the methods of an object, we're calling functions that operate over that object.
+
+```python
+df["new_prices"] = df["prices"].map(lambda p: p * 1.045)
+```
+- We have 3 methods here:
+  - `map` is a method.
+  - getting a column with [], is the implementation of the special method  `__getitem__`
+  - setting a column with [] is also the implementation of `__setitem__`.
+
+--
+
+#### inheritance
+
+- It's also possible for classes to inherit attributes and behaviour from other classes.
+- They can modify only part of the behaviour of the parent classes.
+
+```python
+class Motorcycle(Vehicle):
+    def accelerate(self):
+        self.acc += 10
+
+m = Motorcycle("red")
+print(m.color)
+m.accelerate()
+print(m.acc)
+```
+
+
+```text
+red
+10
+```
+
+--
+
+#### What you need to know about OOP?
+
+- classes are recipes for the creation of objects
+- Data libraries will often return objects, e.g. Pandas DataFrame
+- The classes of these objects usually have useful methods, e.g. .map() of DataFrame
+
+--
+
+#### What you need to know about OOP?
+
+- Sometimes libraries expect values that can have the type of any child from a particular class (inheritance).
+
+```python
+sklearn.linear_model.LinearRegression.__bases__
+```
+
+```text
+(sklearn.base.MultiOutputMixin,
+ sklearn.base.RegressorMixin,
+ sklearn.linear_model._base.LinearModel)
+```
+
+- The LinearRegression class from SciKit-Learn inherits from 3 classes.
+- Some SciKit-Learn functions can receive any object from a class that inherits from `RegressorMixin`.
 
 ---
 
