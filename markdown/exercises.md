@@ -120,3 +120,12 @@ ids_price = [37.73, 615.92, 789.51, 362.33, 159.15, 482.15, 332.99, 264.94, 110.
 ---
 
 ## after lesson 4
+
+
+---
+
+## after course
+
+--
+
+#### A.1. rosbags and interpolaion TODO
