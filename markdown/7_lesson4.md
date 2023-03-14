@@ -255,12 +255,4 @@ sklearn.linear_model.LinearRegression.__bases__
 
 ---
 
-# NEXT TOPICS
-
----
-
-
-
----
-
 ## debugging
