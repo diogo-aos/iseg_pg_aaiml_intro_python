@@ -110,7 +110,7 @@ vegetables_prices = list(filter(lambda p,c: c == 'vegetables',
 
 --
 
-#### filers in pandas
+#### filters in pandas
 
 ```python
 df = pandas.read_excel("prices.xlsx")
@@ -218,7 +218,3 @@ p.is_dir()  # is this path a directory?
 list(p.iterdir())  # lists all files in directory
 list(p.glob("*.py"))  # lists all .py files in the directory
 ```
-
-
-
-

@@ -261,7 +261,7 @@ sklearn.linear_model.LinearRegression.__bases__
 - ipython and %pdb magic
   - Jupyter
   - Spyder
-- VSCode
+- pdb
 
 --
 
@@ -278,4 +278,5 @@ pdb.set_trace()
 (u)p       - go up one frame in traceback
 (d)own     - go down one frame in traceback
 (p)rint    - evaluate expression
+(b)reak    - set breakpoint (write line)
 ```

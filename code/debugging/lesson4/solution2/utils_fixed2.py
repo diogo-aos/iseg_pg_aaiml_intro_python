@@ -2,6 +2,7 @@ def read_csv(fn: str) -> list:
     # csv = comma separated values
     data = []
     with open(fn) as f:
+        f.readline()  # ignore first line with column names
         for line in f:
             # split lines by comma
             v1,v2 = line.split(',')
