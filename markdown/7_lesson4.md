@@ -1,5 +1,5 @@
 ## Lesson 4
-<!-- .slide: id="lesson2_recap" data-background="wheat"-->
+<!-- .slide: id="lesson4" data-background="wheat"-->
 
 - catching errors
 - classes
@@ -257,9 +257,25 @@ sklearn.linear_model.LinearRegression.__bases__
 
 ## debugging
 
-- 
 - Spyder debugger
 - ipython and %pdb magic
   - Jupyter
   - Spyder
-- 
+- VSCode
+
+--
+
+#### pdb cheatsheet
+
+```python
+import pdb
+pdb.set_trace()
+```
+
+```text
+(c)ontinue - continues the execution
+(w)here    - print traceback and show current frame
+(u)p       - go up one frame in traceback
+(d)own     - go down one frame in traceback
+(p)rint    - evaluate expression
+```

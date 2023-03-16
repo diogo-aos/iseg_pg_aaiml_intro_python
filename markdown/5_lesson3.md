@@ -1,5 +1,5 @@
 ## Lesson 3
-<!-- .slide: id="lesson2_recap" data-background="wheat"-->
+<!-- .slide: id="lesson3" data-background="wheat"-->
 
 - functions
 - map, filter

@@ -11,11 +11,7 @@
 - [Lesson 1 Recap](#lesson1_recap)
 - [Lesson 2](#lesson2)
 - [Lesson 2 Recap](#lesson2_recap)
-- [Lesson 3]()
-- [Lesson 3 Recap]()
-- [Lesson 4]()
-- [Lesson 4 Recap]()
-
---
-
-another slide
+- [Lesson 3](#lesson3)
+- [Lesson 3 Recap](#lesson3_recap)
+- [Lesson 4](#lesson4)
+<!-- - [Lesson 4 Recap]() -->

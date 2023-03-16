@@ -1,5 +1,5 @@
 
-<!-- .slide: id="lesson2_recap" data-background="coral"-->
+<!-- .slide: id="lesson3_recap" data-background="coral"-->
 
 
 ## Lesson 3 Recap
