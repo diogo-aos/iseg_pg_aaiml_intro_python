@@ -256,3 +256,10 @@ sklearn.linear_model.LinearRegression.__bases__
 ---
 
 ## debugging
+
+- 
+- Spyder debugger
+- ipython and %pdb magic
+  - Jupyter
+  - Spyder
+- 

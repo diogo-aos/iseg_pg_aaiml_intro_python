@@ -1,4 +1,7 @@
 #%%
+import pdb
+
+#%%
 import math
 from bagpy import bagreader
 import pandas as pd
@@ -34,8 +37,11 @@ for topic in topics:
     data = b.message_by_topic(topic)
     print("File saved: {}".format(data))
     print(type(data))
+    pdb.set_trace()
     df = pd.read_csv(data)
     dataframes[topic] = df
+
+#%%
 
 # Rename all position cols
 dataframes['/mavros/local_position/pose'].rename(columns={
@@ -65,6 +71,8 @@ dataframes['/mavros/setpoint_velocity/cmd_vel'].rename(columns={
     'twist.linear.y': 'y',
     'twist.linear.z': 'z'
 }, inplace=True)
+
+#%%
 
 # Init fig
 plt.figure(figsize=(18, 8))
@@ -157,7 +165,7 @@ plt.xlabel('Time')
 plt.ylabel('State')
 plt.grid()
 
-# Copy dataframes
+#%% Copy dataframes
 topics2 = [
     '/mavros/local_position/pose',
     '/uav/marker/position',
