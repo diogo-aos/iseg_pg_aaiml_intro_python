@@ -10,7 +10,7 @@ def averages(filename):
     weight_av = sum(weights) / len(weights)
     return {"age": age_av, "weight": weight_av}
 
-data_fn = "data.csv"
+data_fn = "dados.csv"
 avs = averages(data_fn)
 print(f"Averages\t")
 for col, av in avs.items():
