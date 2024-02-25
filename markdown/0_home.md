@@ -1,7 +1,7 @@
 <img data-src="img/iseg_logo.png" width=400>
 <h2>Introduction to Python</h2>
 <p>by <a href="https://diogoaos.com">Diogo Silva</a></p>
-<small><a href="mailto:diogoaos@aln.iseg.ulisboa.pt">diogoaos@aln.iseg.ulisboa.pt</a></small>
+<small><a href="mailto:diogoaos@iseg.ulisboa.pt">diogoaos@aln.iseg.ulisboa.pt</a></small>
 
 ---
 
