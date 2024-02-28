@@ -2,4 +2,4 @@
 **/__pycache__
 **/.ipynb_checkpoints
 *.pkl
-reveal.js-master
+#reveal.js-master
