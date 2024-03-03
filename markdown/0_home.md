@@ -1,7 +1,9 @@
-<img data-src="img/iseg_logo.png" width=400>
+<img data-src="img/iseg_logo.png" height=100>
+<p><small>Applied Artificial Intelligence & Machine Learning</small></p>
 <h2>Introduction to Python</h2>
-<p>by <a href="https://diogoaos.com">Diogo Silva</a></p>
-<small><a href="mailto:diogoaos@iseg.ulisboa.pt">diogoaos@aln.iseg.ulisboa.pt</a></small>
+<p><small><a href="https://www.diogoaos.com/">Diogo Silva</a> | <a href="mailto:diogoaos@iseg.ulisboa.pt">diogoaos@iseg.ulisboa.pt</a></small>
+</p>
+<p><small>2024</small></p>
 
 ---
 

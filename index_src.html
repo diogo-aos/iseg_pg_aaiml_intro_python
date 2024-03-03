@@ -56,6 +56,13 @@
 				</section>
 				<section>
 					<h2>Development environment</h2>
+					<h3>Amazon SageMaker</h3>
+					<a href="https://aws.amazon.com/pm/sagemaker/">Amazon SageMaker</a> provides an extensive set of tools to develop the complete lifecycle of a ML solution.
+					<p>It provides a managed Jupyter Notebook service, i.e. running on remote servers (AWS).</p>
+					<p>Beware of running processes after no longer in use, because of associated costs.</p>
+				</section>
+				<section>
+					<h2>Development environment</h2>
 					<h3>Google Colab</h3>
 					Another option is to use a managed Jupyter Notebook provider like <a href="https://colab.research.google.com/">Google Colab</a>.
 					<p>Google Colab is a free Jupyter Notebook provider that will allow you to run code on Google's servers, using only CPUs. Execution with GPUs is paid.</p>
@@ -311,10 +318,31 @@
 				
 				<section>
 					<section>
-						<h2>Boolean logic </h2> <!-- TODO -->
-						<p>Combine conditions</p>
-						<p>and, or, not</p>
-						<p>&	|    ~</p>
+						<h2>Boolean logic</h2>
+						<p>Combine conditions with:</p>
+						<p>a <b style="color:darkgoldenrod;">and</b> b -> result is True, if both arguments are True</p>
+						<p>a <b style="color:darkgoldenrod;">or</b> b -> result is True, if any of the arguments is True</p>
+						<p><b style="color:darkgoldenrod;">not</b> a-> if a was True, it is now False, and vice versa.</p>
+					</section>
+					<section>
+						<h2>Boolean logic - bitwise</h2>
+						<p><small>Useful for filter masks.</small></p>
+						<img data-src="img/bitwise/or.gif" height=200 />
+						<img data-src="img/bitwise/and.gif" height=200/>
+						<img data-src="img/bitwise/not.gif" height=150 />
+						<p><small>Animations from <a href="https://realpython.com/python-bitwise-operators">Real Python</a></small></p>
+					</section>
+					<section>
+						<h2>Boolean logic - bitwise</h2>
+						<img data-src="img/bitwise/df.png" height=200 />
+						<img data-src="img/bitwise/idade.png" height=200/>
+						<img data-src="img/bitwise/altura.png" height=200 />
+						<img data-src="img/bitwise/idade_altura.png" height=200 />
+					</section>
+					<section>
+						<h2>Boolean logic - bitwise</h2>
+						<img data-src="img/bitwise/idade_altura.png" height=200 />
+						<img data-src="img/bitwise/df_mask.png" height=200 />
 					</section>
 				</section>
 				

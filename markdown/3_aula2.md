@@ -19,13 +19,13 @@
 
 So far we've stored only single values in variables.
 
-The ``list`` allows us to store multiple values.
+Python's ``list`` allows us to store multiple values.
 
 --
 
 #### Create empty list
 
-We create a list with the list function or simply [].
+We create a list with the `list()` function or simply `[]`.
 
 ```python
 l1 = list()
@@ -65,6 +65,7 @@ Like strings, lists have several methods that help with their interaction.
 lst_floats = [3.14, 9.8, 6.64e-34]
 lst_floats.append(1.61)  # add golden ratio
 lst_floats += [2.7]  # add euler's constant, less efficient
+print(lst_floats)  # -> [3.14, 9.8, 6.64e-34, 1.61, 2.7]
 ```
 
 --
@@ -96,13 +97,14 @@ lst_floats.insert(0, 3.14*2)
 
 #### Getting an element
 
-It works like we saw for strings.
+List indeces are 0-based.
 
 ```python
 l = [1,2,3,4,5,6]
 l[0]  # gives the 1st element -> 1
 l[1]  # gives the 2nd element -> 2
 l[-1] # gives the last element -> 6
+l[-2] # gives the second last element -> 5
 ```
 
 --
@@ -118,17 +120,19 @@ l[0:3]  # returns a list with all elements
         # -> [1,2,3]
 ```
 
+The second index is not included in the slice.
+
 --
 
 
 #### Slicing rule
 
-- list[A:B] or list[A:B:C] or list[A:B:C]
-- A is the starting index of the slice
+- list[<b style="color:cyan;">A</b>:<b style="color:coral;">B</b>] or list[<b style="color:cyan;">A</b>:<b style="color:coral;">B</b>:<b style="color:gold;">C</b>]
+- <b style="color:cyan;">A</b> is the <b style="color:cyan;">starting index</b> of the slice
   - if not supplied, it's assumed to be the beginning
-- B is the last index of the slice, but is not included
+- <b style="color:coral;">B</b> is the <b style="color:coral;">last index</b> of the slice, but is <u>not included</u>
   - if not supplied, it's assumed to be the end
-- C is the jump between consecutive elements
+- <b style="color:gold;">C</b> is the <b style="color:gold;">jump between consecutive elements</b>
   - if not supplied, it's assumed to be 1
   - if it is negative, we get elements in the reverse order
 
@@ -153,12 +157,12 @@ l[:-2]  # returns all elements except the last 2 -> [1,2,3,4]
 
 ```python
 l = [1,2,3,4,5,6]
-l[-3:-1]  # returns all elements starting on the 3rd last #
-          # and finishing on the 2nd last -> [4,5]
-l[-3:]  # list with all elements from the 3rd last onwards -> [4,5,6]
-l[::2]  # returns every other element, starting on index 0 -> [1,3,5]
-l[1::2]  # returns every other element, starting on index 1 -> [2,4,6]
-l[1::3]  # returns every 3rd element, starting on index 1 -> [2,5]
+l[-3:-1] # all elements starting on the 3rd last position
+         # and finishing on the 2nd last -> [4,5]
+l[-3:]   # all elements from the 3rd last onwards -> [4,5,6]
+l[::2]   # every other element, starting on index 0 -> [1,3,5]
+l[1::2]  # every other element, starting on index 1 -> [2,4,6]
+l[1::3]  # every 3rd element, starting on index 1 -> [2,5]
 ```
 
 --
@@ -167,17 +171,17 @@ l[1::3]  # returns every 3rd element, starting on index 1 -> [2,5]
 
 ```python
 l = [1,2,3,4,5,6]
-l[::-1]  # returns all elements in reverse order -> [6,5,4,3,2,1]
-l[::-2]  # returns every other element in reverse order -> [6,4,2]
+l[::-1]    # all elements in reverse order -> [6,5,4,3,2,1]
+l[::-2]    # every other element in reverse order -> [6,4,2]
 l[4:0:-1]  # all elements from the 5th to the 2st in reverse
            # -> [5,4,3,2]
-l[-2:0:-1]  # all elements from the 2th last to the 1st in reverse 
-            # -> [5,4,3,2]
+l[-2:0:-1] # all elements from the 2th last to the 1st
+           # in reverse -> [5,4,3,2]
 ```
 
 --
 
-#### Removing an element: remove
+#### Removing an element
 
 The remove method deletes a given value from the list.
 It it exists more than once in the list, the 1st occurrence is removed. 
@@ -194,11 +198,13 @@ If the value does not exist in the list, an error is thrown.
 
 --
 
-#### Extend an existing list
+#### Concatenate 2 lists
+
+Adds to list `l` all elements from `lst_float`.
 
 ```python
-l.extend(lst_floats)  # adds to list l all elements from lst_floats
-l += lst_floats  # alternative
+l.extend(lst_floats)
+l += lst_floats
 ```
 
 --
@@ -219,7 +225,7 @@ if 3.14 in lst_floats:
     print("we have a Pi")
 ```
 
-The ``in`` operator checks if the value on the left exists in the data structure on the right.
+The ``in`` operator checks if the value on the left exists inside the data structure on the right.
 
 --
 
@@ -231,7 +237,7 @@ print(f"I found Pi at index {pi_pos}")
 ```
 
 The `.index` method returns the position where the given value is in the list.
-If the value is not in the list, a ``ValueError`` is thrown.
+If the value is not in the list, a ``ValueError`` is thrown (like `.remove()`).
 
 --
 
@@ -250,13 +256,26 @@ l.pop()  # removes and returns the last element
 ## Basic data structures
 ### tuple
 
-A tuple works exactly like a list, but doesn't support assignment. It is an imutable data structure.
+- A tuple works exactly like a list, but doesn't support assignment.
+- It is an imutable data structure.
+- We cannot change its value after creation.
+
+--
 
 ```python
 t = (1,2,3,4)
 t2 = 1,2,3,4
 t[0]  # -> 1
-t[0] = 7 # TypeError: 'tuple' object does not support item assignment
+t[0] = 7
+    # TypeError: 'tuple' object does not support item assignment
+```
+
+--
+
+Slicing and concatenation work as in lists.
+
+```python
+t = (1,2,3,4)
 t[:-1] # -> (1,2,3)
 t + (5,6) # _> (1,2,3,4,5,6)
 ```
@@ -291,7 +310,10 @@ a,b,*nums = l # a=1, b=2, nums=[3,4,5,6]
 
 ---
 
-## Loops
+<img data-src="img/l2/loop.png" height=400 />
+
+
+--
 
 They execute a set of instructions while a given condition is true:
 
@@ -318,12 +340,18 @@ while i < len(l):
 print(total)
 ```
 
-Actually, Python has the sum function, so don't do that -> `sum(l)`
+Actually, Python has the sum function, so don't do that
+<!-- .element: class="fragment" -->
+```python
+total = sum(l)
+```
 <!-- .element: class="fragment" -->
 
 --
 
-We needed to declare a variable just for increasing the position of the list element, but we also have the ``for`` loop which makes this kind of logic easier.
+We had to declare a variable just for increasing the
+position of the list element, but we also have the ``for``
+loop which makes this kind of logic easier.
 
 ```python
 l = [1,2,3,5,8,13]
@@ -334,12 +362,11 @@ print(total)
 ```
 
 Here the ``range`` function returns a list from 0 to the size of the list l:
-
 `[0,1,2,3,4,5]`
 
 --
 
-Actually, ``range`` returns an **iterable** that goes from a number to another higher number.
+Actually, ``range()`` returns an **iterable** that goes from a number to another higher number.
 
 ```python
 # we can convert this iterable to a list easily
@@ -353,7 +380,12 @@ We can convert this iterable to a list, but we don't have to do it in the contex
 
 --
 
-Lists have another property: they're also iterables. That means we don't even need the range function in the last example.
+- What is an iterable?
+- What is an iteration?
+
+--
+
+Lists have another property: they're also iterables! That means we don't even need the range function in the last example. 🥳 
 
 ```python
 l = [1,2,3,5,8,13]
@@ -365,7 +397,6 @@ print(total)
 
 ---
 
-## Loops
 ### enumerate
 
 Let's now say we are given a list of phrases and want to print the position of the phrases that include the word "Python".
@@ -381,7 +412,7 @@ phrases = [
 
 --
 
-One way to solve this would be to use the range function.
+One way to solve this would be to use the `range()` function.
 
 ```python
 for i in range(len(phrases)):
@@ -401,8 +432,8 @@ for i, phrase in enumerate(phrases):
 
 
 ``enumerate`` receives a list and returns a list of tuples
-- 1st element of the tuple is a number that goes from 0 to the size of the original list
-- 2nd element is the value on that position.
+- 1st element of each tuple is the index of each value, e.g. `0, 1, 2, ...`
+- 2nd element is the value on that position, i.e. `phrases[0], phrases[1], phrases[2], ...`
 
 --
 
@@ -411,7 +442,7 @@ l = [2,4,6,8]
 list(enumerate(l)) # -> [(0,2), (1,4), (2,6), (3,8)]
 ```
 
-Actually, enumerate returns an iterable, that's why we convert it here to a list.
+Actually, enumerate returns an iterable, that's why we convert it to a list in the above example.
 
 It also can receive any iterable, not just a list.
 <!-- .element: class="fragment" -->
