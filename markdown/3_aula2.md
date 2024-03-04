@@ -7,8 +7,17 @@
 - loops: while, for
 - range, enumerate, zip
 - list comprehensions
+- exercise with loops and lists
 - dict
 - dict comprehensions
+
+---
+
+### Learning outcomes - you'll be able to
+
+- Structure data in data structures (lists, dictionaries)
+- Use loops to execute a set of instructions multiple times
+- Use loops to iterate over data structures
 
 ---
 
@@ -385,7 +394,7 @@ We can convert this iterable to a list, but we don't have to do it in the contex
 
 --
 
-Lists have another property: they're also iterables! That means we don't even need the range function in the last example. 🥳 
+Lists have another property: they're also iterables! That means we don't even need the range function in the last example.
 
 ```python
 l = [1,2,3,5,8,13]
@@ -564,6 +573,172 @@ l2 = [f"Author {n} died at age {a}." for n,a in zip(names, ages)]
 ### Redo the loan exercise
 
 Redo the loan execise, but simulate the amount owed each month until the loan is totally repayed.
+
+---
+
+## Exercise
+### Politics and investments
+
+- A country will have elections. There are 8 parties.
+- The winning party will govern for 8 years.
+- The party's policies will influence ROI over some type of investments.
+- Each party has a base ROI (float).
+- For each party, do a simulation for the volution of an investment of 1000€ over 8 years.
+- Print the party with the highest ROI in the 8th year, along with the full evolution for that party.
+
+--
+
+### Solution
+<!-- .slide: data-visibility="hidden" -->
+
+```python
+parties = ["PS", "PSD", "BE", "PCP", "L", "PAN", "IL", "CH"]
+rois = [0.02, 0.03, 0.005, 0.0005, 0.02, 0.01, 0.05, 0.1]
+investment = 1000
+track = [[1000] for party in parties]
+for year in range(1,9):
+    for i, party in enumerate(parties):
+        new_value = track[i][-1] * (1 + rois[i])
+        track[i].append(new_value)
+
+# best party
+last_year_vals = [party_sim[-1] for party_sim in track]
+max_val = max(last_year_vals)
+max_ind = last_year_vals.index(max_val)
+print(f"Best party: {parties[max_ind]}")
+```
+
+--
+
+### Tips
+
+- The value in each year (including the initial value) must be stored.
+    - How will you store this data? A list for each party? A list for each year? Somethine else?
+- You need to iterate over the years for each party, or vice versa. That's a loop inside a loop.
+- You need to keep track of the investment for each party.
+
+
+---
+
+### Politics and investments II
+
+
+- Each party may make the ROI more or less volatile.
+- The volatility is given by a list of 8 floats.
+- The volatility is the standard deviation of the ROI.
+- For each year, the ROI is a random number with a normal distribution with the mean given by the ROI of the previous year and the standard deviation given by the volatility.
+- Recompute investment for each party.
+
+
+--
+
+### Solution
+<!-- .slide: data-visibility="hidden" -->
+
+```python
+parties = ["PS", "PSD", "BE", "PCP", "L", "PAN", "IL", "CH"]
+rois = [0.02, 0.03, 0.005, 0.0005, 0.02, 0.01, 0.05, 0.1]
+vol = [0.01, 0.01, 0.04, 0.075, 0.03, 0.05, 0.075, 0.1]
+investment = 1000
+track = [[1000] for party in parties]
+for year in range(1,9):
+    for i, party in enumerate(parties):
+        # update ROI
+        new_roi = np.random.normal(rois[i], vol[i])
+        rois[i] = new_roi
+        new_value = track[i][-1] * (1 + rois[i])
+        track[i].append(new_value)
+
+# best party
+last_year_vals = [party_sim[-1] for party_sim in track]
+max_val = max(last_year_vals)
+max_ind = last_year_vals.index(max_val)
+print(f"Best party: {parties[max_ind]}")
+print(f"Evolution: {track[max_ind]}")
+```
+
+--
+
+### Tips
+
+You can generate random numbers with a normal distribution with the [`numpy` library](https://numpy.org/doc/stable/reference/random/generated/numpy.random.normal.html).
+
+```python
+import numpy as np
+mean = 0
+std = 1
+np.random.normal(mean, std) # random number with mean 0 and std 1
+np.random.normal(mean, std, 10)  # list of 10 random numbers with mean 0 and std 1
+```
+
+
+
+---
+
+### Politics and investments III
+
+- Because we're dealing with random events, let's do a Monte Carlo simulation.
+- Simulate the evolution of the investment 1000 times for each party.
+- Print the party with the highest avereage ROI in the 8th year, along with the full evolution for that party.
+- Include also the standard deviation of the ROI for that party in the 8th year and the 25%, 50% and 75% percentiles.
+
+--
+
+### Solution
+<!-- .slide: data-visibility="hidden" -->
+
+```python
+parties = ["PS", "PSD", "BE", "PCP", "L", "PAN", "IL", "CH"]
+rois = [0.02, 0.03, 0.005, 0.0005, 0.02, 0.01, 0.05, 0.1]
+vol = [0.01, 0.01, 0.04, 0.075, 0.03, 0.05, 0.075, 0.1]
+investment = 1000
+n_sims = 1000
+sims = [list() for party in parties]
+for sim in range(n_sims):
+    track = [[1000] for party in parties]
+    rois = [0.02, 0.03, 0.005, 0.0005, 0.02, 0.01, 0.05, 0.1]
+    for year in range(1,9):
+        for i, party in enumerate(parties):
+            # update ROI
+            new_roi = np.random.normal(rois[i], vol[i])
+            rois[i] = new_roi
+            new_value = track[i][-1] * (1 + rois[i])
+            track[i].append(new_value)
+    for i, party in enumerate(parties):
+        sims[i].append(track[i][-1])
+
+# best party
+last_year_vals = [party_sim[-1] for party_sim in track]
+max_val = max(last_year_vals)
+max_ind = last_year_vals.index(max_val)
+print(f"Best party: {parties[max_ind]}")
+print(f"Evolution: {track[max_ind]}")
+```
+
+--
+
+### Tips
+
+Compute [mean](https://numpy.org/doc/stable/reference/generated/numpy.mean.html) and [standard deviation](https://numpy.org/doc/stable/reference/generated/numpy.std.html) with `numpy`.
+
+```python
+import numpy as np
+l = [1,2,3,4,5]
+np.mean(l)  # -> mean
+np.std(l)  # -> standard deviation
+```
+
+Compute [percentiles]((https://numpy.org/doc/stable/reference/generated/numpy.percentile.html)) with `numpy`.
+
+```python
+import numpy as np
+l = [1,2,3,4,5]
+np.percentile(l, 25)  # -> 25% percentile
+```
+
+
+
+
 
 ---
 
