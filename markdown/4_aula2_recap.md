@@ -2,7 +2,29 @@
 
 ## Lesson 2 Recap
 
---
+---
+
+
+### Learning outcomes - you can now
+
+- Structure data in data structures (lists, dictionaries)
+- Use loops to execute a set of instructions multiple times
+- Use loops to iterate over data structures
+
+May not seem like much, but you can do a LOT with these tools!
+
+---
+
+- list, tuple
+- slicing, unpacking
+- loops: while, for
+- range, enumerate, zip
+- list comprehensions
+- exercise with loops and lists
+- dict
+- dict comprehensions
+
+---
 
 ### lists
 
@@ -51,7 +73,7 @@ a,b,*nums = l # a=1, b=2, nums=[3,4,5,6]
 
 --
 
-### loops > while
+### loops: while
 
 ```python
 l = [1,2,3,5,8,13]
@@ -64,13 +86,13 @@ print(total)
 
 --
 
-### loops > for
+### loops: for
 
 ```python
 l = [1,2,3,5,8,13]
 total = 0
-for i in range(len(l)):
-    total += l[i]
+for num in l:
+    total += num
 print(total)
 ```
 
@@ -104,6 +126,7 @@ list(enumerate(l))
 
 ```python
 names = ["ten", "eleven", "twelve", "thirteen", "fourteen"]
+l = [10, 11, 12, 13, 14]
 list(zip(names, l))
 ```
 
@@ -135,6 +158,11 @@ for name, age in zip(names, ages):
 ```
 <!-- .element: class="fragment" data-fragment-index="3"-->
 
+What is the pattern? <!-- .element: class="fragment" data-fragment-index="4"-->
+
+Combining with unpacking!  <!-- .element: class="fragment" data-fragment-index="5"-->
+
+
 --
 
 ### list comprehensions
@@ -149,6 +177,8 @@ for i in range(100):
 ```python
 l = [i for i in range(100) if i % 2 == 0 and i % 4 != 0]
 ```
+
+
 
 --
 
@@ -173,7 +203,7 @@ authors = {
 
 --
 
-### dict > get, set, remove
+### dict: get, set, remove
 
 ```python
 authors["Saramago"]  # -> 87
@@ -189,7 +219,7 @@ del authors["Saramago"] # just deletes key "Saramago"
 
 --
 
-### dict > loops
+### dict and loops
 
 ```python
 for k in authors:
@@ -204,7 +234,7 @@ for i, (k,v) in enumerate(authors.items()):
 
 --
 
-### dict > comprehensions
+### dict comprehensions
 
 ```python
 authors_e = {name: age \

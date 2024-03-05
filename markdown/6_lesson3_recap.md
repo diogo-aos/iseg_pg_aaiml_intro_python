@@ -4,6 +4,20 @@
 
 ## Lesson 3 Recap
 
+---
+
+## Learning outcomes - you now can
+
+- write and use functions to reuse code
+- use map and filter to apply functions to iterables (lists, tuples...)
+- create, import and use your own modules
+- open, read and write to files
+- use context managers with files
+- use pathlib library to streamline file operations
+
+
+---
+
 - functions
   - first order functions
   - variable scope
@@ -11,10 +25,10 @@
 - map, filter
 - filters in pandas: masks
 - modules & packages
-- files
+- files (open, close, with, read, write)
 - pathlib: swiss army knife for files
 
---
+---
 
 #### functions
 
@@ -34,7 +48,7 @@ def sum_2(a):
 
 #### variable scope in functions
 
-- Local and global variables
+Local and global variables
 
 ```python
 x = 3
@@ -54,7 +68,7 @@ print(a)  # a is local variable of function
 
 #### first class functions
 
-- functions are also objects that can be given to variables and functions
+functions are also objects that can be given to variables and functions
 
 ```python
 def sum_2(a):
@@ -83,7 +97,7 @@ g(2,3) # -> 11
 
 #### map
 
-- apply a function to a "list" of values
+apply a function to a "list" of values
 
 ```python
 percent = 4.5
@@ -117,7 +131,7 @@ df = pandas.read_excel("prices.xlsx")
 vegetables = df[df["category"] == "vegetable"]
 ```
 
-- We use masks, not the filter function.
+We use masks, not the filter function.
 
 --
 
@@ -142,7 +156,6 @@ import retailxy.marketing as mark
 from products import *
 ```
 
---
 
 --
 

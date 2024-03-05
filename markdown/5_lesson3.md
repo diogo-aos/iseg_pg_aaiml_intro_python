@@ -4,15 +4,28 @@
 - functions
 - map, filter
 - modules, packages
-- files
+- files (open, close, with, read, write, pathlib)
+
+---
+
+## Learning outcomes - you'll be able to
+
+- write and use functions to reuse code
+- use map and filter to apply functions to iterables (lists, tuples...)
+- create, import and use your own modules
+- open, read and write to files
+- use context managers with files
+- use pathlib library to streamline file operations
 
 
 ---
 
 ## Functions
 
-How to reuse the same logic for different things?
 
+<img data-src="img/functions.png" height=300 />
+
+How to reuse the same logic for different things?
 
 --
 
@@ -20,7 +33,9 @@ We can think of a function as a black box that receives inputs and gives outputs
 
 What functions have we seen before?
 
-`enumerate()`, `zip()`, `range()`, `int()`, `float()`, `str()`
+```python
+enumerate(), zip(), range(), int(), float(), str()
+```
 <!-- .element: class="fragment" -->
 
 --
@@ -68,8 +83,8 @@ def sum_2(a):
 print(sum_2(x))  # -> 5
 ```
 
-We call a function but writing its name, followed by ().
-Inside the () we give the arguments (inputs).
+We call a function by writing its name, followed by `( )`.
+Inside the `( )` we give the arguments (inputs).
 
 We call ``sum_2`` with input ``x``. The value of ``x`` is copied to the argument a of ``sum_2``.
 
@@ -99,13 +114,13 @@ print(a)  # -> NameError: name 'a' is not defined
 
 ``a`` and ``b`` exist only inside function ``sum_2``.
 
-But ``x`` exists inside the function.
+But ``x`` exists outside the function too.
 
 ``x`` is unchanged by calling ``sum_2``
 
 --
 
-- a and b are said to be local variables, within the scope of the function
+- a and b are said to be local variables, within the **scope of the function**
 - x is a global variable, because it exists outside any scope within our program
 
 ```python [1,5,6,9,10]
@@ -142,7 +157,8 @@ print(sum_2(x))  # -> 5
 print(x) # -> 3
 ```
 
-- ``x=4`` inside the function creates a new variable `x` within the scope of the function that has the same name as the global variable ``x``
+- Now we're writing to `x` inside the function
+- But ``x=4`` inside the function creates a new local variable `x` with the same name as the global variable ``x``
 - every use of `x` inside the function expects a variable named `x` within the scope of that function 
 
 --
@@ -166,6 +182,32 @@ print(x) # -> 4
 All global variables are stored inside a dictionary that can be accessed by calling ``globals()``.
 
 <!-- .element: class="fragment" -->
+
+
+--
+
+What would happen if we tried to change a global variable without declaring it?
+
+```python [1,4,7,11]
+x = 3
+
+def sum_2(a):
+    b = a + 2
+    print(x) # now print is before the assignment
+    x = 4
+    return b
+
+print(sum_2(x))  # -> 5
+```
+
+```text
+      4     b = a + 2
+----> 5     print(x) # now print is before the assignment
+      6     x = 4
+      7     return b
+
+UnboundLocalError: local variable 'x' referenced before assignment
+```
 
 ---
 
@@ -264,7 +306,7 @@ for p in prices:
 
 --
 
-We can also use `map`, which apply a function to all elements of a list.
+We can also use `map`, which applies a function to all elements of an iterable (e.g. list).
 
 ```python
 percent = 4.5
@@ -276,14 +318,14 @@ new_prices = list(map(update, prices))
 
 --
 
-Or using lambda...
+Or use `lambda`...
 
 ```python
 percent = 4.5
 new_prices = list(map(lambda p: p * (1 + percent / 100), prices))
 ```
 
-⚠️⚠️ Keep your lambdas short. ⚠️⚠️
+⚠️ Keep your lambdas short. ⚠️
 <!-- .element: class="fragment" data-fragment-index="2"-->
 
 
@@ -294,7 +336,8 @@ If you have complex logic, transfer it to a "normal" function where the logic wi
 
 Why are we converting the result of map to a list?
 
-map actually returns an iterable, not a list.
+map actually returns an iterable, not a list
+<small>(like `zip` and `enumerate`)</small>
 
 ```text
 In [11]: map(lambda p: p * (1 + percent / 100), prices)
@@ -317,7 +360,7 @@ output = [f"Author {n} died at age {a}." for n,a in authors.items()]
 
 Are you really going to use this?
 
-Often people don't directly use Python's default map, but map is often implemented in other data structures, such as...
+Often people don't directly use Python's default `map`, but `map` is often implemented in other data structures, such as...
 
 <!-- .element: class="fragment" data-fragment-index="2"-->
 
@@ -390,7 +433,7 @@ but instead of applying a function to every value, we're picking which values we
 
 --
 
-Because we're choosing which values to keep, the function that we give to ``filter`` must return a boolean.
+Because we're choosing which values to keep, the function that we give to ``filter`` must return a `bool` (`True` or `False`).
 
 
 ```python
@@ -453,7 +496,7 @@ Out[46]: (50, 2)
 
 Why does that work?
 
-When we compare the column "category" with the value "vegetables", we get another column of the same size indicating where that comparisson was True or False.
+When we compare the column "category" with the value "vegetables", we get another column of the same size indicating where that comparison was True or False.
 
 ```text
 In [64]: df["category"] == "vegetables"
@@ -468,7 +511,7 @@ Out[64]:
 
 <!-- .element: class="fragment" data-fragment-index="1"-->
 
-This column is the **mask** that will select the rows of the original dataframe where the comparisson is True.
+This column is the **mask** that will select the rows of the original dataframe where the comparison is True.
 
 <!-- .element: class="fragment" data-fragment-index="2"-->
 
@@ -523,8 +566,8 @@ FileNotFoundError: [Errno 2] No such file or directory: 'test_file.txt'
 
 There are 3 ways of opening a file:
 - "r" for reading only, the file must exist exist
-- "a" for writing, creates the file if it doesn't exist or overwrites, starts writing at the end
-- "w" for writing, creates the file if it doesn't exist or overwrites, starts writing at the end
+- "w" for writing, creates the file if it doesn't exist or overwrites, starts writing at the beginning
+- "a" same as "w", but starts writing at the end
 
 If a mode is not speficied when opening a file, the default is "r". That is why we got an error.
 
@@ -568,7 +611,7 @@ We can add a "+" modifier to any mode, and it allows the modes to both read and 
 
 It's easier to forget closing files, specially when there are many operations between opening and closing.
 
-The recommended way of opening and closing files is to use a context manager.
+The recommended way of opening and closing files is to use a <span style="color:gold">context manager</span>.
 
 <!-- .element: class="fragment" data-fragment-index="1"-->
 
@@ -579,7 +622,7 @@ print(data)
 ```
 <!-- .element: class="fragment" data-fragment-index="1"-->
 
-When we use with, the file is automatically closed when the block of instructions inside with is finished.
+When we use <span style="color:gold">`with`</span>, the file is automatically closed when the block of instructions inside with is finished.
 
 <!-- .element: class="fragment" data-fragment-index="2"-->
 
@@ -590,7 +633,7 @@ When we use with, the file is automatically closed when the block of instruction
 
 Binary files store data in a format that is not human readably.
 
-They're very useful to store numeric data because we can fit more numbers within the same memory.
+They're very useful to store numeric data because we can fit more numbers within the same memory space.
 
 <!-- .element: class="fragment" data-fragment-index="1"-->
 
@@ -605,9 +648,9 @@ with open("test.pkl", "rb") as f:
 
 --
 
-They will be particularly useful to store trained data science models to be used in a future date or by other people.
+They will also be useful to store trained models to be deployed or used by other people.
 
-In Python, we can store almost any object in a binary format with the ``pickle`` module.
+In Python, we can store almost any object in a binary format with the <span style="color:gold">``pickle``</span> module.
 
 <!-- .element: class="fragment" data-fragment-index="1"-->
 
@@ -658,14 +701,13 @@ print(loaded_dict)
 
 <!-- .element: class="fragment" data-fragment-index="1"-->
 
---
 
 ---
 
 ## files
 ### pathlib
 
-I recommend the use of the `pathlib` library anytime you need to deal with files.
+I recommend the use of the <span style="color:gold">`pathlib`</span> library anytime you need to deal with files.
 
 
 --
@@ -673,10 +715,8 @@ I recommend the use of the `pathlib` library anytime you need to deal with files
 ### pathlib
 
 It makes working with files much easier, since there are things that change when our code executes in Windows, MacOS, Linux, etc.
-<!-- .element: class="fragment" data-fragment-index="1"-->
 
-
-By using ``pathlib``, many of these changes are abstracted away.
+By using ``pathlib``, many of these differences are abstracted away.
 
 <!-- .element: class="fragment" data-fragment-index="2"-->
 
@@ -688,7 +728,7 @@ We also have many utilities that make life easier.
 
 #### create a Path
 
-`Path` is the main object to use, and it provides the method that make life easier.
+<span style="color:gold">`Path`</span> is the main object to use, and it provides many methods streamline file operations.
 
 ```python
 from pathlib import Path
@@ -714,7 +754,7 @@ print(data)
 ['line 1\n', 'line 2\n', 'line 3\n']
 ```
 
-.readlines() is a new method, that reads the whole file and splits the content by lines in a list.
+`.readlines()` is a new method, that reads the whole file and splits the content by lines in a list.
 
 <!-- .element: class="fragment" data-fragment-index="1"-->
 
@@ -744,7 +784,7 @@ overwrites everything
 They also work with paths that are directories and it becomes easier to list all files inside.
 
 ```python
-p=Path("code")
+p = Path("code")
 p.is_dir()
 ```
 
@@ -794,5 +834,6 @@ list(p.glob("*.py"))
 - creating and deleting files/folders
 - retrieving parent folders
 - retrieving absolute and relative paths
+- concatenating paths
 - ...
 

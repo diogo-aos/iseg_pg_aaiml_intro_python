@@ -12,4 +12,8 @@ python3 build.py --src index_src.html --loop True
 
 # serve
 python3 -m http.server 8000
+
+
+
+python3 build.py --src index_src.html --loop True & python3 -m http.server 8000
 ```
