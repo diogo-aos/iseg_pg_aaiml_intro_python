@@ -1,0 +1,230 @@
+---
+title: Debugger demo guide
+author: Diogo Silva
+format: html
+---
+
+# Introduction
+
+The purpose of this guide is to demonstrate the usage of the debugger in four different ways:
+
+1. Inside Jupyter Notebook with `%pdb`. Show all relevant pdb commands (w, d, u, p, c, b)
+2. By adding `import pdb; pdb.set_trace()` inside our code.
+3. By running a script with `python -m pdb script.py`
+4. Inside an IDE, like VS Code, with debug mode.
+
+
+# Interacting with the debugger
+
+## Jupyter
+
+- Demonstrate what we can do inside Jupyter.
+- By adding %pdb, all cells run with the debugger on.
+- If an exception occurs, the program will hang at that point, and we can interact with the debugger.
+
+## With import
+
+- By adding `import pdb; pdb.set_trace()` at any point in the code, the program will stop at the following line.
+- We can then interact with the debugger at that point.
+
+## Jupyter debug mdoe
+
+- Enable debug mode in Jupyter, by click the bug button on the right top corner.
+
+    ![](img/jupyter_debug_button.png)
+
+- This will show the debugging sidebar.
+
+    ![](img/jupyter_debug_sidebar.png)
+
+- Now you can set breakpoints, step through code, etc.
+
+
+## `-m pdb`
+
+- By executing our code with `python -m pdb script.py`, the debugger will be turned on by default.
+- The program will start as if `import pdb; pdb.set_trace()` had been added to our script.
+- This means the program will start and imediately stop in the first line, with a debugger prompt.
+
+## With IDE
+
+- Demonstrate running the script in VS Code in debug mode.
+- Show how easier it is 
+
+
+
+# Support code for demo
+
+Create the following file structure:
+
+- my_example_fodler
+    - mypackage (this is a folder)
+        - `__init__.py`
+        - [`file_utils.py`](#content-of-file_utils.py)
+        - [`stats.py`](#content-of-stats.py)
+    - [`data.csv`](#content-of-data.csv)
+    - [`script.py`](#content-of-script.py)
+    - [`my_notebook.ipynb`](#content-of-my_notebook.ipynb)
+
+
+
+## Content of `file_utils.py`
+
+```python
+from typing import List, Tuple
+def read_csv(fn: str) -> List[Tuple[int, int]]:
+    # csv = comma separated values
+    data = []
+    with open(fn) as f:
+        for line in f:
+            # split lines by comma
+            v1,v2 = line.split(',')
+            v1,v2 = float(v1), float(v2)
+            data.append((v1,v2))
+                
+    return data
+```
+
+## Content of `stats.py`
+
+```python
+from .file_utils import read_csv
+
+def averages(filename):
+    '''
+    This function receives the filename of a CSV file,
+    reads the data for age and weight,
+    averages each column and returns a dict with 
+    each average.
+    inputs:
+        string: path to the CSV file,
+                expects file to be in CSV format and have 2 columns
+    outputs:
+        dict: with 2 keys "age" and "weight", with the averages
+              of the CSV columns
+        
+    '''
+    data = read_csv(filename)
+    age_av = weights_av = None
+    ages, weights = [], []
+    for age, weight in data:
+        ages.append(age)
+        weights.append(weight)
+    age_av = sum(ages) / len(ages)
+    weight_av = sum(weights) / len(weights)
+    return {"age": age_av, "weight": weights_av}
+```
+
+
+## Content of `script.py`
+
+```python
+from mypackage.stats import averages
+
+data_fn = "data.csv"
+avs = averages(data_fn)
+
+print(f"Averages\t")
+for col, av in avs.items():
+    print(f"{col}\t{av :.2f}")
+```
+
+
+
+## Content of `my_notebook.ipynb`
+
+```text
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "805570c7-5692-49f4-ba64-e3485f440776",
+   "metadata": {},
+   "source": [
+    "# Debug"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3f9827a9-b91e-4c68-bc82-ce87a26a5614",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from mypackage.stats import averages\n",
+    "\n",
+    "data_fn = \"data.csv\"\n",
+    "avs = averages(data_fn)\n",
+    "print(f\"Averages\\t\")\n",
+    "for col, av in avs.items():\n",
+    "    print(f\"{col}\\t{av :.2f}\")"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "32f1863f-0cff-4f36-b9a3-e846af5a8d13",
+   "metadata": {},
+   "source": [
+    "We should definetely fix this. It's helpful to know the values of the variables when the program failed."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "165b2134-3801-41a8-b0c1-31be1c188977",
+   "metadata": {},
+   "source": [
+    "Turn on the Python dubegger and rerun the cell above."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "56eecc9f-0e31-4a35-a7bb-0c2a6e56de21",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "%pdb"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "564767aa-9047-4d2b-9979-c154dee4b225",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.12"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
+```
+
+
+## Content of `data.csv`
+
+```text
+age,weight
+23,70.4
+25,80.0
+27,55,6
+```

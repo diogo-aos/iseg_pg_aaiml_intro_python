@@ -4,6 +4,19 @@
 - catching errors
 - classes
 - debugging
+- demo & exercise
+
+
+---
+
+## Learning outcomes - you'll be able to
+
+- read tracebacks to find and fix errors
+- catch exceptions to prevent program crashes
+- understand the basic concepts of Object Oriented Programming
+- create basic classes
+- use classes from other packages
+- use the debugger to find and fix errors
 
 ---
 
@@ -24,7 +37,7 @@ Traceback (most recent call last):
 ValueError: invalid literal for int() with base 10: 'hello'
 ```
 
-- Converting a nonnumeric string to an integer is unexpected behaviour, and a ValueError exception is thrown.
+- Converting a nonnumeric string to an integer is unexpected behaviour, and a <span style="color:salmon">`ValueError`</span> exception is thrown.
 
 --
 
@@ -33,27 +46,25 @@ read_my_file("imaginary_file.txt")
 ```
 
 ```text
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "<stdin>", line 3, in read_my_file
 FileNotFoundError: [Errno 2] No such file or directory: 'imaginary_file.txt'
 ```
 
-- The file 'imaginary_file.txt' does not exist, so a FileNotFoundError exception is thrown.
+- The file <span style="color:gold">`imaginary_file.txt`</span> does not exist, so a <span style="color:salmon">`FileNotFoundError`</span> exception is thrown.
 
 --
 
-- Python has many different exceptions.
-- Their name is usually sugestive of the problem we're facing.
-- Many packages define their own exceptions.
-- Sometimes those are not as suggestive.
+* Python has many different exceptions.
+* Their name is usually sugestive of the problem we're facing.
+* Many packages define their own exceptions. <!-- .element: class="fragment"-->
+* Sometimes those are not as suggestive. <!-- .element: class="fragment"-->
 
 --
 
-- When we get an exception, we get:
-  - the type of the exception
-  - usually, a suggestive string
-  - a traceback
+When we get an exception, we get:
+
+1. the type of the exception, e.g. <span style="color:salmon">`FileNotFoundError`</span>
+2. usually, a suggestive string, e.g. <small> <span style="color:white"> ```No such file or directory: 'imaginary_file.txt'``` </span> </small>
+3. a traceback
 
 --
 
@@ -63,12 +74,21 @@ FileNotFoundError: [Errno 2] No such file or directory: 'imaginary_file.txt'
 - If an exception was thrown inside a function:
   - the traceback includes the line where the function was called
   - and then the line inside the function where the exception was thrown.
-- There may be a long list of function calls.
+  - recursively
+
+
+--
+
+There may be a long list of function calls.
 
 ```text
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-  File "<stdin>", line 3, in read_my_file
+  File "script.py", line 8, in <module>
+    avs = averages(data_fn)
+  File "mypackage/stats.py", line 17, in averages
+    data = read_csv(filename)
+  File "mypackage/file_utils.py", line 7, in read_csv
+    with open(fn) as f:
 FileNotFoundError: [Errno 2] No such file or directory: 'imaginary_file.txt'
 ```
 
@@ -76,14 +96,14 @@ FileNotFoundError: [Errno 2] No such file or directory: 'imaginary_file.txt'
 
 #### traceback
 
-It's a traceback because it allows us to trace the problem to its root.
+It's a traceback because it allows us to  <span style="color:gold">trace</span> the problem <span style="color:cyan">back</span> to its root.
 
 ---
 
 ## Catching exceptions
 
 - When an exception happens, we can have a backup plan.
-- In Python, we can use a try block to catch an exception and stop the program from failing.
+- In Python, we can use a `try` block to catch an exception and stop the program from failing.
 
 
 ```python
@@ -96,7 +116,7 @@ except:
 
 --
 
-- We can catch just some exceptions.
+We can catch just some kinds of exceptions too.
 
 ```python
 try:
@@ -108,7 +128,7 @@ except ValueError:
 
 --
 
-- We can also catch more exceptions or combine them.
+We can also catch more exceptions or combine them.
 
 ```python
 try:
@@ -118,6 +138,8 @@ except (ValueError, TypeError):
     number = 42
 except NotImplementedError:
     print("This feature is not implemented yet, sorry.")
+except:
+    print("I'm catching every other kind of exception :)")
 ```
 
 ---
@@ -128,23 +150,25 @@ except NotImplementedError:
 
 --
 
-#### Object oriented programming (OOP)
+#### Object Oriented Programming (OOP)
 
-- Python allow programming in the Object Oriented paradigm.
-- This means we can define classes of objects that share attributes and behaviour
-- Behaviour is implemented through methods (functions associated with a class)
+- Python allows programming in the Object Oriented paradigm.
+- This means we can define classes of objects that share attributes and behaviour <!-- .element: class="fragment"-->
+- Behaviour is implemented through methods (functions associated with a class) <!-- .element: class="fragment"-->
 
+--
 
 ```python
 class Vehicle:
-    def __init__(self, color):
-        self.color = color
-        self.acc = 0
+    def __init__(self, color): # special method, the constructor
+        self.color = color  # this is an attribute
+        self.acc = 0        # another attribute
 
-    def accelerate(self):
-        self.acc += 2
+    def accelerate(self):   # this is a method
+        self.acc += 2       # fetching a predefined
+                            # attribute and modifying it
 
-    def deaccelerate(self):
+    def deaccelerate(self): # another method
         self.acc -= 2
 ```
 
@@ -152,7 +176,7 @@ class Vehicle:
 
 #### instatiating classes
 
-- To use a class, we call it like we call functions.
+To use a class, we call it like we call functions.
 
 ```python
 v = Vehicle("red")
@@ -170,14 +194,17 @@ red
 <class '__main__.Vehicle'>
 ```
 
-- When we create an object, we call it instantiation.
+--
+
+- When we create an object of a certain class, we call it instantiation.
 - Classes by themselves don't do anything, but their instantiated objects do.
+  - The <span style="color:gold">concept</span> of a Car doesn't take us anywhere, but a specific (<span style="color:gold">instantiated</span>) car can.
 
 --
 
 #### classes from other packages
 
-- Remember the Pandas DataFrame?
+Remember the Pandas DataFrame?
 
 ```python
 df = pandas.read_excel("prices.xlsx")
@@ -188,19 +215,28 @@ type(df)
 pandas.core.frame.DataFrame
 ```
 
-- When we call .read_excel, the Pandas library reads the contents of the Excel file into a DataFrame object.
+
+It's a class! 
 
 --
 
-- When we call the methods of an object, we're calling functions that operate over that object.
+- The `read_excel` function reads the contents of the Excel file into a newly created DataFrame object.
+- When we call the methods of an object, we're calling the methods of that object's class!
 
 ```python
 df["new_prices"] = df["prices"].map(lambda p: p * 1.045)
 ```
+
+--
+
+```python
+df["new_prices"] = df["prices"].map(lambda p: p * 1.045)
+```
+
 - We have 3 methods here:
   - `map` is a method.
-  - getting a column with [], is the implementation of the special method  `__getitem__`
-  - setting a column with [] is also the implementation of `__setitem__`.
+  - getting a column with `[ ]`, is the implementation of the special method  `__getitem__`
+  - setting a column with `[ ]` is also the implementation of `__setitem__`.
 
 --
 
@@ -228,9 +264,21 @@ red
 
 --
 
+- You'll implicintly use this when using Python's packages.
+  - In SciKit-Learn, the <span style="color:gold">`LinearRegression`</span> class inherits from <span style="color:coral">`MultiOutputMixin`</span>, <span style="color:coral">`RegressorMixin`</span> and <span style="color:coral">`LinearModel`</span>.
+  - In the same package, the <span style="color:gold">`DecisionTreeClassifier`</span> inherits from <span style="color:coral">`ClassifierMixin`</span> and <span style="color:coral">`BaseDecisionTree`</span>.
+
+--
+
+- And also explicitly:
+  - In PyTorch, it's common to build models by creating classes that inherit from <span style="color:coral">`torch.nn.Module`</span>.
+
+
+--
+
 #### What you need to know about OOP?
 
-- classes are recipes for the creation of objects
+- Classes are recipes for the creation of objects: they specify structure and behaviour.
 - Data libraries will often return objects, e.g. Pandas DataFrame
 - The classes of these objects usually have useful methods, e.g. .map() of DataFrame
 
@@ -257,11 +305,10 @@ sklearn.linear_model.LinearRegression.__bases__
 
 ## debugging
 
-- Spyder debugger
-- ipython and %pdb magic
-  - Jupyter
-  - Spyder
-- pdb
+- Jupyter
+- `pdb.set_trace()`
+- `-m pdb`
+- Built-in debuggers
 
 --
 
@@ -272,8 +319,15 @@ import pdb
 pdb.set_trace()
 ```
 
+```python
+python3 -m pdb my_script.py
+```
+
+
 ```text
 (c)ontinue - continues the execution
+(n)ext     - execute the next line
+(s)tep     - step into a function
 (w)here    - print traceback and show current frame
 (u)p       - go up one frame in traceback
 (d)own     - go down one frame in traceback
