@@ -3,7 +3,7 @@
 <h2>Introduction to Python</h2>
 <p><small><a href="https://www.diogoaos.com/">Diogo Silva</a> | <a href="mailto:diogoaos@iseg.ulisboa.pt">diogoaos@iseg.ulisboa.pt</a></small>
 </p>
-<p><small>2024</small></p>
+<p><small>2025</small></p>
 
 ---
 

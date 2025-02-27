@@ -16,24 +16,36 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
+
 				<section data-markdown="markdown/0_home.md"
 				data-separator="^\r?\n---\r?\n$"
 				data-separator-vertical="^\r?\n--\r?\n$"
 				id="home"
 				></section>
+
+<!-- 
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+				LESSON 1 is in HTML
+
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ 
+-->
+
 				<section data-markdown="markdown/1_aula1.md"
 				data-separator="^\r?\n---\r?\n$"
 				data-separator-vertical="^\r?\n--\r?\n$"
 				id="home"
 				></section>
 
-				<section data-background-color="white">
-					<h2>Outline of the course</h2>
-					<img data-src="img/short_course.png">
-				</section>
+
 				<section>
 					<h2>What is programming?</h2>
 				</section>
+
 				<section>
 					<section>
 						<h2>Development environment</h2>
@@ -68,8 +80,8 @@
 					<p>Google Colab is a free Jupyter Notebook provider that will allow you to run code on Google's servers, using only CPUs. Execution with GPUs is paid.</p>
 				</section>
 				<section>
-					From now on, it's assumed you have a functional Python environment.
-					Go on and open a Jupyter Notebook to follow along.
+					<p>From now on, it's assumed you have a functional Python environment.</p>
+					<p>Go on and open a Jupyter Notebook to follow along.</p>
 				</section>
 				<section>
 					<section>
@@ -124,7 +136,7 @@
 							{{code:code/variables.py}}
 						</code></pre>
 						And we can overwrite the value of a particular value.
-						The value of a is not 42 instead of 3.14.
+						The value of a is now 42 instead of 3.14.
 						But c is still 3.14!
 					</section>
 					<section>
@@ -200,7 +212,7 @@
 							{{code:code/types.py}}
 						</code></pre>
 						<p>type will tell us the type of any value we give it.</p>
-						<p>a is a float (as in floating point number), Python's representation for a real number.</p>
+						<p>a is a float (as in <a href="https://en.wikipedia.org/wiki/Floating-point_arithmetic">floating point number</a>), Python's representation for a real number.</p>
 						<p>b is an int (as in integer), Python're representation for a natural number.</p>
 					</section>
 					<section>
@@ -225,6 +237,7 @@
 						<h3>int, float</h3>
 						<p>Operations: + - * / // % **</p>
 						<p>Conversion</p>
+						<p>💻 Let's see in practice! 💻</p>
 					</section>
 				</section>
 				<section>
@@ -346,6 +359,31 @@
 					</section>
 				</section>
 				
+<!-- 
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+				END OF LESSON 1
+
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ 
+-->
+
+
+<!-- 
+
+* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+			OTHER LESSONS ARE IN MARKDOWN FILES
+
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ 
+-->
+				
 				<section data-markdown="markdown/2_aula1_recap.md"
 				data-separator="^\r?\n---\r?\n$"
 				data-separator-vertical="^\r?\n--\r?\n$"
@@ -391,6 +429,7 @@
 			// - https://revealjs.com/config/
 			Reveal.initialize({
 				hash: true,
+				slideNumber: true,
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes],
