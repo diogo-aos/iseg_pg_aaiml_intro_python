@@ -1,0 +1,64 @@
+---
+title: Exercises
+author: Diogo Silva
+format: html
+---
+
+# Political and finance analyst
+
+##  Investment evolution without loops (Lesson 1)
+
+- You are an analyst working for a large investment corporation.
+- Your task is to analyze the evolution of investments over time and provide insights to clients.
+- For this exercise, you will receive the amount of initial investment value and the annual return rate from the client and calculate the investment value for each year, over a period of 3 years.
+- You will also determine if the investment has increased or decreased compared to the previous year, for each year.
+
+
+## Political party influence (Lesson 1)
+
+- An election is coming up, and your clients are concerned about the potential impact of different political parties on their investments.
+- You need to factor in the influence of political parties on the investment returns.
+- The client will provide you with the initial investment value.
+- Your colleague, the forecaster, has provided you with the base annual return rate.
+- You have also partnered with a political analyst who has provided you with:
+  - the impact factors of different political parties on the annual return rate - this value should be summed to the base annual return rate.
+  - a prediction of which party will be in power in each year;
+- Your task is to calculate the investment value for each year, considering the influence of political parties, and determine if the investment has increased or decreased compared to the previous year, for each year.
+
+##  Investment evolution over N years (Lesson 2)
+
+- Your task is to analyze the evolution of investments over time and provide insights to clients.
+- For this exercise, you will receive
+  - the initial investment value 
+  - the annual return rate
+  - number of years of the investment
+- You will calculate the investment value for each year, over the specified number of years.
+- You will also determine if the investment has increased or decreased compared to the previous year, for each year.
+
+## Political influence expected value (Lesson 2)
+
+- The client has given up on trying to predict which party will be in power each year.
+- Instead, they just want to know the expected value of their investments based on the probability of each party being in power.
+- They are assuming the probabilities will not change over the next N years.
+- The client will provide you with
+  - the initial investment value;
+  -  number of years to simulate.
+- Your colleague, the forecaster, has provided you a base annual return rate.
+- Your colleague, the political analyst, has provided you with
+  - the impact factors of different political parties on the annual return rate;
+  - the probabilities of each party winning the upcoming election.
+- Your task is to calculate the expected investment value for each year during N years, considering the probabilities of each party being in power, and determine if the investment has increased or decreased compared to the previous year, for each year.
+
+## To donate or not to donate (Lesson 2)
+
+- Your client is considering making a large donation to a political party.
+- They want to understand the potential impact of this donation on their investments.
+- Your colleague, the forecaster, has provided you with the base annual return rate.
+- Your colleague, the political analyst, has provided you with
+  - impact factor of each party on the annual return rate;
+  - the initial probability of each party winning the upcoming election;
+  - the additional probability of each party winning the election if the client makes a donation.
+- Your task is to determine if the client should make the donation based on the expected investment value over the next N years. And, if yes, to which party.
+    - For each donation scenario (no donation, donation to party A, B, ...), calculate the expected investment value over the next N years.
+    - Compare the final value of each scenario.
+    - Provide a recommendation to the client based on the comparison.
