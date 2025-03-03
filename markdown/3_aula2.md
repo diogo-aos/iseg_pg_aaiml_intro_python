@@ -581,10 +581,12 @@ Redo the loan execise, but simulate the amount owed each month until the loan is
 
 - A country will have elections. There are 8 parties.
 - The winning party will govern for 8 years.
-- The party's policies will influence ROI over some type of investments.
-- Each party has a base ROI (float).
+- The party's policies will influence the annual return rate (ARR) over some type of investments.
+- A forecaster has provided you with a base ARR.
+- A political analyst has provided you with how each party might influence the ARR.
+- The ARR for each party is the base ARR plus the influence of the party.
 - For each party, do a simulation for the volution of an investment of 1000€ over 8 years.
-- Print the party with the highest ROI in the 8th year, along with the full evolution for that party.
+- Print the final investment for each party, along with the full evolution of the party with the highest investment.
 
 --
 
@@ -623,10 +625,10 @@ print(f"Best party: {parties[max_ind]}")
 ### Politics and investments II
 
 
-- Each party may make the ROI more or less volatile.
-- The volatility is given by a list of 8 floats.
+- Each party may also make the ARR more or less volatile (unstable).
+- The volatility is given by a list of 8 floats (one for each party).
 - The volatility is the standard deviation of the ROI.
-- For each year, the ROI is a random number with a normal distribution with the mean given by the ROI of the previous year and the standard deviation given by the volatility.
+- For each year, each party's final ARR is a random number with a normal distribution with the mean given by the party's ARR of the previous year and the standard deviation given by the volatility.
 - Recompute investment for each party.
 
 
@@ -679,8 +681,8 @@ np.random.normal(mean, std, 10)  # list of 10 random numbers with mean 0 and std
 
 - Because we're dealing with random events, let's do a Monte Carlo simulation.
 - Simulate the evolution of the investment 1000 times for each party.
-- Print the party with the highest avereage ROI in the 8th year, along with the full evolution for that party.
-- Include also the standard deviation of the ROI for that party in the 8th year and the 25%, 50% and 75% percentiles.
+- Print the average investment and its standard deviation for the parties with the highest final average and the one with lowest standard deviation.
+- For the party with the highest average, include also the 25%, 50% and 75% percentiles.
 
 --
 
