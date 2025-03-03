@@ -42,7 +42,7 @@ enumerate(), zip(), range(), int(), float(), str()
 
 - we define a function with the `def` keyword
 - followed by the name of the function `sum_2` and ()
-- inside the () we write the names of the inputs the function should receive.
+- inside the () we write the names of the inputs (a.k.a. arguments) the function should receive.
 
 ```python
 def sum_2(a):

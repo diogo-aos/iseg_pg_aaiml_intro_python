@@ -1,12 +1,17 @@
 ---
 title: Exercises
+subtitle: ISEG PGAAIML 2025
 author: Diogo Silva
-format: html
+format:
+  html:
+    embed-resources: true
+  pdf: default
 ---
 
-# Political and finance analyst
 
-##  Investment evolution without loops (Lesson 1)
+# Lesson 1
+
+## Exercise 1
 
 - You are an analyst working for a large investment corporation.
 - Your task is to analyze the evolution of investments over time and provide insights to clients.
@@ -14,7 +19,7 @@ format: html
 - You will also determine if the investment has increased or decreased compared to the previous year, for each year.
 
 
-## Political party influence (Lesson 1)
+## Exercise 2
 
 - An election is coming up, and your clients are concerned about the potential impact of different political parties on their investments.
 - You need to factor in the influence of political parties on the investment returns.
@@ -25,40 +30,76 @@ format: html
   - a prediction of which party will be in power in each year;
 - Your task is to calculate the investment value for each year, considering the influence of political parties, and determine if the investment has increased or decreased compared to the previous year, for each year.
 
-##  Investment evolution over N years (Lesson 2)
 
-- Your task is to analyze the evolution of investments over time and provide insights to clients.
-- For this exercise, you will receive
-  - the initial investment value 
-  - the annual return rate
-  - number of years of the investment
-- You will calculate the investment value for each year, over the specified number of years.
-- You will also determine if the investment has increased or decreased compared to the previous year, for each year.
 
-## Political influence expected value (Lesson 2)
+# Lesson 2
 
-- The client has given up on trying to predict which party will be in power each year.
-- Instead, they just want to know the expected value of their investments based on the probability of each party being in power.
-- They are assuming the probabilities will not change over the next N years.
-- The client will provide you with
-  - the initial investment value;
-  -  number of years to simulate.
-- Your colleague, the forecaster, has provided you a base annual return rate.
-- Your colleague, the political analyst, has provided you with
-  - the impact factors of different political parties on the annual return rate;
-  - the probabilities of each party winning the upcoming election.
-- Your task is to calculate the expected investment value for each year during N years, considering the probabilities of each party being in power, and determine if the investment has increased or decreased compared to the previous year, for each year.
+## Exercise 3
 
-## To donate or not to donate (Lesson 2)
+- Redo exercise [Exercise 1](#exercise-1) with lists.
+- Now, the user chooses the initial investment value and the number of years to simulate (use `input`).
+- The annual return rate may be set by you or received by the user.
+- The user should be able to see the evolution of the investment over the years and if it increased or decreased compared to the previous year.
+- Show a formated table with the results, first column if the year, second column is the value in that year.
 
-- Your client is considering making a large donation to a political party.
-- They want to understand the potential impact of this donation on their investments.
-- Your colleague, the forecaster, has provided you with the base annual return rate.
-- Your colleague, the political analyst, has provided you with
-  - impact factor of each party on the annual return rate;
-  - the initial probability of each party winning the upcoming election;
-  - the additional probability of each party winning the election if the client makes a donation.
-- Your task is to determine if the client should make the donation based on the expected investment value over the next N years. And, if yes, to which party.
-    - For each donation scenario (no donation, donation to party A, B, ...), calculate the expected investment value over the next N years.
-    - Compare the final value of each scenario.
-    - Provide a recommendation to the client based on the comparison.
+## Exercise 4
+
+- Redo [exercise 2](#exercise-2) with lists, as in [exercise 3](#exercise-3).
+- A country will have elections. There are K parties relevant parties (which you hardcode in, for example, a list).
+- The winning party will govern for 8 years.
+- The party's policies will influence the annual return rate (ARR) over some type of investments.
+- A forecaster has provided you with a base ARR (configure this in the code).
+- A political analyst has provided you with how each party might influence the ARR (configure this in code)..
+- The ARR for each party is the base ARR plus the influence of the party.
+- For each party, do a simulation for the volution of an investment of `M`€ over 8 years (`M` is received from the user).
+- Print the final investment for each party, along with the full evolution of the party with the highest investment.
+- Tips
+  - The value in each year (including the initial value) must be stored.
+      - How will you store this data? A list for each party? A list for each year? Somethine else?
+  - You need to iterate over the years for each party, or vice versa. That's a loop inside a loop.
+  - You need to keep track of the investment for each party.
+
+
+## Exercise 5
+
+- Based on [exercise 4](#exercise-4), add the following features.
+- Each party may also make the ARR more or less volatile (unstable).
+- The volatility is given by a list of 8 floats (one for each party).
+- The volatility is the standard deviation of the ROI.
+- For each year, each party's final ARR is a random number with a normal distribution with the mean given by the party's ARR of the previous year and the standard deviation given by the volatility.
+- Recompute investment for each party.
+- Tips
+  - You can generate random numbers with a normal distribution with the [`numpy` library](https://numpy.org/doc/stable/reference/random/generated/numpy.random.normal.html).
+
+  ```python
+  import numpy as np
+  mean = 0
+  std = 1
+  np.random.normal(mean, std) # random number with mean 0 and std 1
+  np.random.normal(mean, std, 10)  # list of 10 random numbers with mean 0 and std 1
+  ```
+
+## Exercise 6
+
+- Based on [exercise 5](#exercise-5), add the following features.
+- Because we're dealing with random events, let's do a Monte Carlo simulation.
+- Simulate the evolution of the investment 1000 times for each party.
+- Print the average investment and its standard deviation for the parties with the highest final average and the one with lowest standard deviation.
+- For the party with the highest average, include also the 25%, 50% and 75% percentiles.
+- Tips
+  - Compute [mean](https://numpy.org/doc/stable/reference/generated/numpy.mean.html) and [standard deviation](https://numpy.org/doc/stable/reference/generated/numpy.std.html) with `numpy`.
+
+  ```python
+  import numpy as np
+  l = [1,2,3,4,5]
+  np.mean(l)  # -> mean
+  np.std(l)  # -> standard deviation
+  ```
+
+  - Compute [percentiles]((https://numpy.org/doc/stable/reference/generated/numpy.percentile.html)) with `numpy`.
+
+  ```python
+  import numpy as np
+  l = [1,2,3,4,5]
+  np.percentile(l, 25)  # -> 25% percentile
+  ```

@@ -579,7 +579,7 @@ Redo the loan execise, but simulate the amount owed each month until the loan is
 ## Exercise
 ### Politics and investments
 
-- A country will have elections. There are 8 parties.
+- A country will have elections. There are K parties relevant parties (which you can select).
 - The winning party will govern for 8 years.
 - The party's policies will influence the annual return rate (ARR) over some type of investments.
 - A forecaster has provided you with a base ARR.
