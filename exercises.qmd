@@ -51,7 +51,7 @@ format:
 - A forecaster has provided you with a base ARR (configure this in the code).
 - A political analyst has provided you with how each party might influence the ARR (configure this in code)..
 - The ARR for each party is the base ARR plus the influence of the party.
-- For each party, do a simulation for the volution of an investment of `M`€ over 8 years (`M` is received from the user).
+- For each party, do a simulation for the evolution of an investment of `M`€ over 8 years (`M` is received from the user).
 - Print the final investment for each party, along with the full evolution of the party with the highest investment.
 - Tips
   - The value in each year (including the initial value) must be stored.
@@ -59,6 +59,55 @@ format:
   - You need to iterate over the years for each party, or vice versa. That's a loop inside a loop.
   - You need to keep track of the investment for each party.
 
+
+::: {.content-hidden}
+
+```python
+# Define the initial investment value and the base annual return rate
+initial_investment = float(input("Initial investment in M€: "))  # Example initial investment value
+base_annual_return_rate = 0.05  # Base annual return rate (5%)
+
+# Number of years for the simulation
+n_years = 8
+
+# Define the relevant parties and their influence on the ARR
+parties = ["Party A", "Party B", "Party C"]
+influence_factors = [0.02, -0.01, 0.03]  # Influence factors for each party
+
+# Initialize a dictionary to store the investment evolution for each party
+investment_evolution = {}
+
+# Calculate the investment value for each year for each party
+for party, influence in zip(parties, influence_factors):
+    evolution = [initial_investment]
+    for year in range(1, n_years + 1):
+        new_value = evolution[-1] * (1 + base_annual_return_rate + influence)
+        evolution.append(new_value)
+    investment_evolution[party] = evolution
+
+# Determine the party with the highest final investment
+# Sort parties by their final investment value in descending order
+sorted_parties = sorted(investment_evolution.items(), key=lambda item: item[1][-1], reverse=True)
+
+# The party with the highest investment is the first in the sorted list
+party_with_highest_investment = sorted_parties[0][0]
+highest_final_investment = sorted_parties[0][1]
+
+
+# Output the results
+print("\nFinal Investment for each party after 8 years:")
+for party, evolution in investment_evolution.items():
+    print(f"{party}: {evolution[-1]:.2f} M€")
+
+print("\nFull evolution for the party with the highest investment:")
+print(f"Party: {party_with_highest_investment}")
+print("year\tvalue")
+for year, value in enumerate(highest_final_investment):
+    print(f"{year}\t{value:.2f}")
+
+```
+
+:::
 
 ## Exercise 5
 
@@ -103,3 +152,41 @@ format:
   l = [1,2,3,4,5]
   np.percentile(l, 25)  # -> 25% percentile
   ```
+
+
+
+# Lesson 3
+
+## Exercise 3.1 - functions
+
+- Redo exercises from lesson 2, but make them more modular and flexible by using functions.
+- For example, redo the Monte Carlo simulation exercise.
+- Make a function that receives the initial investment, base ARR and standard deviation, and makes the simulation for N years.
+- Then make another function that calls the first function 1000 times and computes the average and standard deviation of the final investment.
+- Make sure to test your functions with different inputs.
+- Combine those functions to implement all features from that exercise and implement other functions you think will make the code cleaner and more reusable.
+
+## Exercise 3.2 - files
+
+- Redo the previous exercise to load the parties and their details from a file.
+
+## Exercise 3.3 - modules
+
+- Redo the previous exercise and make a module with the functions for the individual simulations and the Monte Carlo simulation in a module.
+- On another module, add the functions to load the data and returned it in a format that the simulation functions can use.
+- Modify the original program to implement the full Monte Carlo simulation using the functions from the module.
+
+
+# Lesson 4
+
+## Exercise 4.1 - catching errors
+
+- Following the Monte Carlo simulation exercise, add error handling to the functions.
+- Make sure to handle errors such as incorrect file paths, incorrect file formats, and invalid user inputs, e.g. negative investment values, negative standard deviations, non numeric values, etc.
+- Use try-except blocks to catch errors and provide informative messages to the user.
+
+## Exercise 4.2 - debugging with colleagues
+
+- Use your implementation from the previous exercises and introduce bugs in the code.
+- Share the code with a colleague and ask them to debug it (don't tell them what is the bug).
+- Analagously, find and fix bugs in your colleague's code.
