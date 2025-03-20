@@ -8,5 +8,5 @@ format:
 
 - [Github repository](https://github.com/diogo-aos/iseg_pg_aaiml_intro_python)
 - [Slides](index.html)
-- [Exercises](exercises.qmd)
-- [Debug demo guide](lesson4_debug_demo_guide.qmd)
+- [Exercises](exercises)
+- [Debug demo guide](lesson4_debug_demo_guide)
