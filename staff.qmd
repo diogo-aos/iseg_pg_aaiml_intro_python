@@ -1,0 +1,12 @@
+---
+title: Staff's page
+author: Diogo Silva
+format:
+  html:
+    embed-resources: true
+---
+
+- [Github repository](https://github.com/diogo-aos/iseg_pg_aaiml_intro_python)
+- [Slides](index.html)
+- [Exercises](exercises.qmd)
+- [Debug demo guide](lesson4_debug_demo_guide.qmd)

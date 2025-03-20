@@ -1,7 +1,9 @@
 ---
 title: Debugger demo guide
 author: Diogo Silva
-format: html
+format:
+  html:
+    embed-resources: true
 ---
 
 # Introduction

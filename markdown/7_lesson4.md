@@ -70,7 +70,7 @@ When we get an exception, we get:
 
 #### traceback
 
-- The traceback is the trace of instructions from our program's origin to the point where the exception hapenned.
+- The traceback is the trace of instructions from our program's origin to the point where the exception happened.
 - If an exception was thrown inside a function:
   - the traceback includes the line where the function was called
   - and then the line inside the function where the exception was thrown.
