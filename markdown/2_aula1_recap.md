@@ -1,6 +1,6 @@
 <!-- .slide: id="lesson1_recap" data-background="coral"-->
 
-## Lesson 1 Recap
+## Module 1 Recap
 
 --
 

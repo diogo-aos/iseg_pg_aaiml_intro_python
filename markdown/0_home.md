@@ -9,11 +9,11 @@
 
 ## Index
 
-- [Lesson 1](#lesson1)
-- [Lesson 1 Recap](#lesson1_recap)
-- [Lesson 2](#lesson2)
-- [Lesson 2 Recap](#lesson2_recap)
-- [Lesson 3](#lesson3)
-- [Lesson 3 Recap](#lesson3_recap)
-- [Lesson 4](#lesson4)
+- [Module 1](#lesson1)
+- [Module 1 Recap](#lesson1_recap)
+- [Module 2](#lesson2)
+- [Module 2 Recap](#lesson2_recap)
+- [Module 3](#lesson3)
+- [Module 3 Recap](#lesson3_recap)
+- [Module 4](#lesson4)
 <!-- - [Lesson 4 Recap]() -->

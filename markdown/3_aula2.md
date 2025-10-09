@@ -1,6 +1,6 @@
 <!-- .slide: id="lesson2" data-background="wheat"-->
 
-## Lesson 2
+## Module 2
 
 - list, tuple
 - slicing, unpacking

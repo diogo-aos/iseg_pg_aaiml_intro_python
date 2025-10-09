@@ -1,4 +1,4 @@
-## Lesson 4
+## Module 4
 <!-- .slide: id="lesson4" data-background="wheat"-->
 
 - catching errors

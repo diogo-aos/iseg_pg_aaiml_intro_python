@@ -1,6 +1,6 @@
-<!-- .slide: id="lesson2" data-background="wheat"-->
+<!-- .slide: id="lesson1" data-background="wheat"-->
 
-## Lesson 1
+## Module 1
 
 - Course introduction
 - Development environment setup

@@ -2,7 +2,7 @@
 <!-- .slide: id="lesson3_recap" data-background="coral"-->
 
 
-## Lesson 3 Recap
+## Module 3 Recap
 
 ---
 

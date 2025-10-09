@@ -1,4 +1,4 @@
-## Lesson 3
+## Module 3
 <!-- .slide: id="lesson3" data-background="wheat"-->
 
 - functions
