@@ -12,16 +12,41 @@
 
 		<!-- Theme used for syntax highlighted code -->
 		<link rel="stylesheet" href="./reveal.js-master/plugin/highlight/monokai.css">
+
+  <style>
+    /* Custom CSS for the logo */
+    .reveal .logo {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 100;
+      width: 100px; /* Adjust as needed */
+      height: auto;
+    }
+
+  }
+
+  }
+  </style>
+
 	</head>
 	<body>
 		<div class="reveal">
-			<div class="slides">
+
+			<div class="slides" class="cover">
+
+
+                                <section data-background-image="img/module_cover_template.png"
+                                data-background-opacity=1 data-background-size="contain" > </section>
 
 				<section data-markdown="markdown/0_home.md"
 				data-separator="^\r?\n---\r?\n$"
 				data-separator-vertical="^\r?\n--\r?\n$"
 				id="home"
 				></section>
+			</div>
+                        <div class="slides" class="lectures">
+                        <img src="img/logos/iseg-logo-site.png" class="logo" alt="ISEG">
 
 <!-- 
 
@@ -170,15 +195,15 @@
 							<li>Terminal (print)</li>
 							<li>Files (later)</li>
 							<li>Networking (not covered)</li>
-							<li>GUIs (not covered)</li>
-							<li>Pipes (not covered)</li>
+							<li>Graphical interfaces (not covered)</li>
+							<li>Inter-process communication (not covered)</li>
 							</ul>
 					</section>
 					<section>
 						<h3>Interacting through the terminal</h3>
 						<ul>
-							<li>print - send values to user - already covered in the variables section</li>
-							<li>input - reveice values from user</li>
+							<li><code>print</code> - send values to user - already covered in the variables section</li>
+							<li><code>input</code> - reveice values from user</li>
 						</ul>
 					</section>
 					<section>
@@ -197,7 +222,7 @@
 				</section>
 				<section>
 					<section>
-						<h1>Types</h1>
+						<h1>Data types</h1>
 						We've already seen some values of different kinds.
 						Do you remember which?					
 					</section>
@@ -211,7 +236,7 @@
 						<pre class="python"><code data-noescape data-trim data-line-numbers="3,4">
 							{{code:code/types.py}}
 						</code></pre>
-						<p>type will tell us the type of any value we give it.</p>
+						<p>The <code>type</code> function will tell us the type of any value we give it.</p>
 						<p>a is a float (as in <a href="https://en.wikipedia.org/wiki/Floating-point_arithmetic">floating point number</a>), Python's representation for a real number.</p>
 						<p>b is an int (as in integer), Python're representation for a natural number.</p>
 					</section>
@@ -268,7 +293,7 @@
 							{{code:code/conditionals1.py}}
 						</code></pre>
 						<p>In Python, we state conditionals with the if statement.</p>
-						<p>We're checking if the value of the traffic_light variable is "green".</p>
+						<p>We're checking if the value of the <code>traffic_light</code> variable is "green".</p>
 						<p>If it is, the comparison operator (==) will return True, otherwise False.</p>
 					</section>
 					<section>
