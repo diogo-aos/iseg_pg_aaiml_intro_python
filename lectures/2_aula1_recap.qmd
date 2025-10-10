@@ -1,15 +1,21 @@
-<!-- .slide: id="lesson1_recap" data-background="coral"-->
+---
+title: Module 1 Recap
+format:
+  revealjs:
+    embed-resources: true  
+    theme: night
+    logo: ../img/logos/iseg-logo-site.png
+    css: ../logo.css
+---
 
-## Module 1 Recap
-
---
+### Topics
 
 - Setup development environment
 - Create and use a Jupyter Notebook
 - Create variables
 - Input/output information: ``print`` and ``input``
 
---
+---
 
 - Numeric types: int vs float, operations
 - Strings:
@@ -21,12 +27,12 @@
 - Conditions: basics, boolean logic
 - ``and   or`` vs. ``&   |``
 
---
+---
 
 - ``pip install`` packages
 - ``import`` packages to our programs, e.g. ``import pandas``
 
---
+---
 
 - Practical example
   - Load tabular data from Excel file
@@ -34,7 +40,7 @@
   - Create masks with boolean logic to filter table
 
 
---
+---
 
 ### Learning outcomes - you now can:
 
@@ -45,7 +51,7 @@
 - perform operations with numeric types
 - format a string
 
---
+---
 
 - make decisions based on conditions
 - install a Python package

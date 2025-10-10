@@ -57,7 +57,7 @@ def run():
 
     new_html = replace_code(src_html, src_html_file)
 
-    out_file = src_html_file.parent.joinpath("index.html")
+    out_file = src_html_file.parent.joinpath("module1.html")
     out_file.write_text(new_html)
 
 if args.loop:

@@ -1,9 +1,15 @@
-<!-- .slide: id="lesson2_recap" data-background="coral"-->
-
-## Module 2 Recap
-
+---
+title: Module 2 Recap
+format:
+  revealjs:
+    embed-resources: true  
+    theme: night
+    logo: ../img/logos/iseg-logo-site.png
+    css: ../logo.css
 ---
 
+
+## Module 2 Recap
 
 ### Learning outcomes - you can now
 
@@ -14,6 +20,8 @@
 May not seem like much, but you can do a LOT with these tools!
 
 ---
+
+### Topics
 
 - list, tuple
 - slicing, unpacking
@@ -26,7 +34,7 @@ May not seem like much, but you can do a LOT with these tools!
 
 ---
 
-### lists
+### `list`
 
 ```python
 l = [1,2,3,4,5]  # creating a list
@@ -43,9 +51,9 @@ l[2:-2] # slice the list -> [3,4,5,6]
 24 in l # -> True
 ```
 
---
+---
 
-### tuples
+### `tuple`
 
 ```python
 t = (1,2,3,4)
@@ -56,7 +64,7 @@ t[:-1] # -> (1,2,3)
 t + (5,6) # _> (1,2,3,4,5,6)
 ```
 
---
+---
 
 ### unpacking
 
@@ -71,9 +79,9 @@ l=[1,2,3,4,5,6]
 a,b,*nums = l # a=1, b=2, nums=[3,4,5,6]
 ```
 
---
+---
 
-### loops: while
+### loops: `while`
 
 ```python
 l = [1,2,3,5,8,13]
@@ -84,9 +92,9 @@ while i < len(l):
 print(total)
 ```
 
---
+---
 
-### loops: for
+### loops: `for`
 
 ```python
 l = [1,2,3,5,8,13]
@@ -96,9 +104,9 @@ for num in l:
 print(total)
 ```
 
---
+---
 
-#### range
+#### `range`
 
 ```python
 l = list(range(10,15))
@@ -108,7 +116,7 @@ l = list(range(10,15))
  [10,11,12,13,14]
 ```
 
-#### enumerate
+#### `enumerate`
 <!-- .element: class="fragment" data-fragment-index="2"-->
 
 ```python
@@ -120,9 +128,9 @@ list(enumerate(l))
 ```
 <!-- .element: class="fragment" data-fragment-index="2"-->
 
---
+---
 
-#### zip
+#### `zip`
 
 ```python
 names = ["ten", "eleven", "twelve", "thirteen", "fourteen"]
@@ -139,9 +147,9 @@ list(zip(names, l))
  ```
 
 
---
+---
 
-#### enumerate in loops
+#### `enumerate` in loops
 
 ```python
 for i, phrase in enumerate(phrases):
@@ -149,7 +157,7 @@ for i, phrase in enumerate(phrases):
         print(i)
 ```
 
-#### zip in loops
+#### `zip` in loops
 <!-- .element: class="fragment" data-fragment-index="3"-->
 
 ```python
@@ -163,7 +171,7 @@ What is the pattern? <!-- .element: class="fragment" data-fragment-index="4"-->
 Combining with unpacking!  <!-- .element: class="fragment" data-fragment-index="5"-->
 
 
---
+---
 
 ### list comprehensions
 
@@ -174,7 +182,7 @@ for i in range(100):
         l.append(i)
 ```
 
-⬇️
+is equivalent to
 
 ```python
 l = [i for i in range(100) if i % 2 == 0 and i % 4 != 0]
@@ -182,9 +190,9 @@ l = [i for i in range(100) if i % 2 == 0 and i % 4 != 0]
 
 
 
---
+---
 
-### dict
+### `dict`
 ```python
 authors = {
     "Saramago": 87,
@@ -203,7 +211,7 @@ authors = {
 
 ```
 
---
+---
 
 ### dict: get, set, remove
 
@@ -219,7 +227,7 @@ authors.pop("Saramago") # tries to remove key "Asimov" and
 del authors["Saramago"] # just deletes key "Saramago"
 ```
 
---
+---
 
 ### dict and loops
 
@@ -234,7 +242,7 @@ for i, (k,v) in enumerate(authors.items()):
     print(f"author #{i}: {k} died at age {v}")
 ```
 
---
+---
 
 ### dict comprehensions
 

@@ -5,7 +5,7 @@ author: Diogo Silva
 format:
   html:
     embed-resources: true
-  pdf: default
+  typst: default
 ---
 
 

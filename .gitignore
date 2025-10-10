@@ -3,3 +3,5 @@
 **/.ipynb_checkpoints
 *.pkl
 #reveal.js-master
+/.quarto/
+**/*.quarto_ipynb

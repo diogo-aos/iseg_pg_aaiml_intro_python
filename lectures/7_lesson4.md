@@ -1,6 +1,18 @@
-## Module 4
-<!-- .slide: id="lesson4" data-background="wheat"-->
+---
+title: Module 4
+format:
+  revealjs:
+    embed-resources: true  
+    theme: night
+    logo: ../img/logos/iseg-logo-site.png
+    css: ../logo.css
+    template-partials:
+      - ../title-slide.html
+---
 
+# Module 4
+
+## Topics
 - catching errors
 - classes
 - debugging

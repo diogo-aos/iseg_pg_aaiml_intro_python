@@ -1,0 +1,8 @@
+project:
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "!00_archive/"
+
+
+

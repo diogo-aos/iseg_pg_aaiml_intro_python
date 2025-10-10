@@ -1,3 +1,8 @@
+---
+title: Exercises
+format: typst
+---
+
 ## After lesson 1
 
 - Create variables

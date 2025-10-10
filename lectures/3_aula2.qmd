@@ -6,11 +6,13 @@ format:
     theme: night
     logo: ../img/logos/iseg-logo-site.png
     css: ../logo.css
+    template-partials:
+      - ../title-slide.html
 ---
 
 <!-- .slide: id="lesson2" data-background="wheat"-->
 
-## Module 2
+### Topics
 
 - list, tuple
 - slicing, unpacking
@@ -25,7 +27,7 @@ format:
 
 ### Learning outcomes - you'll be able to
 
-- Structure data in data structures (lists, dictionaries)
+- Organize data in data structures (lists, dictionaries)
 - Use loops to execute a set of instructions multiple times
 - Use loops to iterate over data structures
   
@@ -34,7 +36,6 @@ format:
 ## Basic data structures
 ### List
   
----
 
 So far we've stored only single values in variables.
 
@@ -226,7 +227,7 @@ l.extend(lst_floats)
 l += lst_floats
 ```
   
----
+
 
 ####  Counting
 
@@ -237,7 +238,7 @@ lst_floats.count(3.14)  # how many times 3.14 occurs in the list
   
 ---
 
-#### check existence
+#### Check existence
 
 ```python
 if 3.14 in lst_floats:
@@ -246,9 +247,9 @@ if 3.14 in lst_floats:
 
 The ``in`` operator checks if the value on the left exists inside the data structure on the right.
   
----
 
-#### where is waldo?
+
+#### Where is waldo?
 
 ```python
 pi_pos = lst_floats.index(3.14)
@@ -257,6 +258,7 @@ print(f"I found Pi at index {pi_pos}")
 
 The `.index` method returns the position where the given value is in the list.
 If the value is not in the list, a ``ValueError`` is thrown (like `.remove()`).
+  
   
 ---
 
@@ -283,14 +285,18 @@ l.pop()  # removes and returns the last element
 
 ```python
 t = (1,2,3,4)
+
 t2 = 1,2,3,4
+
 t[0]  # -> 1
+
 t[0] = 7
     # TypeError: 'tuple' object does not support item assignment
 ```
   
 ---
 
+#### Slicing 
 Slicing and concatenation work as in lists.
 
 ```python
@@ -299,9 +305,8 @@ t[:-1] # -> (1,2,3)
 t + (5,6) # _> (1,2,3,4,5,6)
 ```
   
----
 
-#### tuple <-> list
+#### `tuple` <-> `list`
 
 We can easily convert between lists and tuples.
 
@@ -359,17 +364,21 @@ while i < len(l):
 print(total)
 ```
 
-Actually, Python has the sum function, so don't do that
+::: {.fragment}
+
+Actually, Python has the `sum` function, no need to reinvent the wheel
 <!-- .element: class="fragment" -->
 ```python
 total = sum(l)
 ```
 <!-- .element: class="fragment" -->
-  
+
+:::
+
 ---
 
 We had to declare a variable just for increasing the
-position of the list element, but we also have the ``for``
+position of the list element, but we also have the `for`
 loop which makes this kind of logic easier.
 
 ```python
@@ -395,7 +404,7 @@ list(range(0,10,2))  # -> [0,2,4,6,8]
 list(range(10,0,-2)) # -> [10,8,6,4,2] 
 ```
 
-We can convert this iterable to a list, but we don't have to do it in the context of the for loop.
+We can convert this iterable to a list, but we don't have to do it in the context of the `for` loop.
   
 ---
 
@@ -404,7 +413,7 @@ We can convert this iterable to a list, but we don't have to do it in the contex
   
 ---
 
-Lists have another property: they're also iterables! That means we don't even need the range function in the last example.
+Lists have another property: they're also iterables! That means we don't even need the `range` function in the last example.
 
 ```python
 l = [1,2,3,5,8,13]
@@ -461,12 +470,11 @@ l = [2,4,6,8]
 list(enumerate(l)) # -> [(0,2), (1,4), (2,6), (3,8)]
 ```
 
-Actually, enumerate returns an iterable, that's why we convert it to a list in the above example.
+Actually, `enumerate` returns an iterable, that's why we convert it to a list in the above example.
 
 It also can receive any iterable, not just a list.
 <!-- .element: class="fragment" -->
   
----
 
 `enumerate` can also start on any number we want.
 
@@ -497,16 +505,17 @@ for i in range(len(names)):
     print(f"The writer {names[i]} died with {ages[i]} years.")
 ```
   
----
+::: {.fragment}
 
 But the ``zip`` function can simplify this.
-
 
 ```python
 for name, age in zip(names, ages):
     print(f"The writer {name} died with {age} years.")
 ```
-  
+
+:::
+
 ---
 
 ``zip`` receives 2 or more lists and creates a new list where each element is a tuple with the values of the original 2 lists.
@@ -520,7 +529,7 @@ print(list(zip(names, ages)))
   
 ---
 
-```python [3]
+```python
 names = ["Saramago", "Pessoa", "Camões"]
 ages = [87, 47, 56]
 print(list(zip(names, ages)))
@@ -539,7 +548,7 @@ print(list(zip(names, ages)))
 
 When the size of the input iterables is different, ``zip`` will return an iterable with the size of the shorter input.
 
-```python [3]
+```{.python code-line-numbers="3"}
 names = ["Saramago", "Pessoa", "Camões"]
 numbers = [1,2,3,4,5,6]
 print(list(zip(names, numbers)))
@@ -549,7 +558,7 @@ print(list(zip(names, numbers)))
 ---
 
 ## Comprehensions
-### list
+### `list`
 
 Let's say we would like to create a list with all even numbers from 0 to 99, that are not divisible by 4.
   
@@ -563,8 +572,9 @@ for i in range(100):
     if i % 2 == 0 and i % 4 != 0:
         l.append(i)
 ```
+
   
----
+:::{.fragment}
 
 List comprehensions are a way to concisely create lists.
 
@@ -575,8 +585,9 @@ l = [i for i in range(100) if i % 2 == 0 and i % 4 != 0]
 ```python
 l2 = [f"Author {n} died at age {a}." for n,a in zip(names, ages)]
 ```
-<!-- .element: class="fragment" -->
-  
+
+:::
+
 ---
 
 ## Exercise
@@ -603,7 +614,7 @@ authors = {"Saramago": 87}
 country_codes = {351: "Portugal"}
 ```
 
-The types of both keys and values can be anything.
+The types of both keys and values can be anything (that is hashable)
   
 ---
 
@@ -617,16 +628,16 @@ authors = {
     }
 ```
   
----
-
+:::{.fragment}
 We can initialize a dict from a list of 2 element tuples.
 
 ```python
 authors_lst = [("Saramago", 87), ("Pessoa", 47), ("Camões", 56)]
 authors = dict(authors_lst)
 ```
-  
----
+:::
+
+:::{.fragment}
 
 Actually, we can initialize it from an iterable, so we could have done something like this.
 
@@ -635,7 +646,8 @@ names = ["Saramago", "Pessoa", "Camões"]
 ages = [87, 47, 56]
 authors = dict(zip(names, ages))
 ```
-  
+:::
+
 ---
 
 We can have nested dicts too.
@@ -650,7 +662,7 @@ authors = {
   
 ---
 
-#### getting a value
+#### Getting a value
 
 ```python
 authors["Saramago"]  # -> 87
@@ -663,7 +675,7 @@ authors.get("Asimov", default=-1) # -> -1
   
 ---
 
-#### inserting a value
+#### Inserting a value
 
 ```python
 authors["Vieira"] = 89
@@ -672,7 +684,7 @@ authors["Queirós"] = 54
   
 ---
 
-#### removing a value
+#### Removing a value
 
 
 ```python
@@ -688,7 +700,7 @@ del authors["Asimov"] # KeyError: 'Asimov'
   
 ---
 
-#### useful methods
+#### Useful methods
 
 ```python
 list(authors) # returns list of keys
@@ -699,12 +711,12 @@ list(authors.items()) # list of (key, value) tuples
   
 ---
 
-#### dicts and loops
+#### `dict` and loops
 
 Print the age at which each author died:
 
 ```python
-for k in authors:
+for k in authors: # by default, the for iterates over keys
     print(f"{k} died at age {authors[k]}")
 ```
 
