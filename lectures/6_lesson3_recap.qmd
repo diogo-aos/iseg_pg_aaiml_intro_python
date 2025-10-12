@@ -1,16 +1,13 @@
 ---
 title: Module 3 Recap
-format:
-  revealjs:
-    theme: ../custom.scss
-    logo: ../img/logos/iseg-logo-site.png
-    css: ../logo.css
+format: revealjs
 ---
 
 # Module 3 Recap
 
+---
 
-## Learning outcomes - you now can
+### Learning outcomes - you now can
 
 - write and use functions to reuse code
 - use map and filter to apply functions to iterables (lists, tuples...)

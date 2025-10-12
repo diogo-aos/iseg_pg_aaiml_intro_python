@@ -1,0 +1,14 @@
+/*-- scss:rules --*/
+
+/* Background shape for all non-title slides */
+// .reveal .backgrounds:not(.title-slide)::before  {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 25vw;       /* Adjust overall width */
+//   height: 100%;
+//   background: #3787fa;   /* Your color */
+//   clip-path: polygon(0 0, 100% 0, 30% 100%, 0% 100%); 
+//   z-index: -1;
+// }

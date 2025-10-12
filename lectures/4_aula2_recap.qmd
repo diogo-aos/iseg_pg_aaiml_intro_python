@@ -1,13 +1,11 @@
 ---
 title: Module 2 Recap
-format:
-  revealjs:
-    theme: ../custom.scss
-    logo: ../img/logos/iseg-logo-site.png
-    css: ../logo.css
+format: revealjs
 ---
 
 # Module 2 Recap
+
+---
 
 ### Learning outcomes - you can now
 

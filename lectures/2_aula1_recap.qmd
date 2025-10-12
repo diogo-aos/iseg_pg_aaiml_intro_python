@@ -1,10 +1,10 @@
 ---
 title: Module 1 Recap
-format:
-  revealjs:
-    theme: ../custom.scss
-    logo: ../img/logos/iseg-logo-site.png
-    css: ../logo.css
+format: revealjs
+---
+
+# Module 1 Recap
+
 ---
 
 ### Topics
@@ -57,3 +57,6 @@ format:
 - import a package and use its functions
 - load data from an Excel file
 - basic data filtering using boolean logic
+
+
+# {background-image="../img/apresentacoes_Python_end.png" background-size="contain" background-repeat="no-repeat"}

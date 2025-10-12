@@ -1,11 +1,6 @@
 ---
 title: Module 2
-format:
-  revealjs:
-    logo: ../img/logos/iseg-logo-site.png
-    css: ../logo.css
-    template-partials:
-      - ../title-slide.html
+format: revealjs
 ---
 
 # Module 2
@@ -364,13 +359,14 @@ print(total)
 ```
 
 ::: {.fragment}
-
-Actually, Python has the `sum` function, no need to reinvent the wheel
+::: {.callout-note}
+## Actually...
+Python has the `sum` function, no need to reinvent the wheel.
 <!-- .element: class="fragment" -->
 ```python
 total = sum(l)
 ```
-<!-- .element: class="fragment" -->
+:::
 
 :::
 
