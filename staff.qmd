@@ -9,7 +9,6 @@ format:
 # Links
 
 - [Github repository](https://github.com/diogo-aos/iseg_pg_aaiml_intro_python)
-- [Slides](index.html)
 - Slides
   - [Module 1](module1.html)
   - [Module 1 recap](lectures/2_aula1_recap.html)
@@ -18,7 +17,7 @@ format:
   - [Module 3](lectures/5_lesson3.html)
   - [Module 3 recap](lectures/6_lesson3_recap.html)
   - [Module 4](lectures/7_lesson4.html)
-- [Exercises](lectures/exercises.html)
+- [Exercises](exercises.html)
 - [Debug demo guide](lesson4_debug_demo_guide.html)
 
 
