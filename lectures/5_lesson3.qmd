@@ -2,8 +2,7 @@
 title: Module 3
 format:
   revealjs:
-    embed-resources: true  
-    theme: night
+    theme: ../custom.scss
     logo: ../img/logos/iseg-logo-site.png
     css: ../logo.css
     template-partials:
@@ -58,9 +57,6 @@ enumerate(), zip(), range(), int(), float(), str()
 
 ### Function definition
 
-- we define a function with the `def` keyword
-- followed by the name of the function `sum_2` and ()
-- inside the () we write the names of the inputs (a.k.a. arguments) the function should receive.
 
 ```python
 def sum_2(a):
@@ -68,10 +64,11 @@ def sum_2(a):
     return b
 ```
 
-- the function exits when it reaches the end of the instructions
-- or when the instruction ``return`` is used
+- we define a function with the `def` keyword
+- followed by the name of the function `sum_2` and `( )`
+- inside the `( )` we write the names of the inputs (a.k.a. arguments) the function should receive.
+- the function exits when it reaches the end of the instructions or when the instruction ``return`` is used
 
-<!-- .element: class="fragment" -->
 
 ---
 
@@ -83,9 +80,21 @@ def sum_2(a):
 
 `return` can receive multiple values - which means the function will output multiple values
 
-Remember tuples? When we return multiple values like this `a, b`, we're actually returning a tuple.
 
-<!-- .element: class="fragment" -->
+
+:::{.fragment}
+:::{.callout-note}
+## Remember tuples?
+When we return multiple values like this `a, b`, we're actually returning a `tuple`!
+
+```python
+def return_ab():
+    return 1,2
+type(return_ab()) # -> tuple
+```
+:::
+
+:::
 
 ---
 
@@ -137,8 +146,8 @@ But ``x`` exists outside the function too.
 
 ---
 
-- a and b are said to be local variables, within the **scope of the function**
-- x is a global variable, because it exists outside any scope within our program
+- `a` and `b` are said to be local variables, within the **scope of the function**
+- `x` is a **global** variable, because it exists outside the scope of any function
 
 ```{.python code-line-numbers="[1,5,6,9,10]"} 
 x = 3
@@ -867,3 +876,5 @@ list(p.rglob("*.py")) # rglob = recursive glob
 - concatenating paths
 - ...
 
+
+# {background-image="../img/apresentacoes_Python_end.png" background-size="contain" background-repeat="no-repeat"}

@@ -15,7 +15,9 @@ format:
 
 - You are an analyst working for a large investment corporation.
 - Your task is to analyze the evolution of investments over time and provide insights to clients.
-- For this exercise, you will receive the amount of initial investment value and the annual return rate from the client and calculate the investment value for each year, over a period of 3 years.
+- For this exercise, you will receive (input) the amount of initial investment value.
+- For each year, your forecaster colleague will give you (input) the predicted return.
+- You will calculate the investment value for each year, over a period of 3 years.
 - You will also determine if the investment has increased or decreased compared to the previous year, for each year.
 
 
@@ -28,7 +30,7 @@ format:
 - You have also partnered with a political analyst who has provided you with:
   - the impact factors of different political parties on the annual return rate - this value should be summed to the base annual return rate.
   - a prediction of which party will be in power in each year;
-- Your task is to calculate the investment value for each year, considering the influence of political parties, and determine if the investment has increased or decreased compared to the previous year, for each year.
+- Your task is to calculate the investment value for each year, considering the influence of political parties, and determine, for each year, if the investment will increased or decreased compared to the previous year.
 
 
 
@@ -36,11 +38,11 @@ format:
 
 ## Exercise 3
 
-- Redo exercise [Exercise 1](#exercise-1) with lists.
+- Redo exercise [Exercise 1](#exercise-1) with lists and loops.
 - Now, the user chooses the initial investment value and the number of years to simulate (use `input`).
-- The annual return rate may be set by you or received by the user.
+- Your forecaster colleague will give you the prediction for the returns for those years (comma seperated `float` values).
 - The user should be able to see the evolution of the investment over the years and if it increased or decreased compared to the previous year.
-- Show a formated table with the results, first column if the year, second column is the value in that year.
+- Show a formated table with the results, first column is the year, second column is the value in that year.
 
 ## Exercise 4
 

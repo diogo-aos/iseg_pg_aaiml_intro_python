@@ -2,8 +2,7 @@
 title: Module 4
 format:
   revealjs:
-    embed-resources: true  
-    theme: night
+    theme: ../custom.scss
     logo: ../img/logos/iseg-logo-site.png
     css: ../logo.css
     template-partials:
@@ -346,3 +345,6 @@ python3 -m pdb my_script.py
 (p)rint    - evaluate expression
 (b)reak    - set breakpoint (write line)
 ```
+
+
+# {background-image="../img/apresentacoes_Python_end.png" background-size="contain" background-repeat="no-repeat"}

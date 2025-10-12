@@ -2,15 +2,15 @@
 title: Module 2
 format:
   revealjs:
-    embed-resources: true  
-    theme: night
     logo: ../img/logos/iseg-logo-site.png
     css: ../logo.css
     template-partials:
       - ../title-slide.html
 ---
 
-<!-- .slide: id="lesson2" data-background="wheat"-->
+# Module 2
+
+---
 
 ### Topics
 
@@ -19,7 +19,6 @@ format:
 - loops: while, for
 - range, enumerate, zip
 - list comprehensions
-- exercise with loops and lists
 - dict
 - dict comprehensions
   
@@ -590,13 +589,6 @@ l2 = [f"Author {n} died at age {a}." for n,a in zip(names, ages)]
 
 ---
 
-## Exercise
-
-Solve exercise 3 (investment evolution) using a list and a loop. See the [exercises page](exercises.html).
-
-  
----
-
 ## Basic data structures
 ### dict
 
@@ -752,3 +744,6 @@ authors_e = {name: age \
 
 
 
+
+
+# {background-image="../img/apresentacoes_Python_end.png" background-size="contain" background-repeat="no-repeat"}

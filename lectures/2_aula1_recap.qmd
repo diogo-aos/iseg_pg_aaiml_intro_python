@@ -2,8 +2,7 @@
 title: Module 1 Recap
 format:
   revealjs:
-    embed-resources: true  
-    theme: night
+    theme: ../custom.scss
     logo: ../img/logos/iseg-logo-site.png
     css: ../logo.css
 ---

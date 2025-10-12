@@ -2,11 +2,12 @@
 title: Module 3 Recap
 format:
   revealjs:
-    embed-resources: true  
-    theme: night
+    theme: ../custom.scss
     logo: ../img/logos/iseg-logo-site.png
     css: ../logo.css
 ---
+
+# Module 3 Recap
 
 
 ## Learning outcomes - you now can
@@ -232,3 +233,6 @@ p.is_dir()  # is this path a directory?
 list(p.iterdir())  # lists all files in directory
 list(p.glob("*.py"))  # lists all .py files in the directory
 ```
+
+
+# {background-image="../img/apresentacoes_Python_end.png" background-size="contain" background-repeat="no-repeat"}

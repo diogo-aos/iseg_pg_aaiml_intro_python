@@ -6,6 +6,8 @@ format:
     embed-resources: true
 ---
 
+# Links
+
 - [Github repository](https://github.com/diogo-aos/iseg_pg_aaiml_intro_python)
 - [Slides](index.html)
 - Slides
@@ -18,3 +20,31 @@ format:
   - [Module 4](lectures/7_lesson4.html)
 - [Exercises](lectures/exercises.html)
 - [Debug demo guide](lesson4_debug_demo_guide.html)
+
+
+# Lesson plan 2025-10-13
+
+- Lecture 1 recap
+- [Exercise 1](exercises.qmd#exercise-1)
+- Slides
+- [Exercise 3](exercises.qmd#exercise-3)
+
+
+# Lesson plan 2025-10-20
+
+
+# Checklist for lectures 
+
+- Setup
+  - Open development environment for demo and walkthrough
+  - Open slides
+  - Open Teams window
+  - Test camera
+  - Test microphone
+  - Count number of students in class
+- During lecture
+  - Count people
+  - Ask permission to record
+  - Record
+  - Ask permission again while recording (to have it on the record)
+

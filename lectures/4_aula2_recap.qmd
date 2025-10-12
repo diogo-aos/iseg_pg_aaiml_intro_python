@@ -2,14 +2,12 @@
 title: Module 2 Recap
 format:
   revealjs:
-    embed-resources: true  
-    theme: night
+    theme: ../custom.scss
     logo: ../img/logos/iseg-logo-site.png
     css: ../logo.css
 ---
 
-
-## Module 2 Recap
+# Module 2 Recap
 
 ### Learning outcomes - you can now
 
@@ -252,3 +250,7 @@ authors_e = {name: age \
                 if "e" in name}
 # \ allows breaking a long instruction into several lines
 ```
+
+
+
+# {background-image="../img/apresentacoes_Python_end.png" background-size="contain" background-repeat="no-repeat"}
