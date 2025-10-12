@@ -11,7 +11,7 @@ format:
 - [Github repository](https://github.com/diogo-aos/iseg_pg_aaiml_intro_python)
 - [Slides](index.html)
 - Slides
-  - [Module 1](lectures/module1.html)
+  - [Module 1](module1.html)
   - [Module 1 recap](lectures/2_aula1_recap.html)
   - [Module 2](lectures/3_aula2.html)
   - [Module 2 recap](lectures/4_aula2_recap.html)
@@ -32,6 +32,10 @@ format:
 
 # Lesson plan 2025-10-20
 
+- Recap
+- Slides
+- Classes demo
+- Debugging demo
 
 # Checklist for lectures 
 
