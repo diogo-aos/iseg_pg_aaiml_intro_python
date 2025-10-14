@@ -328,7 +328,7 @@ a,b,*nums = l # a=1, b=2, nums=[3,4,5,6]
   
 ---
 
-<img data-src="../img/l2/loop.png" height=400 />
+## Loops
 
   
 ---
@@ -338,7 +338,7 @@ They execute a set of instructions while a given condition is true:
 ```python
 is_coffee_ready = False
 while is_coffee_ready != True:
-    print("continue groggy")
+    print("refuse to work")
     is_coffee_ready = check_coffee_status()
 ```
 

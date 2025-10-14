@@ -1,0 +1,673 @@
+---
+format: revealjs
+---
+
+# {background-image="../img/module_cover_template.png" background-size="contain" background-repeat="no-repeat"}
+
+---
+
+<img data-src="../img/iseg_logo.png" height=100>
+<p><small>Applied Artificial Intelligence & Machine Learning</small></p>
+<h2>Python Introduction</h2>
+<p><small><a href="https://www.diogoaos.com/">Diogo Silva</a> | <a href="mailto:diogoaos@iseg.ulisboa.pt">diogoaos@iseg.ulisboa.pt</a></small>
+</p>
+<p><small>2025</small></p>
+
+
+# Module 1
+
+---
+
+## What is programming?
+
+---
+
+## Development environment {.smaller}
+
+### Anaconda
+
+Let's install the tools for programming in Python.
+
+Jupyter Notebooks are very popular. We'll install that and a simple code editor with the Anaconda.
+
+::: {.smaller}
+Easy to follow along videos for installing Anaconda in [Windows](https://youtu.be/C1RLRGNjeoE) and [Mac](https://youtu.be/0Hhqf8L-b_0?t=210).
+:::
+
+---
+
+## Anaconda Distribution
+
+**Anaconda** is a popular **open-source** Python distribution that makes it easy to install Python and many data science libraries.
+
+This link will take you to the [Anaconda download page](https://www.anaconda.com/products/distribution#Downloads). Download Anaconda for your operating system.
+
+---
+
+![](../img/anaconda_download_page.png)
+
+---
+
+## Development environment
+
+### Amazon SageMaker
+
+[Amazon SageMaker](https://aws.amazon.com/pm/sagemaker/) provides an extensive set of tools to develop the complete lifecycle of a ML solution.
+
+It provides a managed Jupyter Notebook service, i.e. running on remote servers (AWS).
+
+Beware of running processes after no longer in use, because of associated costs.
+
+---
+
+## Development environment
+
+### Google Colab
+
+Another option is to use a managed Jupyter Notebook provider like [Google Colab](https://colab.research.google.com/).
+
+Google Colab is a free Jupyter Notebook provider that will allow you to run code on Google's servers, using only CPUs. Execution with GPUs is paid.
+
+---
+
+## Getting Started
+
+From now on, it's assumed you have a functional Python environment.
+
+Go on and open a Jupyter Notebook to follow along.
+
+---
+
+## Important Tips
+
+When in doubt, [experiment]{style="color:royalblue;"}.
+
+. . .
+
+The computer won't break.
+
+. . .
+
+The computer won't be offended.
+
+---
+
+## Getting Help
+
+Python has a **help** function.
+
+Type `help(anything)`{style="color:mediumseagreen"} and you can read documentation on it.
+
+---
+
+## Learning Resources
+
+The internet is your friend.
+
+Search for errors and desired functionality.
+
+. . .
+
+Reading other people's code is a great way to learn.
+
+. . .
+
+Stack Overflow is a solid resource.
+
+---
+
+# Variables
+
+---
+
+## What is a Variable?
+
+A **variable** is a placeholder for some value.
+
+Think of it like a box where you can put anything you want and retrieve it later.
+
+![](../img/robot_variable.png){height="300"}
+
+---
+
+## Creating Variables
+
+Let's create some variables.
+
+```{.python code-line-numbers="1-3"}
+a = 3.14
+b = 2
+name = "Isaac Asimov"
+c = a
+a = 42
+print("Hello world!")
+print(a)
+print(name)
+print(a, b, c)
+```
+
+`a`, `b` and `name` are all variables.
+
+---
+
+## Assignment Operator
+
+```{.python code-line-numbers="1-3"}
+a = 3.14
+b = 2
+name = "Isaac Asimov"
+c = a
+a = 42
+print("Hello world!")
+print(a)
+print(name)
+print(a, b, c)
+```
+
+The `=` operator assigns a value (any value) to the variable.
+
+---
+
+## Variable Assignment
+
+```{.python code-line-numbers="4"}
+a = 3.14
+b = 2
+name = "Isaac Asimov"
+c = a
+a = 42
+print("Hello world!")
+print(a)
+print(name)
+print(a, b, c)
+```
+
+We can also assign the value of a variable to another variable.
+
+`c` now has the value of `a`, which is 3.14
+
+---
+
+## Overwriting Variables
+
+```{.python code-line-numbers="5"}
+a = 3.14
+b = 2
+name = "Isaac Asimov"
+c = a
+a = 42
+print("Hello world!")
+print(a)
+print(name)
+print(a, b, c)
+```
+
+And we can overwrite the value of a particular value.
+
+The value of `a` is now 42 instead of 3.14.
+
+But `c` is still 3.14!
+
+---
+
+## Retrieving Values
+
+```{.python code-line-numbers="4"}
+a = 3.14
+b = 2
+name = "Isaac Asimov"
+c = a
+a = 42
+print("Hello world!")
+print(a)
+print(name)
+print(a, b, c)
+```
+
+We can retrieve the value of a variable, simply by typing its name.
+
+---
+
+## The print Function
+
+```{.python code-line-numbers="6-8"}
+a = 3.14
+b = 2
+name = "Isaac Asimov"
+c = a
+a = 42
+print("Hello world!")
+print(a)
+print(name)
+print(a, b, c)
+```
+
+We already did that when we gave `c` the value of `a`.
+
+The `print` function will come in handy to check the values of variables. This function simply prints to the terminal/screen the value that is given to it.
+
+---
+
+## Printing Multiple Values
+
+```{.python code-line-numbers="9"}
+a = 3.14
+b = 2
+name = "Isaac Asimov"
+c = a
+a = 42
+print("Hello world!")
+print(a)
+print(name)
+print(a, b, c)
+```
+
+We can also print several values at once, if we separate them with commas.
+
+---
+
+# Input/Output
+
+### interacting with the outside
+
+---
+
+## I/O Methods
+
+- Terminal (print)
+- Files (later)
+- Networking (not covered)
+- Graphical interfaces (not covered)
+- Inter-process communication (not covered)
+
+---
+
+## Interacting through the terminal
+
+- `print` - send values to user - already covered in the variables section
+- `input` - receive values from user
+
+---
+
+## The input Function
+
+```{.python code-line-numbers="1-2"}
+print("type your first and last name")
+name = input()
+name2 = input("type your first and last name again")
+```
+
+After executing the `input` function, the terminal will wait for user input.
+
+The user can write whatever she wishes, ending with an enter.
+
+---
+
+## Input with Prompt
+
+```{.python code-line-numbers="3"}
+print("type your first and last name")
+name = input()
+name2 = input("type your first and last name again")
+```
+
+The `input` function can receive an **optional** string that is printed to the terminal before receiving input from the user.
+
+---
+
+# Data types
+
+We've already seen some values of different kinds.
+
+Do you remember which?
+
+---
+
+## Numeric Types
+
+```{.python code-line-numbers="1-2"}
+a = 3.14
+b = 2
+print(type(a))  # float 
+print(type(b))  # int
+name = "Isaac Asimov"
+print(type(name))  # str
+decision = True
+print(type(decision))  # bool
+```
+
+Both `a` and `b` are numeric types, but they're not the same.
+
+---
+
+## The type Function
+
+```{.python code-line-numbers="3-4"}
+a = 3.14
+b = 2
+print(type(a))  # float 
+print(type(b))  # int
+name = "Isaac Asimov"
+print(type(name))  # str
+decision = True
+print(type(decision))  # bool
+```
+
+The `type` function will tell us the type of any value we give it.
+
+`a` is a **float** (as in [floating point number](https://en.wikipedia.org/wiki/Floating-point_arithmetic)), Python's representation for a real number.
+
+`b` is an **int** (as in integer), Python's representation for a natural number.
+
+---
+
+## String Type
+
+```{.python code-line-numbers="5-6"}
+a = 3.14
+b = 2
+print(type(a))  # float 
+print(type(b))  # int
+name = "Isaac Asimov"
+print(type(name))  # str
+decision = True
+print(type(decision))  # bool
+```
+
+**str** (short for string) is another basic type.
+
+It's used to encode text.
+
+---
+
+## Boolean Type
+
+```{.python code-line-numbers="7-8"}
+a = 3.14
+b = 2
+print(type(a))  # float 
+print(type(b))  # int
+name = "Isaac Asimov"
+print(type(name))  # str
+decision = True
+print(type(decision))  # bool
+```
+
+**bool** (short for boolean) encodes a True or False value.
+
+Many operations, like comparisons between 2 values, will return a True or False value.
+
+---
+
+## Numeric types
+
+### int, float
+
+Operations: `+` `-` `*` `/` `//` `%` `**`
+
+Conversion
+
+💻 Let's see in practice! 💻
+
+---
+
+## String
+
+String methods
+
+Formatted strings
+
+Conversion
+
+---
+
+## Making decisions {background-image="../img/fork_in_the_road.jpg" background-opacity="0.2"}
+
+### conditionals
+
+A program has very limited functionality if it's not able to make decisions.
+
+---
+
+## Conditionals Example
+
+Conditionals enable us to execute a portion of code based on some decision.
+
+```python
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+else:
+    action = "stop"
+```
+
+What is happening here?
+
+---
+
+## The if Statement
+
+```{.python code-line-numbers="3"}
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+else:
+    action = "stop"
+```
+
+In Python, we state conditionals with the `if` statement.
+
+We're checking if the value of the `traffic_light` variable is "green".
+
+If it is, the comparison operator (`==`) will return True, otherwise False.
+
+---
+
+## Executing Conditional Code
+
+```{.python code-line-numbers="3-4"}
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+else:
+    action = "stop"
+```
+
+When the condition after `if` is True, the program will execute the code that is indented forward.
+
+Here, that code is in line 4.
+
+---
+
+## The else Statement
+
+```{.python code-line-numbers="5-6"}
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+else:
+    action = "stop"
+```
+
+The `else` statement allows us to define code to be executed when the condition fails.
+
+Here, that code is in line 6.
+
+---
+
+## Chaining Conditions
+
+```{.python code-line-numbers="5,7"}
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+elif traffic_light == "yellow":
+    action = "deaccelerate"
+elif traffic_light == "red":
+    action = "stop"
+else:
+    # unknown color
+    action = "proceed_carefully"
+```
+
+We can also chain several conditions with `elif`.
+
+`elif` works like `else`, but it allows us to define more conditions.
+
+---
+
+## Condition Order
+
+```{.python code-line-numbers="5,7"}
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+elif traffic_light == "yellow":
+    action = "deaccelerate"
+elif traffic_light == "red":
+    action = "stop"
+else:
+    # unknown color
+    action = "proceed_carefully"
+```
+
+When chaining conditions in this way, a given condition is only processed if all the previous conditions fail.
+
+---
+
+## Condition Processing Order
+
+```{.python code-line-numbers="3,5-6"}
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+elif traffic_light == "yellow":
+    action = "deaccelerate"
+elif traffic_light == "red":
+    action = "stop"
+else:
+    # unknown color
+    action = "proceed_carefully"
+```
+
+The condition on line 5 will only be processed if the condition on line 3 fails.
+
+---
+
+## Multiple elif Statements
+
+```{.python code-line-numbers="3,5,7-8"}
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+elif traffic_light == "yellow":
+    action = "deaccelerate"
+elif traffic_light == "red":
+    action = "stop"
+else:
+    # unknown color
+    action = "proceed_carefully"
+```
+
+The condition on line 7 will only be processed if the conditions on lines 3 and 5 fail.
+
+---
+
+## Final else Statement
+
+```{.python code-line-numbers="3,5,7,9-11"}
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+elif traffic_light == "yellow":
+    action = "deaccelerate"
+elif traffic_light == "red":
+    action = "stop"
+else:
+    # unknown color
+    action = "proceed_carefully"
+```
+
+The final `else` statement will only be processed if the conditions on lines 3, 5 and 7 fail.
+
+---
+
+## Comments
+
+```{.python code-line-numbers="10"}
+traffic_light = "green"
+action = None
+if traffic_light == "green":
+    action = "accelerate"
+elif traffic_light == "yellow":
+    action = "deaccelerate"
+elif traffic_light == "red":
+    action = "stop"
+else:
+    # unknown color
+    action = "proceed_carefully"
+```
+
+`#` is the start of a comment in Python.
+
+---
+
+## About Comments
+
+Comments are not code, they're just extra information the programmer adds to the program so it's easier to understand the code.
+
+Comments are never executed, even if they contain valid code.
+
+---
+
+## Boolean logic
+
+Combine conditions with:
+
+`a` **and** `b` → result is True, if both arguments are True
+
+`a` **or** `b` → result is True, if any of the arguments is True
+
+**not** `a` → if a was True, it is now False, and vice versa.
+
+---
+
+## Boolean logic - bitwise {.smaller}
+
+Useful for filter masks.
+
+![](../img/bitwise/or.gif){height="200"}
+![](../img/bitwise/and.gif){height="200"}
+![](../img/bitwise/not.gif){height="150"}
+
+::: {.smaller}
+Animations from [Real Python](https://realpython.com/python-bitwise-operators)
+:::
+
+---
+
+## Boolean logic - bitwise
+
+![](../img/bitwise/df.png){height="200"}
+![](../img/bitwise/idade.png){height="200"}
+![](../img/bitwise/altura.png){height="200"}
+![](../img/bitwise/idade_altura.png){height="200"}
+
+---
+
+## Boolean logic - bitwise
+
+![](../img/bitwise/idade_altura.png){height="200"}
+![](../img/bitwise/df_mask.png){height="200"}
+
+
+# {background-image="../img/apresentacoes_Python_end.png" background-size="contain" background-repeat="no-repeat"}
