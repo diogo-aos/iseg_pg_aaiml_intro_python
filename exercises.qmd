@@ -2,6 +2,8 @@
 title: Exercises
 subtitle: ISEG PGAAIML 2025
 author: Diogo Silva
+toc: true
+toc-depth: 2
 format:
   html: default
   typst: default

@@ -1,0 +1,20 @@
+---
+format: revealjs
+---
+
+# {background-image="../img/module_cover_template.png" background-size="contain" background-repeat="no-repeat"}
+
+---
+
+
+- Slides
+  - [Module 1](module1.html)
+  - [Module 1 recap](lectures/2_aula1_recap.html)
+  - [Module 2](lectures/3_aula2.html)
+  - [Module 2 recap](lectures/4_aula2_recap.html)
+  - [Module 3](lectures/5_lesson3.html)
+  - [Module 3 recap](lectures/6_lesson3_recap.html)
+  - [Module 4](lectures/7_lesson4.html)
+- [Exercises](exercises.html)
+- [Debug demo guide](lesson4_debug_demo_guide.qmd)
+

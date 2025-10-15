@@ -3,11 +3,9 @@ project:
   render:
     - "*.qmd"
     - "!00_archive/"
-  resources:
-    - "img/"
-    - "code/"
-    - "reveal.js-master/"
-    - "module1.html"
+  # resources:
+  #   - "reveal.js-master/"
+  #   - "module1.html"
 
 
 
