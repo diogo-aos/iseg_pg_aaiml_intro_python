@@ -1,7 +1,9 @@
 ---
-title: Module 1 Recap
 format: revealjs
 ---
+
+# {background-image="../img/module_cover_template.png" background-size="contain" background-repeat="no-repeat"}
+
 
 # Module 1 Recap
 

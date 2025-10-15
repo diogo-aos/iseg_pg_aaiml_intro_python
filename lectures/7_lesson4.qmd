@@ -1,7 +1,9 @@
 ---
-title: Module 4
 format: revealjs
 ---
+
+# {background-image="../img/module_cover_template.png" background-size="contain" background-repeat="no-repeat"}
+
 
 # Module 4
 
@@ -309,10 +311,11 @@ sklearn.linear_model.LinearRegression.__bases__
 
 ## debugging
 
-- Jupyter
-- `pdb.set_trace()`
-- `-m pdb`
+- In code: `import pdb; pdb.set_trace()` or `breakpoint()`
+- `python -m pdb some_program.py`
 - Built-in debuggers
+- Jupyter
+
 
 --
 

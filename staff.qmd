@@ -31,10 +31,13 @@ format:
 
 # Lesson plan 2025-10-20
 
-- Recap
-- Slides
-- Classes demo
-- Debugging demo
+- Recap until module 4 (excluding packages)
+- Exceptions, traceback (Slides)
+- Exercise walk-through - Boston House Prices
+  - Exceptions demo
+- Packages demo
+- Classes (Slides)
+- Debugging - 4 different ways
 
 # Checklist for lectures 
 

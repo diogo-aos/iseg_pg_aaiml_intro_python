@@ -1,0 +1,252 @@
+---
+format: revealjs
+---
+
+# {background-image="../img/module_cover_template.png" background-size="contain" background-repeat="no-repeat"}
+
+
+# Module 4 Recap
+
+---
+
+### Learning outcomes - you can now
+
+- read and understand tracebacks
+- catch and handle exceptions to prevent crashes
+- understand Object Oriented Programming basics
+- create simple classes with attributes and methods
+- use classes from Python packages effectively
+- use debugging tools to find and fix errors
+
+---
+
+### Topics
+
+- Exceptions and error handling
+- try/except blocks
+- Tracebacks: reading and understanding them
+- Classes and Object Oriented Programming
+  - creating classes
+  - instantiation
+  - attributes and methods
+  - inheritance
+- Debugging with pdb and Jupyter
+
+---
+
+### Exceptions
+
+```python
+int("hello")  # -> ValueError
+
+open("missing_file.txt")  # -> FileNotFoundError
+
+my_list[100]  # -> IndexError
+```
+
+When something unexpected happens, Python throws an exception.
+
+If not handled, exceptions stop program execution.
+
+---
+
+### Reading Tracebacks
+
+```text
+Traceback (most recent call last):
+  File "script.py", line 8, in <module>
+    result = process_data(filename)
+  File "utils.py", line 15, in process_data
+    data = load_file(fn)
+  File "utils.py", line 5, in load_file
+    with open(fn) as f:
+FileNotFoundError: No such file or directory: 'data.txt'
+```
+
+Read from bottom to top:
+- What exception? `FileNotFoundError`
+- Where did it happen? `utils.py`, line 5, inside `load_file`
+- How did we get there? Called from line 15, called from line 8
+
+---
+
+### Catching Exceptions
+
+```python
+try:
+    number = int(user_input)
+except ValueError:
+    print("Invalid number, using default")
+    number = 0
+```
+
+```python
+try:
+    data = load_file(filename)
+except FileNotFoundError:
+    print(f"File {filename} not found")
+    data = []
+except PermissionError:
+    print("No permission to read file")
+    data = []
+```
+
+---
+
+### Multiple Exception Handling
+
+```python
+try:
+    result = risky_operation()
+except (ValueError, TypeError):
+    print("Problem with value or type")
+except FileNotFoundError:
+    print("File missing")
+except:
+    print("Some other error occurred")
+```
+
+⚠️ Catch specific exceptions when possible!
+
+---
+
+### Classes - Basic Structure
+
+```python
+class Model:
+    def __init__(self, name, learning_rate):  # constructor
+        self.name = name              # attribute
+        self.learning_rate = learning_rate
+        self.trained = False          # attribute
+    
+    def train(self, data):           # method
+        # training logic here
+        self.trained = True
+    
+    def predict(self, features):     # method
+        if not self.trained:
+            raise ValueError("Model not trained yet")
+        # prediction logic here
+```
+
+---
+
+### Using Classes
+
+```python
+# Instantiate (create an object)
+my_model = Model("LinearRegression", 0.01)
+
+# Access attributes
+print(my_model.name)            # -> "LinearRegression"
+print(my_model.learning_rate)   # -> 0.01
+
+# Call methods
+my_model.train(training_data)
+predictions = my_model.predict(test_features)
+```
+
+---
+
+### Classes We Already Use
+
+```python
+import pandas as pd
+
+df = pd.DataFrame(data)  # DataFrame is a class!
+type(df)  # -> pandas.core.frame.DataFrame
+
+df.head()        # method
+df.describe()    # method
+df["column"]     # special method __getitem__
+```
+
+Everything in Python is an object from some class!
+
+---
+
+### Inheritance
+
+```python
+class BaseModel:
+    def __init__(self, name):
+        self.name = name
+        self.trained = False
+    
+    def train(self, data):
+        self.trained = True
+
+class NeuralNetwork(BaseModel):  # inherits from BaseModel
+    def train(self, data):       # override parent method
+        print("Training neural network...")
+        super().train(data)      # call parent's train method
+```
+
+---
+
+### Inheritance in Practice
+
+Many ML libraries use inheritance:
+
+```python
+# PyTorch example structure
+class MyModel(torch.nn.Module):  # inherit from Module
+    def __init__(self):
+        super().__init__()
+        # define layers
+    
+    def forward(self, x):
+        # define forward pass
+        return output
+```
+
+```python
+# Scikit-learn classifiers inherit from BaseEstimator
+LinearRegression inherits from: RegressorMixin, LinearModel
+DecisionTreeClassifier inherits from: ClassifierMixin, BaseDecisionTree
+```
+
+---
+
+### Debugging with pdb
+
+```python
+import pdb
+
+def calculate_average(numbers):
+    pdb.set_trace()  # execution pauses here
+    total = sum(numbers)
+    avg = total / len(numbers)
+    return avg
+```
+
+Or run script in debug mode:
+```bash
+python -m pdb my_script.py
+```
+
+---
+
+### pdb Commands
+
+```text
+(n)ext      - execute next line
+(s)tep      - step into function
+(c)ontinue  - continue execution
+(p)rint var - print variable value
+(l)ist      - show current code
+(w)here     - show traceback
+(b)reak 10  - set breakpoint at line 10
+(q)uit      - quit debugger
+```
+
+Use pdb to inspect variables and understand program flow!
+
+---
+
+### Debugging in Jupyter
+
+- Click left of line numbers to set
+
+
+# {background-image="../img/apresentacoes_Python_end.png" background-size="contain" background-repeat="no-repeat"}
