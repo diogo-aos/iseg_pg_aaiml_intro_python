@@ -1,0 +1,1263 @@
+---
+title: Python Introduction - Exercise Set
+author: Diogo Silva
+---
+
+**Tips for Success:**
+- Start by understanding what the exercise asks
+- Break the problem into smaller steps
+- Test your code with the provided examples
+- Try variations of the solutions
+- Don't hesitate to combine techniques you've learned
+- For ML exercises: think about why these operations matter in real projects
+**Tips for Module 3 Exercises:**
+- Always use context managers (`with` statement) when working with files
+- Use `pathlib.Path` instead of string manipulation for file paths
+- Keep functions focused on a single task (single responsibility principle)
+- Use meaningful function and parameter names
+- Test edge cases (empty lists, missing files, invalid inputs)
+- Remember that `map()` returns an iterator - convert to list if needed
+- When creating modules, think about code organization and reusability
+
+
+# Modules 1 and 2
+
+## Exercise 1: Expense Tracker
+**Difficulty: Easy**
+
+You're managing your monthly expenses. Create a program that:
+1. Stores your expenses in a list: [1250.50, 89.90, 45.00, 320.75, 12.50]
+2. Calculates the total spent
+3. Finds the average expense
+4. Counts how many expenses were above 100€
+
+### Proposed Answer
+```python
+expenses = [1250.50, 89.90, 45.00, 320.75, 12.50]
+
+# Total
+total = 0
+for expense in expenses:
+    total += expense
+print(f"Total spent: {total}€")
+
+# Average
+average = total / len(expenses)
+print(f"Average expense: {average:.2f}€")
+
+# Count above 100
+count_high = 0
+for expense in expenses:
+    if expense > 100:
+        count_high += 1
+print(f"Expenses above 100€: {count_high}")
+
+# Alternative with list comprehension
+count_high_alt = len([e for e in expenses if e > 100])
+```
+
+---
+
+## Exercise 2: Employee Database
+**Difficulty: Medium**
+
+You're building a simple employee management system. Create a dictionary with employee IDs as keys and their information as values:
+
+- Employee 101: Maria Silva, salary 2500, department "Sales"
+- Employee 102: João Santos, salary 3200, department "IT"
+- Employee 103: Ana Costa, salary 2800, department "Sales"
+
+Then:
+1. Print all employees with salary above 2600
+2. Calculate the average salary for the Sales department
+3. Add a new employee (104: Pedro Alves, salary 3500, department "IT")
+
+### Proposed Answer
+```python
+employees = {
+    101: {"name": "Maria Silva", "salary": 2500, "department": "Sales"},
+    102: {"name": "João Santos", "salary": 3200, "department": "IT"},
+    103: {"name": "Ana Costa", "salary": 2800, "department": "Sales"}
+}
+
+# Employees with salary > 2600
+print("Employees earning above 2600€:")
+for emp_id, info in employees.items():
+    if info["salary"] > 2600:
+        print(f"  {info['name']}: {info['salary']}€")
+
+# Average salary in Sales
+sales_salaries = []
+for emp_id, info in employees.items():
+    if info["department"] == "Sales":
+        sales_salaries.append(info["salary"])
+
+if len(sales_salaries) > 0:
+    avg_sales = sum(sales_salaries) / len(sales_salaries)
+    print(f"\nAverage salary in Sales: {avg_sales:.2f}€")
+
+# Add new employee
+employees[104] = {"name": "Pedro Alves", "salary": 3500, "department": "IT"}
+print(f"\nTotal employees: {len(employees)}")
+```
+
+---
+
+## Exercise 3: Product Inventory
+**Difficulty: Medium**
+
+A small shop needs to manage its inventory. Create a program that:
+1. Stores products as tuples: (product_name, quantity, price)
+2. Creates a list with these products: ("Laptop", 5, 899.99), ("Mouse", 23, 15.50), ("Keyboard", 12, 45.00)
+3. Finds products with quantity below 10
+4. Calculates total inventory value
+5. Creates a dictionary mapping product names to their stock quantity
+
+### Proposed Answer
+```python
+products = [
+    ("Laptop", 5, 899.99),
+    ("Mouse", 23, 15.50),
+    ("Keyboard", 12, 45.00)
+]
+
+# Products with low stock (< 10)
+print("Low stock alert:")
+for name, quantity, price in products:
+    if quantity < 10:
+        print(f"  {name}: only {quantity} units left")
+
+# Total inventory value
+total_value = 0
+for name, quantity, price in products:
+    total_value += quantity * price
+print(f"\nTotal inventory value: {total_value:.2f}€")
+
+# Create stock dictionary
+stock_dict = {name: quantity for name, quantity, price in products}
+print(f"\nStock levels: {stock_dict}")
+
+# Alternative without comprehension
+stock_dict_alt = {}
+for name, quantity, price in products:
+    stock_dict_alt[name] = quantity
+```
+
+---
+
+## Exercise 4: Temperature Converter
+**Difficulty: Easy**
+
+Create a program that converts temperatures between Celsius and Fahrenheit:
+1. Ask the user for a temperature value
+2. Ask if it's in Celsius or Fahrenheit (C/F)
+3. Convert and display the result
+4. Formula: F = C × 9/5 + 32 or C = (F - 32) × 5/9
+
+### Proposed Answer
+```python
+temp_input = input("Enter temperature value: ")
+temp = float(temp_input)
+
+unit = input("Is this Celsius or Fahrenheit? (C/F): ")
+
+if unit == "C" or unit == "c":
+    fahrenheit = temp * 9/5 + 32
+    print(f"{temp}°C = {fahrenheit:.2f}°F")
+elif unit == "F" or unit == "f":
+    celsius = (temp - 32) * 5/9
+    print(f"{temp}°F = {celsius:.2f}°C")
+else:
+    print("Invalid unit. Please use C or F.")
+```
+
+---
+
+## Exercise 5: Sales Report Generator
+**Difficulty: Medium-Hard**
+
+You have daily sales data for a week. Create a program that:
+1. Stores sales in a list: [1200, 1450, 980, 1100, 1650, 890, 1320]
+2. Identifies which days had sales above average
+3. Finds the best and worst sales days
+4. Creates a dictionary with day names (Monday-Sunday) and sales values
+
+### Proposed Answer
+```python
+sales = [1200, 1450, 980, 1100, 1650, 890, 1320]
+days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+
+# Calculate average
+total_sales = 0
+for sale in sales:
+    total_sales += sale
+average = total_sales / len(sales)
+print(f"Average daily sales: {average:.2f}€")
+
+# Days above average
+print("\nDays with above-average sales:")
+for i, sale in enumerate(sales):
+    if sale > average:
+        print(f"  {days[i]}: {sale}€")
+
+# Best and worst days
+best_sale = sales[0]
+worst_sale = sales[0]
+best_day = 0
+worst_day = 0
+
+for i in range(len(sales)):
+    if sales[i] > best_sale:
+        best_sale = sales[i]
+        best_day = i
+    if sales[i] < worst_sale:
+        worst_sale = sales[i]
+        worst_day = i
+
+print(f"\nBest day: {days[best_day]} with {best_sale}€")
+print(f"Worst day: {days[worst_day]} with {worst_sale}€")
+
+# Create sales dictionary
+sales_dict = {}
+for i in range(len(days)):
+    sales_dict[days[i]] = sales[i]
+
+# Or with zip
+sales_dict_alt = dict(zip(days, sales))
+print(f"\nWeekly sales: {sales_dict}")
+```
+
+---
+
+## Exercise 6: Password Validator
+**Difficulty: Medium**
+
+Create a simple password validator that checks if a password:
+1. Is at least 8 characters long
+2. Contains at least one number
+3. Contains both uppercase and lowercase letters
+
+Test with: "Secure123", "weak", "NOLOWER1", "noupper1"
+
+### Proposed Answer
+```python
+def validate_password(password):
+    # Check length
+    if len(password) < 8:
+        print(f"'{password}' is too short (minimum 8 characters)")
+        return False
+    
+    # Check for number
+    has_number = False
+    for char in password:
+        if char in "0123456789":
+            has_number = True
+            break
+    
+    if not has_number:
+        print(f"'{password}' needs at least one number")
+        return False
+    
+    # Check for uppercase and lowercase
+    has_upper = False
+    has_lower = False
+    
+    for char in password:
+        if char >= 'A' and char <= 'Z':
+            has_upper = True
+        if char >= 'a' and char <= 'z':
+            has_lower = True
+    
+    if not has_upper:
+        print(f"'{password}' needs at least one uppercase letter")
+        return False
+    
+    if not has_lower:
+        print(f"'{password}' needs at least one lowercase letter")
+        return False
+    
+    print(f"'{password}' is valid!")
+    return True
+
+# Test passwords
+test_passwords = ["Secure123", "weak", "NOLOWER1", "noupper1"]
+for pwd in test_passwords:
+    validate_password(pwd)
+    print()
+```
+
+---
+
+## Exercise 7: Shopping Cart
+**Difficulty: Medium**
+
+Simulate a shopping cart system:
+1. Create a dictionary with products and prices: {"apple": 0.50, "bread": 1.20, "milk": 0.90, "cheese": 2.50}
+2. Create an empty cart (list of tuples: product name and quantity)
+3. Add items to cart: 3 apples, 1 bread, 2 milk
+4. Calculate total cost
+5. Apply a 10% discount if total is above 5€
+
+### Proposed Answer
+```python
+products = {
+    "apple": 0.50,
+    "bread": 1.20,
+    "milk": 0.90,
+    "cheese": 2.50
+}
+
+cart = []
+
+# Add items
+cart.append(("apple", 3))
+cart.append(("bread", 1))
+cart.append(("milk", 2))
+
+# Calculate total
+print("Shopping Cart:")
+total = 0
+for item, quantity in cart:
+    item_cost = products[item] * quantity
+    total += item_cost
+    print(f"  {quantity}x {item}: {item_cost:.2f}€")
+
+print(f"\nSubtotal: {total:.2f}€")
+
+# Apply discount
+if total > 5:
+    discount = total * 0.10
+    total = total - discount
+    print(f"Discount (10%): -{discount:.2f}€")
+
+print(f"Total: {total:.2f}€")
+```
+
+---
+
+## Exercise 8: Text Analyzer
+**Difficulty: Medium**
+
+Create a program that analyzes a piece of text:
+1. Count total words
+2. Count how many words start with a vowel
+3. Find the longest word
+4. Create a dictionary with word lengths as keys and list of words as values
+
+Test with: "Python programming is powerful and versatile"
+
+### Proposed Answer
+```python
+text = "Python programming is powerful and versatile"
+words = text.split()
+
+# Total words
+print(f"Total words: {len(words)}")
+
+# Words starting with vowel
+vowels = "aeiouAEIOU"
+vowel_words = []
+for word in words:
+    if word[0] in vowels:
+        vowel_words.append(word)
+
+print(f"Words starting with vowel: {len(vowel_words)}")
+print(f"  {vowel_words}")
+
+# Longest word
+longest = words[0]
+for word in words:
+    if len(word) > len(longest):
+        longest = word
+print(f"Longest word: '{longest}' ({len(longest)} characters)")
+
+# Dictionary by word length
+by_length = {}
+for word in words:
+    word_len = len(word)
+    if word_len not in by_length:
+        by_length[word_len] = []
+    by_length[word_len].append(word)
+
+print("\nWords by length:")
+for length, word_list in by_length.items():
+    print(f"  {length} chars: {word_list}")
+```
+
+---
+
+## Exercise 9: Grade Calculator
+**Difficulty: Easy-Medium**
+
+A student has grades in different subjects. Create a program that:
+1. Stores grades in a dictionary: {"Math": 15, "Physics": 17, "Chemistry": 14, "Biology": 16}
+2. Calculates the average grade
+3. Determines if the student passed (average >= 14)
+4. Lists subjects where grade is below average
+
+### Proposed Answer
+```python
+grades = {
+    "Math": 15,
+    "Physics": 17,
+    "Chemistry": 14,
+    "Biology": 16
+}
+
+# Calculate average
+total = 0
+for subject, grade in grades.items():
+    total += grade
+average = total / len(grades)
+
+print(f"Average grade: {average:.2f}")
+
+# Pass/Fail
+if average >= 14:
+    print("Status: PASSED ✓")
+else:
+    print("Status: FAILED ✗")
+
+# Subjects below average
+print("\nSubjects below average:")
+for subject, grade in grades.items():
+    if grade < average:
+        print(f"  {subject}: {grade}")
+
+# Alternative with comprehension
+below_avg = {subject: grade for subject, grade in grades.items() if grade < average}
+```
+
+---
+
+## Exercise 10: Meeting Scheduler
+**Difficulty: Hard**
+
+You're scheduling meetings for a week. Create a program that:
+1. Stores meeting slots as tuples: (day, hour, duration_minutes, attendees_count)
+2. Create a list with: ("Monday", 10, 60, 5), ("Monday", 14, 30, 3), ("Tuesday", 9, 90, 8), ("Wednesday", 11, 45, 4)
+3. Calculate total meeting hours for the week
+4. Find the busiest day (most total meeting time)
+5. Calculate average number of attendees per meeting
+6. Create a dictionary with days as keys and list of meetings as values
+
+### Proposed Answer
+```python
+meetings = [
+    ("Monday", 10, 60, 5),
+    ("Monday", 14, 30, 3),
+    ("Tuesday", 9, 90, 8),
+    ("Wednesday", 11, 45, 4)
+]
+
+# Total meeting hours
+total_minutes = 0
+for day, hour, duration, attendees in meetings:
+    total_minutes += duration
+total_hours = total_minutes / 60
+print(f"Total meeting time: {total_hours:.2f} hours")
+
+# Busiest day
+day_totals = {}
+for day, hour, duration, attendees in meetings:
+    if day not in day_totals:
+        day_totals[day] = 0
+    day_totals[day] += duration
+
+busiest_day = ""
+max_minutes = 0
+for day, minutes in day_totals.items():
+    if minutes > max_minutes:
+        max_minutes = minutes
+        busiest_day = day
+
+print(f"Busiest day: {busiest_day} with {max_minutes} minutes of meetings")
+
+# Average attendees
+total_attendees = 0
+for day, hour, duration, attendees in meetings:
+    total_attendees += attendees
+avg_attendees = total_attendees / len(meetings)
+print(f"Average attendees per meeting: {avg_attendees:.1f}")
+
+# Group by day
+meetings_by_day = {}
+for day, hour, duration, attendees in meetings:
+    if day not in meetings_by_day:
+        meetings_by_day[day] = []
+    meetings_by_day[day].append({
+        "hour": hour,
+        "duration": duration,
+        "attendees": attendees
+    })
+
+print("\nMeetings by day:")
+for day, day_meetings in meetings_by_day.items():
+    print(f"\n{day}:")
+    for meeting in day_meetings:
+        print(f"  {meeting['hour']}:00 - {meeting['duration']}min - {meeting['attendees']} people")
+```
+
+---
+
+## AI/ML Focused Exercises
+
+### Exercise 11: Dataset Preparation
+**Difficulty: Medium**
+**ML Concept: Data Preprocessing**
+
+You're preparing a dataset for training. You have raw data with missing values represented as -999:
+- Features: [1.2, 3.4, -999, 5.6, 2.1, -999, 4.5, 3.2]
+
+Create a program that:
+1. Counts how many missing values exist
+2. Replaces missing values with the mean of valid values
+3. Normalizes all values to 0-1 range (min-max scaling)
+4. Prints original vs processed data side-by-side
+
+### Proposed Answer
+```python
+data = [1.2, 3.4, -999, 5.6, 2.1, -999, 4.5, 3.2]
+
+# Count missing values
+missing_count = 0
+for value in data:
+    if value == -999:
+        missing_count += 1
+print(f"Missing values: {missing_count}")
+
+# Calculate mean of valid values
+valid_values = []
+for value in data:
+    if value != -999:
+        valid_values.append(value)
+
+mean_value = sum(valid_values) / len(valid_values)
+print(f"Mean of valid values: {mean_value:.2f}")
+
+# Replace missing values
+cleaned_data = []
+for value in data:
+    if value == -999:
+        cleaned_data.append(mean_value)
+    else:
+        cleaned_data.append(value)
+
+print(f"\nAfter imputation: {cleaned_data}")
+
+# Normalize to 0-1 range
+min_val = cleaned_data[0]
+max_val = cleaned_data[0]
+for value in cleaned_data:
+    if value < min_val:
+        min_val = value
+    if value > max_val:
+        max_val = value
+
+normalized_data = []
+for value in cleaned_data:
+    normalized = (value - min_val) / (max_val - min_val)
+    normalized_data.append(normalized)
+
+print(f"\nNormalized data:")
+for i in range(len(data)):
+    print(f"  Original: {data[i]:7.2f} -> Cleaned: {cleaned_data[i]:.2f} -> Normalized: {normalized_data[i]:.3f}")
+```
+
+---
+
+### Exercise 12: Model Performance Tracker
+**Difficulty: Medium**
+**ML Concept: Experiment Tracking**
+
+You're training multiple models and need to track their performance. Create a system that:
+1. Stores model results as dictionaries with: model_name, accuracy, training_time (minutes), parameters_count
+2. Creates a list with results for: RandomForest (0.87, 12, 500000), NeuralNet (0.91, 45, 1200000), LogisticRegression (0.82, 3, 50000), SVM (0.85, 8, 200000)
+3. Finds the best model by accuracy
+4. Calculates the average training time
+5. Identifies models with accuracy > 0.85 and training time < 15 minutes
+
+### Proposed Answer
+```python
+models = [
+    {"name": "RandomForest", "accuracy": 0.87, "time": 12, "params": 500000},
+    {"name": "NeuralNet", "accuracy": 0.91, "time": 45, "params": 1200000},
+    {"name": "LogisticRegression", "accuracy": 0.82, "time": 3, "params": 50000},
+    {"name": "SVM", "accuracy": 0.85, "time": 8, "params": 200000}
+]
+
+# Best model by accuracy
+best_model = models[0]
+for model in models:
+    if model["accuracy"] > best_model["accuracy"]:
+        best_model = model
+
+print(f"Best model: {best_model['name']} with {best_model['accuracy']:.2%} accuracy")
+
+# Average training time
+total_time = 0
+for model in models:
+    total_time += model["time"]
+avg_time = total_time / len(models)
+print(f"Average training time: {avg_time:.1f} minutes")
+
+# Efficient models (high accuracy, low time)
+print("\nEfficient models (accuracy > 85% and time < 15 min):")
+efficient = []
+for model in models:
+    if model["accuracy"] > 0.85 and model["time"] < 15:
+        efficient.append(model["name"])
+        print(f"  {model['name']}: {model['accuracy']:.2%} in {model['time']} min")
+
+if len(efficient) == 0:
+    print("  None found")
+
+# Model comparison table
+print("\nFull Results:")
+print(f"{'Model':<20} {'Accuracy':<10} {'Time (min)':<12} {'Parameters':<12}")
+print("-" * 54)
+for model in models:
+    print(f"{model['name']:<20} {model['accuracy']:.2%}      {model['time']:<12} {model['params']:<12,}")
+```
+
+---
+
+### Exercise 13: Training Data Splitter
+**Difficulty: Medium**
+**ML Concept: Train-Test Split**
+
+You have a dataset of 100 samples that need to be split into training (70%), validation (20%), and test (10%) sets. Create a program that:
+1. Creates a list of sample IDs from 0 to 99
+2. Splits them into three sets following the percentages
+3. Verifies no overlap between sets
+4. Prints the size of each set and first 5 IDs from each
+
+### Proposed Answer
+```python
+# Create sample IDs
+all_samples = list(range(100))
+
+# Calculate split points
+total = len(all_samples)
+train_size = int(total * 0.7)  # 70
+val_size = int(total * 0.2)    # 20
+# test gets the remainder
+
+# Split the data
+train_set = all_samples[0:train_size]
+val_set = all_samples[train_size:train_size + val_size]
+test_set = all_samples[train_size + val_size:]
+
+print(f"Dataset split:")
+print(f"  Training: {len(train_set)} samples")
+print(f"  Validation: {len(val_set)} samples")
+print(f"  Test: {len(test_set)} samples")
+print(f"  Total: {len(train_set) + len(val_set) + len(test_set)}")
+
+# Verify no overlap
+overlap_train_val = []
+for sample_id in train_set:
+    if sample_id in val_set:
+        overlap_train_val.append(sample_id)
+
+overlap_train_test = []
+for sample_id in train_set:
+    if sample_id in test_set:
+        overlap_train_test.append(sample_id)
+
+overlap_val_test = []
+for sample_id in val_set:
+    if sample_id in test_set:
+        overlap_val_test.append(sample_id)
+
+total_overlap = len(overlap_train_val) + len(overlap_train_test) + len(overlap_val_test)
+if total_overlap == 0:
+    print("\n✓ No overlap detected - split is valid!")
+else:
+    print(f"\n✗ Warning: {total_overlap} overlapping samples found!")
+
+# Show first 5 from each
+print(f"\nFirst 5 samples:")
+print(f"  Train: {train_set[:5]}")
+print(f"  Validation: {val_set[:5]}")
+print(f"  Test: {test_set[:5]}")
+```
+
+---
+
+### Exercise 14: Confusion Matrix Calculator
+**Difficulty: Medium-Hard**
+**ML Concept: Classification Metrics**
+
+You have predictions from a binary classifier. Create a program that:
+1. Takes actual labels: [1, 0, 1, 1, 0, 1, 0, 0, 1, 0]
+2. Takes predictions: [1, 0, 1, 0, 0, 1, 1, 0, 1, 0]
+3. Calculates True Positives, True Negatives, False Positives, False Negatives
+4. Computes Accuracy, Precision, and Recall
+5. Displays the confusion matrix
+
+### Proposed Answer
+```python
+actual = [1, 0, 1, 1, 0, 1, 0, 0, 1, 0]
+predicted = [1, 0, 1, 0, 0, 1, 1, 0, 1, 0]
+
+# Calculate confusion matrix components
+true_positive = 0
+true_negative = 0
+false_positive = 0
+false_negative = 0
+
+for i in range(len(actual)):
+    if actual[i] == 1 and predicted[i] == 1:
+        true_positive += 1
+    elif actual[i] == 0 and predicted[i] == 0:
+        true_negative += 1
+    elif actual[i] == 0 and predicted[i] == 1:
+        false_positive += 1
+    elif actual[i] == 1 and predicted[i] == 0:
+        false_negative += 1
+
+print("Confusion Matrix:")
+print(f"                Predicted")
+print(f"                0    1")
+print(f"Actual    0    {true_negative}    {false_positive}")
+print(f"          1    {false_negative}    {true_positive}")
+
+# Calculate metrics
+total = len(actual)
+accuracy = (true_positive + true_negative) / total
+
+if true_positive + false_positive > 0:
+    precision = true_positive / (true_positive + false_positive)
+else:
+    precision = 0
+
+if true_positive + false_negative > 0:
+    recall = true_positive / (true_positive + false_negative)
+else:
+    recall = 0
+
+print(f"\nMetrics:")
+print(f"  Accuracy:  {accuracy:.2%} ({true_positive + true_negative}/{total} correct)")
+print(f"  Precision: {precision:.2%} (of predicted positives, how many were correct)")
+print(f"  Recall:    {recall:.2%} (of actual positives, how many were found)")
+
+# Show misclassifications
+print(f"\nMisclassifications:")
+misclass_count = 0
+for i in range(len(actual)):
+    if actual[i] != predicted[i]:
+        misclass_count += 1
+        print(f"  Sample {i}: Expected {actual[i]}, Got {predicted[i]}")
+
+if misclass_count == 0:
+    print("  None - perfect predictions!")
+```
+
+---
+
+### Exercise 15: Feature Engineering Pipeline
+**Difficulty: Medium**
+**ML Concept: Feature Creation**
+
+You have raw sensor data and need to create features. Given temperature readings: [20.5, 21.3, 22.1, 21.8, 23.2, 24.1, 23.5, 22.9]
+
+Create a program that generates these features:
+1. Moving average (window size 3)
+2. Temperature difference from previous reading
+3. Boolean feature: is_increasing (compared to previous)
+4. Store all features in a dictionary with descriptive keys
+
+### Proposed Answer
+```python
+temperatures = [20.5, 21.3, 22.1, 21.8, 23.2, 24.1, 23.5, 22.9]
+
+# Feature 1: Moving average (window size 3)
+moving_avg = []
+for i in range(len(temperatures)):
+    if i < 2:
+        # Not enough data for window of 3
+        moving_avg.append(None)
+    else:
+        window_sum = temperatures[i-2] + temperatures[i-1] + temperatures[i]
+        avg = window_sum / 3
+        moving_avg.append(avg)
+
+# Feature 2: Temperature difference from previous
+temp_diff = []
+for i in range(len(temperatures)):
+    if i == 0:
+        temp_diff.append(None)  # No previous value
+    else:
+        diff = temperatures[i] - temperatures[i-1]
+        temp_diff.append(diff)
+
+# Feature 3: Is temperature increasing?
+is_increasing = []
+for i in range(len(temperatures)):
+    if i == 0:
+        is_increasing.append(None)
+    else:
+        is_increasing.append(temperatures[i] > temperatures[i-1])
+
+# Store in dictionary
+features = {
+    "raw_temperature": temperatures,
+    "moving_avg_3": moving_avg,
+    "temp_change": temp_diff,
+    "is_increasing": is_increasing
+}
+
+# Display the feature matrix
+print("Feature Engineering Results:")
+print(f"{'Index':<6} {'Raw Temp':<10} {'MA(3)':<10} {'Change':<10} {'Increasing':<10}")
+print("-" * 56)
+
+for i in range(len(temperatures)):
+    raw = f"{temperatures[i]:.1f}"
+    ma = f"{moving_avg[i]:.2f}" if moving_avg[i] is not None else "N/A"
+    change = f"{temp_diff[i]:+.1f}" if temp_diff[i] is not None else "N/A"
+    increasing = str(is_increasing[i]) if is_increasing[i] is not None else "N/A"
+    
+    print(f"{i:<6} {raw:<10} {ma:<10} {change:<10} {increasing:<10}")
+
+# Summary statistics
+valid_changes = [d for d in temp_diff if d is not None]
+avg_change = sum(valid_changes) / len(valid_changes)
+print(f"\nAverage temperature change: {avg_change:+.2f}°C")
+
+increasing_count = sum([1 for x in is_increasing if x is True])
+print(f"Number of increases: {increasing_count} out of {len(temperatures)-1} transitions")
+```
+
+---
+
+### Exercise 16: Hyperparameter Grid Generator
+**Difficulty: Medium-Hard**
+**ML Concept: Hyperparameter Tuning**
+
+You need to create all combinations of hyperparameters for grid search. Generate combinations for:
+- learning_rate: [0.001, 0.01, 0.1]
+- batch_size: [16, 32, 64]
+- epochs: [10, 20]
+
+Create a program that:
+1. Generates all possible combinations
+2. Counts total combinations
+3. Estimates total training time (assume each takes 5 minutes)
+4. Stores combinations in a list of dictionaries
+
+### Proposed Answer
+```python
+learning_rates = [0.001, 0.01, 0.1]
+batch_sizes = [16, 32, 64]
+epochs = [10, 20]
+
+# Generate all combinations
+combinations = []
+for lr in learning_rates:
+    for bs in batch_sizes:
+        for ep in epochs:
+            combination = {
+                "learning_rate": lr,
+                "batch_size": bs,
+                "epochs": ep
+            }
+            combinations.append(combination)
+
+# Count and report
+total_combinations = len(combinations)
+print(f"Total hyperparameter combinations: {total_combinations}")
+print(f"Expected training time: {total_combinations * 5} minutes ({total_combinations * 5 / 60:.1f} hours)")
+
+# Display all combinations
+print("\nAll combinations:")
+for i, combo in enumerate(combinations):
+    print(f"  {i+1}. LR={combo['learning_rate']}, Batch={combo['batch_size']}, Epochs={combo['epochs']}")
+
+# Create a summary by learning rate
+print("\nGrouped by learning rate:")
+for lr in learning_rates:
+    lr_combos = []
+    for combo in combinations:
+        if combo["learning_rate"] == lr:
+            lr_combos.append(combo)
+    print(f"  LR={lr}: {len(lr_combos)} combinations")
+
+# Calculate expected combinations (verification)
+expected = len(learning_rates) * len(batch_sizes) * len(epochs)
+if expected == total_combinations:
+    print(f"\n✓ Verification passed: {expected} = {total_combinations}")
+else:
+    print(f"\n✗ Error: Expected {expected} but got {total_combinations}")
+```
+
+---
+
+### Exercise 17: Label Distribution Analyzer
+**Difficulty: Medium**
+**ML Concept: Class Imbalance Detection**
+
+You have a dataset with class labels. Analyze if there's class imbalance:
+- Labels: [0, 1, 0, 0, 1, 2, 0, 1, 0, 2, 0, 0, 1, 0, 2, 0, 0, 0, 1, 0]
+
+Create a program that:
+1. Counts samples per class
+2. Calculates the percentage distribution
+3. Identifies if dataset is imbalanced (majority class > 60%)
+4. Suggests whether resampling might be needed
+5. Creates a dictionary mapping class labels to their counts
+
+### Proposed Answer
+```python
+labels = [0, 1, 0, 0, 1, 2, 0, 1, 0, 2, 0, 0, 1, 0, 2, 0, 0, 0, 1, 0]
+
+# Count samples per class
+class_counts = {}
+for label in labels:
+    if label not in class_counts:
+        class_counts[label] = 0
+    class_counts[label] += 1
+
+total_samples = len(labels)
+
+print("Class Distribution:")
+print(f"{'Class':<10} {'Count':<10} {'Percentage':<12} {'Visual':<20}")
+print("-" * 52)
+
+max_count = 0
+majority_class = None
+
+for class_label in sorted(class_counts.keys()):
+    count = class_counts[class_label]
+    percentage = (count / total_samples) * 100
+    
+    # Visual bar (each * represents 5%)
+    bar_length = int(percentage / 5)
+    bar = "*" * bar_length
+    
+    print(f"{class_label:<10} {count:<10} {percentage:>5.1f}%       {bar}")
+    
+    if count > max_count:
+        max_count = count
+        majority_class = class_label
+
+# Check for imbalance
+print(f"\nTotal samples: {total_samples}")
+majority_percentage = (max_count / total_samples) * 100
+
+print(f"\nImbalance Analysis:")
+print(f"  Majority class: {majority_class} ({majority_percentage:.1f}%)")
+
+if majority_percentage > 60:
+    print(f"  ⚠ Dataset is IMBALANCED")
+    print(f"  Recommendation: Consider techniques like:")
+    print(f"    - Oversampling minority classes")
+    print(f"    - Undersampling majority class")
+    print(f"    - Using class weights in model training")
+else:
+    print(f"  ✓ Dataset is relatively BALANCED")
+
+# Calculate imbalance ratio (largest class / smallest class)
+min_count = min(class_counts.values())
+imbalance_ratio = max_count / min_count
+print(f"\nImbalance ratio: {imbalance_ratio:.2f}:1 (largest:smallest)")
+```
+
+---
+
+### Exercise 18: Batch Data Generator
+**Difficulty: Hard**
+**ML Concept: Mini-batch Processing**
+
+Simulate creating batches for training. You have 47 samples and need to create batches of size 8.
+
+Create a program that:
+1. Creates sample IDs (0 to 46)
+2. Splits them into batches of 8
+3. Handles the last incomplete batch
+4. Shows how many full batches and the size of the last batch
+5. Stores batches in a list of lists
+
+### Proposed Answer
+```python
+total_samples = 47
+batch_size = 8
+
+# Create sample IDs
+sample_ids = list(range(total_samples))
+
+# Create batches
+batches = []
+current_batch = []
+
+for sample_id in sample_ids:
+    current_batch.append(sample_id)
+    
+    if len(current_batch) == batch_size:
+        batches.append(current_batch)
+        current_batch = []
+
+# Add the last incomplete batch if exists
+if len(current_batch) > 0:
+    batches.append(current_batch)
+
+# Report results
+full_batches = 0
+for batch in batches:
+    if len(batch) == batch_size:
+        full_batches += 1
+
+print(f"Batch Generation Summary:")
+print(f"  Total samples: {total_samples}")
+print(f"  Batch size: {batch_size}")
+print(f"  Total batches: {len(batches)}")
+print(f"  Full batches: {full_batches}")
+print(f"  Last batch size: {len(batches[-1])}")
+
+# Show first few batches
+print(f"\nFirst 3 batches:")
+for i in range(min(3, len(batches))):
+    print(f"  Batch {i+1}: {batches[i]}")
+
+print(f"\nLast batch:")
+print(f"  Batch {len(batches)}: {batches[-1]}")
+
+# Verify all samples are included
+all_samples_in_batches = []
+for batch in batches:
+    for sample_id in batch:
+        all_samples_in_batches.append(sample_id)
+
+if len(all_samples_in_batches) == total_samples:
+    print(f"\n✓ Verification passed: All {total_samples} samples included in batches")
+else:
+    print(f"\n✗ Error: Expected {total_samples} samples, found {len(all_samples_in_batches)}")
+
+# Calculate training iterations per epoch
+print(f"\nTraining info:")
+print(f"  Iterations per epoch: {len(batches)}")
+print(f"  Samples per iteration: ~{total_samples / len(batches):.1f} (average)")
+```
+
+---
+
+## Additional Challenge Exercises
+
+### Challenge A: Email List Cleaner
+Create a program that takes a list of email addresses and removes duplicates while preserving order. Then create a dictionary grouping emails by domain.
+
+Test with: ["john@gmail.com", "mary@yahoo.com", "john@gmail.com", "peter@gmail.com", "susan@yahoo.com"]
+
+### Challenge B: Budget Tracker
+Create a monthly budget tracker that stores income and expenses separately, calculates the balance, and warns if expenses exceed 80% of income.
+
+### Challenge C: Learning Rate Scheduler (ML)
+Create a learning rate scheduler that reduces the learning rate by 50% every 10 epochs. Start with LR=0.1 and simulate 35 epochs. Track and display the learning rate at each epoch.
+
+### Challenge D: Data Augmentation Counter (ML)
+Given a dataset of 100 samples, calculate how many total samples you'll have if you apply 3 different augmentation techniques to each original sample (original + 3 augmented versions per sample).
+
+
+# Module 3
+
+# Python Introduction Course - Exercise Set
+## Module 3: Functions, Files & Modules (AI/ML Focus)
+
+---
+
+## Exercise 19: Data Normalization Functions
+**Difficulty: Medium**
+**ML Concept: Feature Scaling**
+
+Create a set of reusable normalization functions for preprocessing features:
+
+1. Write a function `min_max_scale(values)` that normalizes a list of numbers to the 0-1 range
+2. Write a function `standardize(values)` that standardizes data (subtract mean, divide by standard deviation)
+3. Write a function `apply_scaling(data, method)` that takes a list and a method name ("minmax" or "standard") and applies the appropriate scaling
+4. Test your functions with: `[10, 20, 30, 40, 50]`
+5. Compare the results of both scaling methods
+
+---
+
+## Exercise 20: Model Evaluation Module
+**Difficulty: Medium-Hard**
+**ML Concept: Creating Reusable ML Utilities**
+
+Create a Python module called `ml_metrics.py` with functions to calculate classification metrics:
+
+1. Function `accuracy(y_true, y_pred)` - returns accuracy score
+2. Function `precision(y_true, y_pred)` - returns precision for class 1
+3. Function `recall(y_true, y_pred)` - returns recall for class 1
+4. Function `f1_score(y_true, y_pred)` - returns F1 score (harmonic mean of precision and recall)
+5. Function `evaluate_model(y_true, y_pred)` - returns a dictionary with all metrics
+
+In a separate notebook or script, import your module and test it with:
+- y_true = [1, 0, 1, 1, 0, 1, 0, 0, 1, 0]
+- y_pred = [1, 0, 1, 0, 0, 1, 1, 0, 1, 0]
+
+---
+
+## Exercise 21: Experiment Logger
+**Difficulty: Medium**
+**ML Concept: Experiment Tracking & Reproducibility**
+
+Create a system that logs ML experiments to a text file:
+
+1. Write a function `log_experiment(model_name, hyperparameters, metrics, filename="experiments.txt")` that appends experiment details to a file
+2. The log entry should include: timestamp (you can use a simple counter), model name, hyperparameters (as dict), and metrics (as dict)
+3. Write a function `read_experiments(filename="experiments.txt")` that reads and prints all logged experiments
+4. Test by logging 3 different experiments with different models and hyperparameters
+5. Use context managers for file operations
+
+---
+
+## Exercise 22: Dataset File Processor
+**Difficulty: Medium-Hard**
+**ML Concept: Data Pipeline**
+
+You have multiple CSV files with training data from different sources. Create functions to process them:
+
+1. Write a function `load_dataset(filepath)` that reads a CSV file and returns the data as a list of dictionaries (each row is a dict)
+2. Write a function `filter_by_threshold(data, column, threshold)` that filters rows where a column value exceeds a threshold
+3. Write a function `save_processed_data(data, output_path)` that saves the processed data to a new CSV file
+4. Use `pathlib.Path` for all file operations
+5. Create a function `process_pipeline(input_file, output_file, column, threshold)` that combines all steps
+
+Test with a mock dataset you create manually or load from an Excel file using pandas.
+
+---
+
+## Exercise 23: Feature Transform Library
+**Difficulty: Medium**
+**ML Concept: Feature Engineering Pipeline**
+
+Create a module `transformers.py` with transformation functions and use `map` to apply them:
+
+1. Function `log_transform(x)` - applies logarithmic transformation (handle x <= 0)
+2. Function `square_transform(x)` - squares the value
+3. Function `clip_outliers(x, lower, upper)` - clips values outside the range
+4. Function `apply_transform(values, transform_func)` - uses `map()` to apply any transformation to a list
+5. Create a lambda function that applies multiple transforms in sequence
+
+Test with: `[1, 5, 10, 50, 100, 500, 1000]`
+
+---
+
+## Exercise 24: Training Data Validator
+**Difficulty: Medium**
+**ML Concept: Data Validation**
+
+Create validation functions to check dataset quality before training:
+
+1. Function `check_missing_values(data)` - returns True if no missing values (represented as None, -999, or empty strings)
+2. Function `check_label_balance(labels, threshold=0.3)` - returns True if no class has less than threshold% of samples
+3. Function `check_feature_range(values, expected_min, expected_max)` - returns True if all values are within range
+4. Function `validate_dataset(data, labels)` - combines all checks and returns a dict with validation results
+5. Use `filter()` to find all samples with missing values
+
+Test with sample data that includes some invalid cases.
+
+---
+
+## Exercise 25: Model Checkpoint Manager
+
+See problem statement [here](exercise_25_checkpoint_manager.html)
+
+---
+
+## Exercise 26: Batch File Processor
+**Difficulty: Hard**
+**ML Concept: Data Pipeline Automation**
+
+Create a system that processes multiple data files in batch:
+
+1. Write a function `get_data_files(directory, extension=".txt")` using `pathlib.glob()` to find all files with a specific extension
+2. Function `process_file(filepath, transform_func)` - reads a file where each line is a number, applies a transformation function, and returns the results
+3. Function `process_all_files(directory, transform_func, output_dir)` - processes all data files and saves results to output directory with "_processed" suffix
+4. Use `map()` to apply the transformation to all values in each file
+5. Use context managers for all file operations
+
+Test by creating 3-4 sample .txt files with numbers.
+
+---
+
+## Exercise 27: Feature Selection Pipeline
+**Difficulty: Medium-Hard**
+**ML Concept: Feature Selection**
+
+Create functions to select the most informative features:
+
+1. Function `calculate_variance(values)` - calculates variance of a feature
+2. Function `select_high_variance_features(data_dict, threshold)` - data_dict has feature names as keys and lists of values as values. Use `filter()` to keep only features with variance above threshold
+3. Function `save_selected_features(selected_features, filepath)` - saves the list of selected feature names to a file
+4. Function `load_feature_config(filepath)` - loads the feature names from the file
+5. Function `apply_feature_selection(data_dict, feature_names)` - returns a new dict with only the selected features
+
+Test with a mock dataset where some features have very low variance.
+
+---
+
+## Exercise 28: Cross-Validation Split Generator
+**Difficulty: Hard**
+**ML Concept: K-Fold Cross-Validation**
+
+Create a module for generating cross-validation splits:
+
+1. Function `create_folds(data_indices, k=5)` - splits indices into k approximately equal folds and returns a list of folds
+2. Function `get_train_test_split(folds, test_fold_index)` - given the folds and which fold to use as test, returns train and test indices
+3. Function `save_cv_splits(folds, directory)` - saves each fold to a separate file (fold_0.txt, fold_1.txt, etc.) using pathlib
+4. Function `load_cv_splits(directory)` - loads all fold files from the directory and returns them as a list
+5. Write a function that uses `map()` to apply a validation function to all k folds
+
+Test with 50 sample indices and k=5 folds.
+
+---
+
+## Exercise 29: Data Augmentation Generator
+**Difficulty: Medium**
+**ML Concept: Data Augmentation**
+
+Create functions that generate augmented versions of data:
+
+1. Function `add_noise(value, noise_level=0.1)` - adds random noise to a value (simulate by adding/subtracting noise_level * value)
+2. Function `scale_value(value, scale_factor)` - scales a value by a factor
+3. Function `augment_sample(sample, augmentation_funcs)` - takes a list of values and a list of augmentation functions, applies all functions
+4. Use `map()` to create augmented versions of an entire dataset
+5. Function `save_augmented_data(original, augmented, filepath)` - saves both original and augmented data to a file with clear labels
+
+Test with: `[1.0, 2.5, 3.7, 4.2, 5.8]` and create 2 augmented versions.
+
+---
+
+## Exercise 30: Training Configuration Manager
+**Difficulty: Medium-Hard**
+**ML Concept: Experiment Configuration**
+
+Create a system to manage training configurations:
+
+1. Function `create_config(learning_rate, batch_size, epochs, optimizer)` - returns a configuration dictionary
+2. Function `save_config(config, filepath)` - saves the configuration to a text file in a readable format (key: value pairs)
+3. Function `load_config(filepath)` - loads configuration from file and returns it as a dictionary
+4. Function `validate_config(config)` - checks that all required keys exist and values are within reasonable ranges
+5. Create a package structure with separate modules for config management and validation
+
+Test by creating, saving, loading, and validating different configurations.
+
+---
+
+## Additional Challenge Exercises
+
+### Challenge E: Ensemble Results Combiner (ML)
+Create functions that combine predictions from multiple models (stored in separate files) using different strategies: majority voting for classification, averaging for regression. Use `pathlib` to read all prediction files from a directory.
+
+### Challenge F: Dataset Statistics Reporter (ML)
+Create a module that generates a comprehensive statistics report for a dataset (mean, std, min, max, missing values, etc.) and saves it to a formatted text file. Include functions that use `map()` and `filter()` to calculate different statistics.
+
+### Challenge G: Feature Engineering Library (ML)
+Create a complete package with modules for different types of feature transformations: `scaling.py`, `encoding.py`, `interaction.py`. Each module should have multiple functions. Create an `__init__.py` that imports commonly used functions.
+
+---
+
+
+

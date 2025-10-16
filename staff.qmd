@@ -24,14 +24,16 @@ format:
 # Lesson plan 2025-10-13
 
 - Lecture 1 recap
-- [Exercise 1](exercises.qmd#exercise-1)
+- [Exercise 1](exercises/exercises.qmd#exercise-1)
 - Slides
-- [Exercise 3](exercises.qmd#exercise-3)
+- [Exercise 3](exercises/exercises.qmd#exercise-3)
 
 
 # Lesson plan 2025-10-20
 
 - Recap until module 4 (excluding packages) ([Recap 2](lectures/4_aula2_recap.qmd), [Recap 3](lectures/6_lesson3_recap.qmd))
+  - Introduce `break` in loops. I forgot to demo that!
+  - imports go in the beginning of the file/Notebook
 - Exceptions, traceback (Slides)
 - Exercise walk-through - Boston House Prices
   - Exceptions demo
@@ -39,6 +41,7 @@ format:
 - Classes (Slides)
 - Debugging - 4 different ways
 - [Debugging demo](lesson4_debug_demo_guide.qmd)
+- [Exercise - Model checkpoint manager](exercises/exercise_25_checkpoint_manager.qmd)
 
 # Checklist for lectures 
 

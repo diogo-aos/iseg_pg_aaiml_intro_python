@@ -1,0 +1,94 @@
+---
+title: Exercise 25: Model Checkpoint Manager
+author: Diogo Silva
+format:
+    html: default
+    typst: default
+---
+
+
+## Problem Statement
+
+In machine learning, it's crucial to save model states during training so you can:
+- Resume training if it gets interrupted
+- Compare performance across different epochs
+- Select the best model based on validation metrics
+- Detect and analyze overfitting
+
+In this exercise, you'll implement a checkpoint management system that saves model states during training and helps identify overfitting patterns.
+
+## Background
+
+You are provided with a `MockModel` class in `mockmodel.py` that simulates realistic neural network training. The model exhibits a common problem in deep learning: **overfitting**.
+Overfitting generally happens when the training accuracy continues to improve, but validation accuracy starts to decrease, indicating the model is memorizing the training data rather than learning generalizable patterns.
+
+Your task is to implement a checkpoint system to track performance metrics (loss and accuracy), and store checkpoints of model parameters, during the training procedure.
+
+## Provided Code
+
+- The `mockmodel` module with the **`MockModel` class** is provided. This class has the following relevant methods:
+  - `get_model_state()` - Returns the current model weights/parameters
+  - `train_eval_model_iteration()` - Simulates one epoch and returns `(train_acc, train_loss, val_acc, val_loss)`
+- **Basic training loop** that runs for 80 epochs
+- Download the module with the mock model from this link: [mockmodel.py](../code/exercise25/mockmodel.py)
+- Download the starter code with the basic training loop from this link: [startercode.py](../code/exercise25/startercode.py)
+
+## Your Tasks
+
+### 1. Implement Checkpoint Saving Function
+
+Write a function that saves model checkpoints to disk:
+- **Input**: Current epoch number, model state (from `model.get_model_state()`), and metrics dictionary
+- **Format**: Should you save in text or binary format? Consider what you're storing (numpy arrays)
+- **Filename**: Design a unique naming scheme for each checkpoint (hint: include the epoch number)
+- **Directory**: Save all checkpoints to a directory called `"model_checkpoints"`
+- **Path handling**: Use `pathlib.Path` to create the directory if it doesn't exist
+  - Look up the `mkdir()` method and understand what `parents` and `exist_ok` arguments do
+  - Reference: https://docs.python.org/3/library/pathlib.html
+
+### 2. Save Checkpoints During Training
+
+Modify the training loop to save checkpoints **every 5 epochs**.
+
+### 3. Post-Training Analysis
+
+After training completes, implement the following analyses:
+
+#### 3.1 Display All Checkpoints
+Print the training and validation accuracies of all saved checkpoints, ordered by epoch number.
+
+#### 3.2 Load Best Checkpoint
+Load the checkpoint with the best validation accuracy and print:
+- Which epoch it was from
+- Its validation and training accuracies
+
+#### 3.3 Detect Overfitting Point
+Write code to automatically detect around which epoch the validation accuracy started decreasing (overfitting began).
+
+**Hints for detecting overfitting:**
+- Compare consecutive validation accuracies
+- Look for when validation accuracy peaks and then declines
+- Consider using a window of epochs to avoid noise
+
+### 4. Early stopping (Optional challenge)
+
+Implement a **patience mechanism** inside the training loop:
+- Track if validation accuracy hasn't improved for 5 consecutive epochs
+- Stop training early if this condition is met
+- Print a message indicating early stopping was triggered and at which epoch
+
+### 5. Spaced checkpoints (Optional challenge)
+
+Instead of saving a checkpoint at every epoch, it's common to save at every N epochs (e.g. N=10) and also keep a checkpoint of the model parameters with the best validation accuracy so far. Change the training loop to reflect this idea.
+
+## Expected Output
+
+Your implementation should:
+1. Create a `model_checkpoints/` directory
+2. Save checkpoint files
+3. Display all checkpoint metrics after training
+4. Identify the best checkpoint
+5. Detect when overfitting started
+6. (Optional) Stop early if patience limit is reached
+7. (Optional) Implement spaced checkpoints
+

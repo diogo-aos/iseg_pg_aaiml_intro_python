@@ -1,0 +1,650 @@
+---
+title: "Boston Housing Dataset Analysis"
+format:
+    html: default
+    typst: default
+#jupyter: python3
+---
+
+# Boston Housing Dataset - Data Loading and Normalization
+
+This notebook demonstrates data loading, statistical computations, and normalization techniques on the Boston Housing dataset. We'll build everything from scratch to understand the mathematical foundations of data preprocessing.
+
+## 1. Data Loading
+
+The first step in any data analysis is loading the data. We'll read a CSV (Comma-Separated Values) file where:
+
+- The first line contains column names (header)
+- Each subsequent line contains one data point with values for each column
+- Values are separated by commas
+
+Our function will parse this structure and return a dictionary where each key is a column name and each value is a list of floats representing that column's data.
+
+```{.python}
+from typing import Dict, List
+
+def load_csv(filename: str) -> Dict[str, List[float]]:
+    """
+    Load a CSV file and return a dictionary with column names as keys
+    and lists of float values.
+    
+    The function:
+    1. Reads the first line to extract column names
+    2. Initializes empty lists for each column
+    3. Reads each subsequent line and parses values as floats
+    4. Appends each value to its corresponding column list
+    
+    Args:
+        filename: Path to the CSV file
+        
+    Returns:
+        Dictionary mapping column names to lists of float values
+        
+    Example:
+        data = load_csv('BostonHousing.csv')
+        # data = {'CRIM': [0.00632, 0.02731, ...], 'ZN': [18.0, 0.0, ...], ...}
+    """
+    data: Dict[str, List[float]] = {}
+    
+    with open(filename, 'r') as file:
+        # Read the header line to get column names
+        header = file.readline().strip()
+        columns = header.split(',')
+        
+        # Initialize empty lists for each column
+        for col in columns:
+            data[col] = []
+        
+        # Read data lines and convert to floats
+        for line in file:
+            values = line.strip().split(',')
+            for col, value in zip(columns, values):
+                data[col].append(float(value))
+    
+    return data
+
+# Load the dataset
+data = load_csv('BostonHousing.csv')
+print(f"Successfully loaded {len(data)} columns")
+print(f"Number of data points: {len(data[list(data.keys())[0]])}")
+print(f"\nColumn names:\n{', '.join(data.keys())}")
+print(f"\nFirst 3 values of MEDV: {data['MEDV'][:3]}")
+```
+
+## 2. Statistical Functions
+
+Before we can normalize data, we need to compute basic statistics. We'll implement these from scratch to understand the mathematics.
+
+### 2.1 Mean (Average)
+
+The mean represents the central tendency of data - the "typical" value.
+
+**Mathematical Formula:**
+
+$$\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i = \frac{x_1 + x_2 + ... + x_n}{n}$$
+
+Where:
+- $\bar{x}$ is the mean
+- $n$ is the number of values
+- $x_i$ is each individual value
+
+**Interpretation:** The mean tells us the average value. For example, if the mean of MEDV (median home value) is 22.5, then the average home value in the dataset is $22,500.
+
+```{.python}
+def mean(values: List[float]) -> float:
+    """
+    Calculate the arithmetic mean (average) of a list of values.
+    
+    Formula: mean = (sum of all values) / (number of values)
+    
+    Args:
+        values: List of numeric values
+        
+    Returns:
+        The arithmetic mean as a float
+        
+    Example:
+        mean([1, 2, 3, 4, 5]) = 3.0
+    """
+    return sum(values) / len(values)
+
+
+# Test the function
+test_values = [1.0, 2.0, 3.0, 4.0, 5.0]
+print(f"Test data: {test_values}")
+print(f"Mean: {mean(test_values)}")
+print(f"Verification: (1+2+3+4+5)/5 = {15/5}")
+```
+
+### 2.2 Standard Deviation
+
+Standard deviation measures the spread or dispersion of data - how far values typically are from the mean.
+
+**Mathematical Formula:**
+
+$$s = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2}$$
+
+Where:
+- $s$ is the sample standard deviation
+- $n$ is the number of values
+- $x_i$ is each individual value
+- $\bar{x}$ is the mean
+- We divide by $n-1$ (not $n$) for sample standard deviation (Bessel's correction)
+
+**Interpretation:** A small standard deviation means values are clustered close to the mean; a large standard deviation means values are spread out. For example, if mean price is $22,500 with std of $9,000, most homes are within about $9,000 of the average.
+
+**Step-by-step calculation:**
+1. Calculate the mean
+2. Subtract the mean from each value (deviations)
+3. Square each deviation
+4. Sum all squared deviations
+5. Divide by (n-1) to get variance
+6. Take the square root to get standard deviation
+
+```{.python}
+import math
+
+def std(values: List[float]) -> float:
+    """
+    Calculate the sample standard deviation of a list of values.
+    
+    Formula: std = sqrt(sum((x - mean)²) / (n - 1))
+    
+    This implementation reuses the mean() function we created earlier.
+    
+    Args:
+        values: List of numeric values
+        
+    Returns:
+        The sample standard deviation as a float
+        
+    Example:
+        std([1, 2, 3, 4, 5]) ≈ 1.58
+    """
+    n = len(values)
+    avg = mean(values)  # Reusing our mean function
+    
+    # Calculate sum of squared deviations
+    variance = sum((x - avg) ** 2 for x in values) / (n - 1)
+    
+    return math.sqrt(variance)
+
+
+# Test the function
+print(f"\nTest data: {test_values}")
+print(f"Mean: {mean(test_values)}")
+print(f"Standard deviation: {std(test_values):.4f}")
+
+# Manual verification for test_values = [1,2,3,4,5]
+# Mean = 3.0
+# Deviations: [-2, -1, 0, 1, 2]
+# Squared: [4, 1, 0, 1, 4]
+# Sum: 10
+# Variance: 10/4 = 2.5
+# Std: sqrt(2.5) = 1.5811
+print(f"Manual calculation: sqrt(10/4) = {math.sqrt(2.5):.4f}")
+```
+
+## 3. Dataset Statistics
+
+Now let's apply our statistical functions to every column in the Boston Housing dataset. This gives us an understanding of the scale and variability of each feature.
+
+**Why this matters:**
+- Large differences in scale (e.g., TAX ranges from 187-711 while CHAS is 0-1) can cause problems in machine learning algorithms
+- Standard deviation tells us which features have more variability
+- These statistics are essential for the normalization techniques we'll apply next
+
+```{.python}
+print("=" * 60)
+print("BOSTON HOUSING DATASET - DESCRIPTIVE STATISTICS")
+print("=" * 60)
+print(f"\n{'Column':<10} {'Mean':>12} {'Std Dev':>12} {'Min':>12} {'Max':>12}")
+print("-" * 60)
+
+for column in data.keys():
+    col_mean = mean(data[column])
+    col_std = std(data[column])
+    col_min = min(data[column])
+    col_max = max(data[column])
+    print(f"{column:<10} {col_mean:>12.4f} {col_std:>12.4f} {col_min:>12.4f} {col_max:>12.4f}")
+
+print("\n" + "=" * 60)
+print("Key Observations:")
+print("- TAX has a large range (187-711), indicating high variability")
+print("- CHAS is binary (0 or 1), representing if property bounds the river")
+print("- Different features have vastly different scales")
+print("- This motivates the need for normalization!")
+print("=" * 60)
+```
+
+## 4. Normalization Functions
+
+Normalization transforms data to a common scale without distorting differences in ranges. We'll implement two popular methods.
+
+### 4.1 Min-Max Scaling
+
+Min-Max scaling (also called normalization) transforms data to a fixed range, typically [0, 1].
+
+**Mathematical Formula:**
+
+$$x_{scaled} = \frac{x - x_{min}}{x_{max} - x_{min}}$$
+
+Where:
+- $x$ is the original value
+- $x_{min}$ is the minimum value in the dataset
+- $x_{max}$ is the maximum value in the dataset
+- $x_{scaled}$ is the scaled value in range [0, 1]
+
+**Properties:**
+- Minimum value → 0
+- Maximum value → 1
+- All other values → proportionally between 0 and 1
+- Preserves the shape of the original distribution
+- Sensitive to outliers (a single extreme value affects all others)
+
+**When to use:**
+- Neural networks (especially with sigmoid/tanh activation functions)
+- When you need bounded values in a specific range
+- When the distribution is not Gaussian and doesn't contain severe outliers
+- Image processing (pixel values 0-255 → 0-1)
+
+```{.python}
+def min_max_scale(values: List[float]) -> List[float]:
+    """
+    Normalize values to the [0, 1] range using Min-Max scaling.
+    
+    Formula: x_scaled = (x - min) / (max - min)
+    
+    This maps the minimum value to 0, maximum to 1, and everything
+    else proportionally in between.
+    
+    Args:
+        values: List of numeric values
+        
+    Returns:
+        List of normalized values in range [0, 1]
+        
+    Example:
+        min_max_scale([1, 2, 3, 4, 5]) = [0.0, 0.25, 0.5, 0.75, 1.0]
+        - Original range: 1 to 5 (span of 4)
+        - Value 3 is halfway, so scaled to 0.5
+    """
+    min_val = min(values)
+    max_val = max(values)
+    range_val = max_val - min_val
+    
+    # Handle edge case: all values are the same
+    if range_val == 0:
+        return [0.0] * len(values)
+    
+    return [(x - min_val) / range_val for x in values]
+
+
+# Test with example
+test_minmax = [10.0, 20.0, 30.0, 40.0, 50.0]
+scaled = min_max_scale(test_minmax)
+print("Min-Max Scaling Example:")
+print(f"Original: {test_minmax}")
+print(f"Scaled:   {scaled}")
+print(f"\nVerification:")
+print(f"  Min value (10) → {scaled[0]} ✓")
+print(f"  Max value (50) → {scaled[4]} ✓")
+print(f"  Mid value (30) → {scaled[2]} (halfway between min and max) ✓")
+```
+
+### 4.2 Standardization (Z-Score Normalization)
+
+Standardization transforms data to have mean = 0 and standard deviation = 1. This is also called "z-score normalization."
+
+**Mathematical Formula:**
+
+$$z = \frac{x - \bar{x}}{s}$$
+
+Where:
+- $z$ is the standardized value (z-score)
+- $x$ is the original value
+- $\bar{x}$ is the mean of the dataset
+- $s$ is the standard deviation
+
+**Properties:**
+- Mean becomes 0
+- Standard deviation becomes 1
+- Values are not bounded (can be negative or > 1)
+- A z-score tells you how many standard deviations a value is from the mean
+  - z = 0: value equals the mean
+  - z = 1: value is 1 standard deviation above the mean
+  - z = -2: value is 2 standard deviations below the mean
+- Less sensitive to outliers than min-max scaling
+
+**When to use:**
+- Algorithms that assume normally distributed data (Gaussian distribution)
+- Linear regression, logistic regression, linear discriminant analysis
+- Principal Component Analysis (PCA)
+- Support Vector Machines (SVM)
+- K-Nearest Neighbors (when features have different units)
+- When outliers are present but meaningful
+
+```{.python}
+def standardize(values: List[float]) -> List[float]:
+    """
+    Standardize values using z-score normalization.
+    
+    Formula: z = (x - mean) / std
+    
+    This transforms data to have mean=0 and std=1. The resulting values
+    (z-scores) represent how many standard deviations each point is from
+    the mean.
+    
+    This implementation reuses both mean() and std() functions.
+    
+    Args:
+        values: List of numeric values
+        
+    Returns:
+        List of standardized values (z-scores)
+        
+    Example:
+        standardize([1, 2, 3, 4, 5])
+        - Mean is 3, std is ~1.58
+        - Value 5: (5-3)/1.58 ≈ 1.26 (1.26 std devs above mean)
+        - Value 1: (1-3)/1.58 ≈ -1.26 (1.26 std devs below mean)
+    """
+    avg = mean(values)  # Reusing our mean function
+    sd = std(values)    # Reusing our std function
+    
+    # Handle edge case: all values are the same (std = 0)
+    if sd == 0:
+        return [0.0] * len(values)
+    
+    return [(x - avg) / sd for x in values]
+
+
+# Test with example
+test_standard = [10.0, 20.0, 30.0, 40.0, 50.0]
+standardized = standardize(test_standard)
+print("\nStandardization Example:")
+print(f"Original: {test_standard}")
+print(f"Standardized: {[f'{x:.4f}' for x in standardized]}")
+print(f"\nVerification:")
+print(f"  Mean of original: {mean(test_standard)}")
+print(f"  Mean of standardized: {mean(standardized):.10f} (≈ 0) ✓")
+print(f"  Std of original: {std(test_standard):.4f}")
+print(f"  Std of standardized: {std(standardized):.10f} (≈ 1) ✓")
+```
+
+### 4.3 Unified Scaling Function
+
+Now we create a wrapper function that applies either scaling method. This provides a clean interface for applying normalization techniques.
+
+```{.python}
+def apply_scaling(values: List[float], method: str) -> List[float]:
+    """
+    Apply the specified scaling method to the data.
+    
+    This function acts as a dispatcher, calling the appropriate
+    normalization function based on the method parameter.
+    
+    Args:
+        values: List of numeric values to scale
+        method: Scaling method - either "minmax" or "standard"
+        
+    Returns:
+        List of scaled values
+        
+    Raises:
+        ValueError: If method is not "minmax" or "standard"
+        
+    Example:
+        apply_scaling([1, 2, 3, 4, 5], "minmax")
+        # Returns: [0.0, 0.25, 0.5, 0.75, 1.0]
+        
+        apply_scaling([1, 2, 3, 4, 5], "standard")
+        # Returns: [-1.26, -0.63, 0.0, 0.63, 1.26]
+    """
+    if method == "minmax":
+        return min_max_scale(values)
+    elif method == "standard":
+        return standardize(values)
+    else:
+        raise ValueError(
+            f"Unknown method: '{method}'. "
+            f"Valid options are 'minmax' or 'standard'"
+        )
+
+
+# Test both methods
+print("\nTesting apply_scaling function:")
+test_data = [100.0, 200.0, 300.0, 400.0, 500.0]
+print(f"Original data: {test_data}")
+print(f"Min-Max:       {apply_scaling(test_data, 'minmax')}")
+print(f"Standard:      {[f'{x:.4f}' for x in apply_scaling(test_data, 'standard')]}")
+```
+
+## 5. Comparing Scaling Methods
+
+Let's apply both scaling methods to the MEDV (median home value) column and analyze the differences in detail.
+
+```{.python}
+# Choose a column to demonstrate scaling
+column_to_scale = "MEDV"  # Median value of owner-occupied homes in $1000's
+
+print("=" * 70)
+print(f"DETAILED COMPARISON: Scaling methods on '{column_to_scale}' column")
+print("=" * 70)
+
+original_values = data[column_to_scale]
+minmax_scaled = apply_scaling(original_values, "minmax")
+standard_scaled = apply_scaling(original_values, "standard")
+
+print(f"\nOriginal data interpretation:")
+print(f"  MEDV represents median home values in $1000s")
+print(f"  Example: MEDV = 24.0 means $24,000")
+
+print(f"\n{'Index':<8} {'Original':>12} {'Min-Max':>12} {'Standard':>12} {'Interpretation':<30}")
+print("-" * 78)
+
+# Show first 15 values with interpretations
+for i in range(min(15, len(original_values))):
+    orig = original_values[i]
+    mm = minmax_scaled[i]
+    st = standard_scaled[i]
+    
+    # Interpretation for standardized value
+    if st > 1:
+        interp = f"{st:.2f} std devs above avg"
+    elif st < -1:
+        interp = f"{abs(st):.2f} std devs below avg"
+    elif st > 0:
+        interp = "Above average"
+    elif st < 0:
+        interp = "Below average"
+    else:
+        interp = "At average"
+    
+    print(f"{i:<8} ${orig:>11.1f}k {mm:>12.4f} {st:>12.4f} {interp:<30}")
+
+print("\n" + "=" * 70)
+print("STATISTICAL COMPARISON")
+print("=" * 70)
+print(f"{'Metric':<20} {'Original':>15} {'Min-Max':>15} {'Standard':>15}")
+print("-" * 70)
+
+metrics = {
+    'Mean': (mean(original_values), mean(minmax_scaled), mean(standard_scaled)),
+    'Std Deviation': (std(original_values), std(minmax_scaled), std(standard_scaled)),
+    'Minimum': (min(original_values), min(minmax_scaled), min(standard_scaled)),
+    'Maximum': (max(original_values), max(minmax_scaled), max(standard_scaled)),
+    'Range': (
+        max(original_values) - min(original_values),
+        max(minmax_scaled) - min(minmax_scaled),
+        max(standard_scaled) - min(standard_scaled)
+    )
+}
+
+for metric_name, (orig, mm, st) in metrics.items():
+    print(f"{metric_name:<20} {orig:>15.4f} {mm:>15.4f} {st:>15.4f}")
+```
+
+## 6. Multiple Column Comparison
+
+Let's compare how different columns behave under both scaling methods.
+
+```{.python}
+print("\n" + "=" * 80)
+print("SCALING COMPARISON ACROSS MULTIPLE FEATURES")
+print("=" * 80)
+
+# Select diverse columns for comparison
+comparison_columns = ["CRIM", "RM", "TAX", "MEDV"]
+
+for col in comparison_columns:
+    print(f"\n{'='*80}")
+    print(f"Feature: {col}")
+    print(f"{'='*80}")
+    
+    original = data[col]
+    minmax = apply_scaling(original, "minmax")
+    standard = apply_scaling(original, "standard")
+    
+    print(f"\nOriginal statistics:")
+    print(f"  Range: [{min(original):.4f}, {max(original):.4f}]")
+    print(f"  Mean:  {mean(original):.4f}")
+    print(f"  Std:   {std(original):.4f}")
+    
+    print(f"\nAfter Min-Max scaling:")
+    print(f"  Range: [{min(minmax):.4f}, {max(minmax):.4f}] (always [0, 1])")
+    print(f"  Mean:  {mean(minmax):.4f}")
+    print(f"  Std:   {std(minmax):.4f}")
+    
+    print(f"\nAfter Standardization:")
+    print(f"  Range: [{min(standard):.4f}, {max(standard):.4f}] (not bounded)")
+    print(f"  Mean:  {mean(standard):.10f} (≈ 0)")
+    print(f"  Std:   {std(standard):.10f} (≈ 1)")
+    
+    # Count how many values are outside [-3, 3] range (potential outliers)
+    outliers = sum(1 for x in standard if abs(x) > 3)
+    print(f"  Outliers (|z| > 3): {outliers} ({100*outliers/len(standard):.2f}%)")
+```
+
+## 7. Key Insights and Decision Guide
+
+```{.python}
+print("\n" + "=" * 80)
+print("NORMALIZATION DECISION GUIDE")
+print("=" * 80)
+
+print("""
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ MIN-MAX SCALING (Normalization to [0,1])                                    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Mathematical Properties:                                                    │
+│   • Formula: (x - min) / (max - min)                                        │
+│   • Output range: [0, 1]                                                    │
+│   • Preserves shape of distribution                                         │
+│   • Preserves zero values if present                                        │
+│                                                                              │
+│ Advantages:                                                                  │
+│   ✓ Bounded output makes interpretation easy                                │
+│   ✓ Required for algorithms that need values in specific range              │
+│   ✓ Maintains relationships between data points                             │
+│   ✓ No assumptions about data distribution                                  │
+│                                                                              │
+│ Disadvantages:                                                               │
+│   ✗ Very sensitive to outliers (one extreme value affects everything)       │
+│   ✗ New data outside training range becomes out of bounds                   │
+│   ✗ Not robust for data with extreme values                                 │
+│                                                                              │
+│ Best Used For:                                                               │
+│   • Neural networks (especially with bounded activation functions)          │
+│   • Image processing (normalizing pixel values)                             │
+│   • When you know the value range won't change                              │
+│   • Algorithms that need bounded input (e.g., genetic algorithms)           │
+│                                                                              │
+│ Example Use Cases:                                                           │
+│   • Converting image pixels from [0-255] to [0-1]                           │
+│   • Normalizing student grades from different scales                        │
+│   • Preparing features for neural networks with sigmoid activation          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ STANDARDIZATION (Z-Score Normalization)                                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Mathematical Properties:                                                    │
+│   • Formula: (x - mean) / std                                               │
+│   • Output: mean = 0, std = 1                                               │
+│   • Not bounded (can be any value)                                          │
+│   • Z-score interpretation: "standard deviations from mean"                 │
+│                                                                              │
+│ Advantages:                                                                  │
+│   ✓ Less sensitive to outliers                                              │
+│   ✓ Works well with normal (Gaussian) distributions                         │
+│   ✓ Centers data around zero (important for some algorithms)                │
+│   ✓ Meaningful interpretation (z-scores)                                    │
+│   ✓ Handles new data better (can extend beyond original range)              │
+│                                                                              │
+│ Disadvantages:                                                               │
+│   ✗ Output is unbounded (not in fixed range)                                │
+│   ✗ Assumes roughly normal distribution for best results                    │
+│   ✗ Not suitable when you need bounded values                               │
+│                                                                              │
+│ Best Used For:                                                               │
+│   • Linear regression and logistic regression                               │
+│   • Support Vector Machines (SVM)                                           │
+│   • K-Nearest Neighbors with different units                                │
+│   • Principal Component Analysis (PCA)                                      │
+│   • When features follow normal distribution                                │
+│   • When outliers are meaningful and should not dominate                    │
+│                                                                              │
+│ Example Use Cases:                                                           │
+│   • Financial data (stock prices, returns)                                  │
+│   • Scientific measurements                                                 │
+│   • Standardizing test scores across different exams                        │
+│   • Preparing data for algorithms that assume centered data                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ PRACTICAL DECISION TREE                                                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│   Does your algorithm require bounded input [0,1]?                          │
+│   ├─ YES → Use Min-Max Scaling                                              │
+│   └─ NO → Continue                                                          │
+│                                                                              │
+│   Does your data have extreme outliers?                                     │
+│   ├─ YES → Use Standardization (more robust)                                │
+│   └─ NO → Continue                                                          │
+│                                                                              │
+│   Does your algorithm assume centered, normal data?                         │
+│   ├─ YES → Use Standardization                                              │
+│   └─ NO → Use Min-Max Scaling                                               │
+│                                                                              │
+│   When in doubt: Try both and compare model performance!                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+""")
+
+print("\nFor the Boston Housing dataset:")
+print("  • Features have different scales (CHAS: 0-1, TAX: 187-711)")
+print("  • Some features may have outliers (CRIM has very high max value)")
+print("  • Recommendation: Try both methods and evaluate based on your model")
+print("  • For regression: Standardization often works better")
+print("  • For neural networks: Min-Max scaling is typically preferred")
+print("=" * 80)
+```
+
+## Summary
+
+This notebook demonstrated:
+
+1. **Data Loading**: Reading CSV files and parsing them into a usable data structure
+2. **Statistical Functions**: Implementing mean and standard deviation from scratch
+3. **Min-Max Scaling**: Transforming data to [0,1] range while preserving distribution shape
+4. **Standardization**: Transforming data to have mean=0 and std=1 for algorithm compatibility
+5. **Practical Comparison**: Analyzing how different features respond to scaling methods
+
+**Key Takeaway**: The choice between Min-Max scaling and Standardization depends on:
+- Your algorithm's requirements
+- Presence of outliers in your data
+- Whether you need bounded values
+- The distribution of your features
+
+Always experiment with both methods and choose based on model performance!
