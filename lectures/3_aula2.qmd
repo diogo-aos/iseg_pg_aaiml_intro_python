@@ -374,6 +374,21 @@ total = sum(l)
 
 ---
 
+To stop a loop, we can use the `break` instruction:
+
+```python
+l = [1,2,3,5,8,13]
+total, i = 0, 0
+while True:
+    total += l[i]
+    i += 1
+    if i <= len(l):
+        break
+print(total)
+```
+
+---
+
 We had to declare a variable just for increasing the
 position of the list element, but we also have the `for`
 loop which makes this kind of logic easier.

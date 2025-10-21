@@ -17,6 +17,7 @@ format:
   - [Module 3](lectures/5_lesson3.html)
   - [Module 3 recap](lectures/6_lesson3_recap.html)
   - [Module 4](lectures/7_lesson4.html)
+  - [Module 4 recap](lectures/8_module4_recap.html)
 - [Exercises](exercises.html)
 - [Debug demo guide](lesson4_debug_demo_guide.html)
 
@@ -35,7 +36,7 @@ format:
   - Introduce `break` in loops. I forgot to demo that!
   - imports go in the beginning of the file/Notebook
 - Exceptions, traceback (Slides)
-- Exercise walk-through - Boston House Prices
+- Exercise walk-through - [Boston House Prices]()
   - Exceptions demo
 - Packages demo: legacy, [Boston](packages_guide_boston.qmd)
 - Classes (Slides)

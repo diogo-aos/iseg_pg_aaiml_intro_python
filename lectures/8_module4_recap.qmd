@@ -244,9 +244,13 @@ Use pdb to inspect variables and understand program flow!
 
 ---
 
-### Debugging in Jupyter
+### Debugging in Jupyter and IDE
 
-- Click left of line numbers to set
+- IDEs usually have debugging modes
+- Set breakpoints more easily
+- Facilitate moving up and down the call stack 
+- Easily check variable values
+
 
 
 # {background-image="../img/apresentacoes_Python_end.png" background-size="contain" background-repeat="no-repeat"}

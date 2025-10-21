@@ -31,7 +31,7 @@ format: revealjs
 - Unexpected behaviour can manifest itself as an exception.
 - If not dealt with, exceptions break our programs.
 
---
+---
 
 ```python
 int("hello world")
@@ -45,7 +45,7 @@ ValueError: invalid literal for int() with base 10: 'hello'
 
 - Converting a nonnumeric string to an integer is unexpected behaviour, and a <span style="color:salmon">`ValueError`</span> exception is thrown.
 
---
+---
 
 ```python
 read_my_file("imaginary_file.txt")
@@ -57,14 +57,14 @@ FileNotFoundError: [Errno 2] No such file or directory: 'imaginary_file.txt'
 
 - The file <span style="color:gold">`imaginary_file.txt`</span> does not exist, so a <span style="color:salmon">`FileNotFoundError`</span> exception is thrown.
 
---
+---
 
 * Python has many different exceptions.
 * Their name is usually sugestive of the problem we're facing.
 * Many packages define their own exceptions. <!-- .element: class="fragment"-->
 * Sometimes those are not as suggestive. <!-- .element: class="fragment"-->
 
---
+---
 
 When we get an exception, we get:
 
@@ -72,7 +72,7 @@ When we get an exception, we get:
 2. usually, a suggestive string, e.g. <small> <span style="color:white"> ```No such file or directory: 'imaginary_file.txt'``` </span> </small>
 3. a traceback
 
---
+---
 
 #### traceback
 
@@ -83,7 +83,7 @@ When we get an exception, we get:
   - recursively
 
 
---
+---
 
 There may be a long list of function calls.
 
@@ -98,7 +98,7 @@ Traceback (most recent call last):
 FileNotFoundError: [Errno 2] No such file or directory: 'imaginary_file.txt'
 ```
 
---
+---
 
 #### traceback
 
@@ -120,7 +120,7 @@ except:
     number = 42
 ```
 
---
+---
 
 We can catch just some kinds of exceptions too.
 
@@ -132,7 +132,7 @@ except ValueError:
     number = 42
 ```
 
---
+---
 
 We can also catch more exceptions or combine them.
 
@@ -154,7 +154,7 @@ except:
 
 - We've already been exposed to objects, but where do they come from?
 
---
+---
 
 #### Object Oriented Programming (OOP)
 
@@ -162,7 +162,7 @@ except:
 - This means we can define classes of objects that share attributes and behaviour <!-- .element: class="fragment"-->
 - Behaviour is implemented through methods (functions associated with a class) <!-- .element: class="fragment"-->
 
---
+---
 
 ```python
 class Vehicle:
@@ -178,7 +178,7 @@ class Vehicle:
         self.acc -= 2
 ```
 
---
+---
 
 #### instatiating classes
 
@@ -200,13 +200,13 @@ red
 <class '__main__.Vehicle'>
 ```
 
---
+---
 
 - When we create an object of a certain class, we call it instantiation.
 - Classes by themselves don't do anything, but their instantiated objects do.
   - The <span style="color:gold">concept</span> of a Car doesn't take us anywhere, but a specific (<span style="color:gold">instantiated</span>) car can.
 
---
+---
 
 #### classes from other packages
 
@@ -224,7 +224,7 @@ pandas.core.frame.DataFrame
 
 It's a class! 
 
---
+---
 
 - The `read_excel` function reads the contents of the Excel file into a newly created DataFrame object.
 - When we call the methods of an object, we're calling the methods of that object's class!
@@ -233,7 +233,7 @@ It's a class!
 df["new_prices"] = df["prices"].map(lambda p: p * 1.045)
 ```
 
---
+---
 
 ```python
 df["new_prices"] = df["prices"].map(lambda p: p * 1.045)
@@ -244,7 +244,7 @@ df["new_prices"] = df["prices"].map(lambda p: p * 1.045)
   - getting a column with `[ ]`, is the implementation of the special method  `__getitem__`
   - setting a column with `[ ]` is also the implementation of `__setitem__`.
 
---
+---
 
 #### inheritance
 
@@ -268,19 +268,19 @@ red
 10
 ```
 
---
+---
 
 - You'll implicintly use this when using Python's packages.
   - In SciKit-Learn, the <span style="color:gold">`LinearRegression`</span> class inherits from <span style="color:coral">`MultiOutputMixin`</span>, <span style="color:coral">`RegressorMixin`</span> and <span style="color:coral">`LinearModel`</span>.
   - In the same package, the <span style="color:gold">`DecisionTreeClassifier`</span> inherits from <span style="color:coral">`ClassifierMixin`</span> and <span style="color:coral">`BaseDecisionTree`</span>.
 
---
+---
 
 - And also explicitly:
   - In PyTorch, it's common to build models by creating classes that inherit from <span style="color:coral">`torch.nn.Module`</span>.
 
 
---
+---
 
 #### What you need to know about OOP?
 
@@ -288,7 +288,7 @@ red
 - Data libraries will often return objects, e.g. Pandas DataFrame
 - The classes of these objects usually have useful methods, e.g. .map() of DataFrame
 
---
+---
 
 #### What you need to know about OOP?
 
@@ -317,7 +317,7 @@ sklearn.linear_model.LinearRegression.__bases__
 - Jupyter
 
 
---
+---
 
 #### pdb cheatsheet
 

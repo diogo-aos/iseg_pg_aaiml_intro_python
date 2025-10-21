@@ -47,6 +47,8 @@ def sum_2(a):
 - functions can return multiple values
 
 
+---
+
 #### variable scope in functions
 
 Local and global variables
@@ -105,25 +107,12 @@ percent = 4.5
 new_prices = list(map(lambda p: p * (1 + percent / 100), prices))
 ```
 
----
-
 #### pandas and map
 
 ```python
 df = pandas.read_excel("prices.xlsx")
 df["new_prices"] = df["prices"].map(lambda p: p * 1.045)
 ```
-
----
-
-#### filter
-
-```python
-vegetables_prices = list(filter(lambda p,c: c == 'vegetables',
-                                zip(prices, categories)))
-```
-
----
 
 #### filters in pandas
 
@@ -169,7 +158,6 @@ f.write("\njust one more line")
 f.close() # don't forget to close your files
 ```
 
----
 
 #### context manager
 
@@ -179,13 +167,13 @@ with open("test_file.txt", "r") as f:
 print(data)
 ```
 
-- The file is closed for us at the end of the context (with block)
+The file is closed for us at the end of the context (with block)
 
 ---
 
-#### binary pickle
+#### binary
 
-- We can store (almost) any Python object in a binary file with Pickle
+We can store (almost) any Python object in a binary file with Pickle
 
 
 ```python
@@ -209,7 +197,6 @@ test_path = Path("test_file.txt")
 test_path.exists() # returns True if the file exists
 ```
 
----
 
 #### pathlib - open, read, write
 
